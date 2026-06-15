@@ -1,0 +1,10 @@
+current_theme: modern-professional
+themes:
+  modern-professional:
+    primary_color: "#0f172a"     # 深いネイビー（誠実さ・知性）
+    secondary_color: "#2563eb"   # 鮮やかなブルー（先進性・スピード感）
+    accent_color: "#f59e0b"      # 暖かいアンバー（成果・CVのアクセント）
+    background_color: "#f8fafc"  # 明るいライトグレー（清潔感）
+    text_color: "#1e293b"        # 読みやすいダークグレー
+    font_family: "'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', sans-serif"
+    border_radius: "6px"         # きっちりとしたビジネス感
