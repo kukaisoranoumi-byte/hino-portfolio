@@ -147,6 +147,46 @@ img { max-width: 100%; height: auto; display: block; }
   max-width: 680px; margin-inline: auto; line-height: 1.8;
 }
 
+/* ---------- About / Profile ---------- */
+.about-layout {
+  display: grid; grid-template-columns: 320px 1fr; gap: 3rem;
+  margin-top: 2.8rem; align-items: start;
+}
+.about-photo-col { position: sticky; top: 88px; }
+.about-photo {
+  border-radius: var(--radius); overflow: hidden;
+  box-shadow: var(--shadow-md); border: 1px solid var(--border);
+  background: #e8edf3;
+}
+.about-photo img { width: 100%; height: auto; display: block; }
+.about-name {
+  margin-top: 1.4rem; display: flex; flex-direction: column; gap: .15rem;
+  text-align: center;
+}
+.about-name-ja { font-size: 1.4rem; font-weight: 800; color: var(--primary); letter-spacing: .04em; }
+.about-name-en { font-size: .8rem; font-weight: 600; color: var(--muted); letter-spacing: .14em; text-transform: uppercase; }
+.about-role {
+  margin-top: .55rem; align-self: center;
+  font-size: .76rem; font-weight: 700; letter-spacing: .06em;
+  color: var(--secondary); background: rgba(37,99,235,.1);
+  padding: .3rem .9rem; border-radius: 999px;
+}
+.about-text-col { display: grid; gap: 1.4rem; }
+.about-block {
+  background: var(--bg); border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius); padding: 1.4rem 1.6rem;
+  box-shadow: var(--shadow);
+  transition: transform .18s, border-color .18s;
+}
+.about-block:hover { transform: translateX(4px); }
+.about-block h3 {
+  display: flex; align-items: center; gap: .55rem;
+  color: var(--primary); font-size: 1.05rem; font-weight: 700; margin-bottom: .5rem;
+}
+.about-ico { font-size: 1.15rem; }
+.about-block p { color: var(--text); font-size: .93rem; line-height: 1.8; }
+
 /* ---------- Condition ---------- */
 .condition-grid {
   display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 2.8rem;
@@ -166,6 +206,11 @@ img { max-width: 100%; height: auto; display: block; }
 .accent-card .condition-num { color: var(--accent); }
 .condition-num small { font-size: 2rem; font-weight: 900; }
 .condition-unit { font-size: .88rem; font-weight: 700; color: var(--muted); margin-bottom: .8rem; }
+.condition-sub {
+  font-size: .92rem; font-weight: 600; color: var(--text);
+  border-top: 1px solid var(--border); padding-top: .75rem; margin-bottom: .8rem;
+}
+.condition-sub strong { font-size: 1.35rem; font-weight: 900; color: var(--secondary); margin: 0 .15rem; }
 .condition-card p { font-size: .9rem; color: var(--muted); }
 
 /* ---------- Cards (generic) ---------- */
@@ -394,6 +439,7 @@ img { max-width: 100%; height: auto; display: block; }
   .media-grid       { grid-template-columns: 1fr 1fr; }
   .skills-layout    { grid-template-columns: 1fr; gap: 2rem; }
   .comment-layout   { grid-template-columns: 1fr; }
+  .about-layout     { grid-template-columns: 260px 1fr; gap: 2rem; }
 }
 
 @media (max-width: 720px) {
@@ -414,4 +460,6 @@ img { max-width: 100%; height: auto; display: block; }
   .hero-stats             { gap: 1.5rem; }
   .contact-meta           { gap: 1rem; }
   .skills-layout          { gap: 1.5rem; }
+  .about-layout           { grid-template-columns: 1fr; gap: 1.8rem; }
+  .about-photo-col        { position: static; max-width: 300px; margin-inline: auto; }
 }
