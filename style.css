@@ -293,6 +293,25 @@ img { max-width: 100%; height: auto; display: block; }
 .work-body h3 { color: var(--primary); font-size: 1.12rem; font-weight: 700; }
 .work-body p { color: var(--text); font-size: .92rem; line-height: 1.75; }
 
+/* 画像なしワイドカード */
+.work-no-img { flex-direction: column; }
+.work-no-img .work-body { flex: none; width: 100%; max-width: 760px; }
+
+/* 注記（本文と同等の視認性） */
+.work-note {
+  color: var(--text); font-size: .92rem; line-height: 1.75;
+  border-left: 3px solid var(--accent, #2563eb); padding-left: .9rem;
+  font-weight: 600;
+}
+
+/* 作品リンク */
+.work-link {
+  display: inline-block; margin-top: .4rem;
+  color: var(--primary); font-size: .92rem; font-weight: 600;
+  text-decoration: underline; text-underline-offset: 3px;
+}
+.work-link:hover { opacity: .75; }
+
 /* ---------- Media Cards ---------- */
 .media-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 2.8rem; }
 .media-card {
