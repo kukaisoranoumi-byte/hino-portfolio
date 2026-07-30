@@ -304,13 +304,21 @@ img { max-width: 100%; height: auto; display: block; }
   font-weight: 600;
 }
 
-/* 作品リンク */
+/* 作品リンク（CTAボタン風） */
 .work-link {
-  display: inline-block; margin-top: .4rem;
-  color: var(--primary); font-size: .92rem; font-weight: 600;
-  text-decoration: underline; text-underline-offset: 3px;
+  display: inline-flex; align-items: center; gap: .4rem;
+  margin-top: .8rem; align-self: flex-start;
+  background: var(--secondary); color: #fff;
+  font-size: .92rem; font-weight: 700;
+  padding: .7rem 1.4rem; border-radius: var(--radius);
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(37,99,235,.28);
+  transition: background .2s, transform .15s, box-shadow .2s;
 }
-.work-link:hover { opacity: .75; }
+.work-link:hover {
+  background: #1d4ed8; transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(37,99,235,.4);
+}
 
 /* ---------- Media Cards ---------- */
 .media-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 2.8rem; }
