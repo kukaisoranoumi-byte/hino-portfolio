@@ -1,0 +1,1685 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI × 記事制作フロー | テーマ決定から1本完成までの12ステップ</title>
+<meta name="description" content="21日間チャレンジで学んだ型を、1本の記事を完成させるための実務フローに再構成。各工程のプロンプトはワンクリックでコピーできます。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%230f172a'/><path d='M26 70 L50 26 L74 70' stroke='%232563eb' stroke-width='9' fill='none' stroke-linecap='round' stroke-linejoin='round'/><circle cx='50' cy='60' r='6' fill='%23f59e0b'/></svg>">
+<style>
+/* ============================================================
+   Design tokens — design-system-modern.yaml 準拠
+   ============================================================ */
+:root{
+  --navy:#0f172a;
+  --navy-soft:#1e293b;
+  --blue:#2563eb;
+  --blue-soft:#dbeafe;
+  --amber:#f59e0b;
+  --amber-soft:#fef3c7;
+  --bg:#f8fafc;
+  --text:#1e293b;
+  --muted:#64748b;
+  --line:#e2e8f0;
+  --white:#ffffff;
+  --green:#10b981;
+  --green-soft:#d1fae5;
+  --red:#e11d48;
+  --red-soft:#ffe4e6;
+  --radius:6px;
+  --radius-lg:10px;
+  --font:'Helvetica Neue',Arial,'Hiragino Kaku Gothic ProN','Yu Gothic',Meiryo,sans-serif;
+  --mono:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;
+  --shadow:0 1px 2px rgba(15,23,42,.06),0 4px 12px rgba(15,23,42,.05);
+  --shadow-lg:0 4px 12px rgba(15,23,42,.08),0 12px 32px rgba(15,23,42,.08);
+  --maxw:1080px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px;-webkit-text-size-adjust:100%}
+body{
+  margin:0;font-family:var(--font);color:var(--text);background:var(--bg);
+  line-height:1.85;font-size:16px;letter-spacing:.01em;
+  text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;height:auto}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+.container{width:min(100% - 2.5rem,var(--maxw));margin-inline:auto}
+
+/* ============================================================
+   Header
+   ============================================================ */
+.site-header{
+  position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);
+  backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--line);
+}
+.header-inner{display:flex;align-items:center;gap:1.25rem;height:64px}
+.brand{display:flex;flex-direction:column;line-height:1.15;font-weight:700;color:var(--navy);white-space:nowrap}
+.brand small{font-size:.62rem;font-weight:500;color:var(--muted);letter-spacing:.09em}
+.nav{margin-left:auto;display:flex;gap:.25rem;overflow-x:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{
+  font-size:.82rem;font-weight:600;color:var(--muted);padding:.45rem .7rem;
+  border-radius:var(--radius);white-space:nowrap;transition:.18s;
+}
+.nav a:hover{background:var(--bg);color:var(--navy);text-decoration:none}
+.nav a.active{color:var(--blue);background:var(--blue-soft)}
+
+/* ============================================================
+   Hero
+   ============================================================ */
+.hero{
+  background:linear-gradient(135deg,#0f172a 0%,#1e293b 55%,#1d3a6e 100%);
+  color:#fff;padding:4.5rem 0 4rem;position:relative;overflow:hidden;
+}
+.hero::after{
+  content:"";position:absolute;right:-140px;top:-140px;width:460px;height:460px;
+  background:radial-gradient(circle,rgba(37,99,235,.32),transparent 68%);pointer-events:none;
+}
+.hero-inner{position:relative;z-index:1}
+.eyebrow{
+  display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.16em;
+  color:var(--amber);border:1px solid rgba(245,158,11,.42);
+  padding:.3rem .8rem;border-radius:999px;margin:0 0 1.3rem;
+}
+.hero h1{
+  font-size:clamp(1.65rem,4.4vw,2.7rem);line-height:1.42;margin:0 0 1.15rem;
+  font-weight:700;letter-spacing:.005em;
+}
+.hero h1 em{font-style:normal;color:#7dd3fc}
+.hero .lead{
+  font-size:clamp(.92rem,1.9vw,1.03rem);color:#cbd5e1;max-width:64ch;margin:0 0 2.2rem;
+}
+.hero-stats{
+  list-style:none;padding:0;margin:0;display:grid;gap:.85rem;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));max-width:760px;
+}
+.hero-stats li{
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);
+  border-radius:var(--radius-lg);padding:.9rem 1rem;
+}
+.hero-stats strong{display:block;font-size:1.5rem;color:#fff;line-height:1.2}
+.hero-stats span{font-size:.74rem;color:#94a3b8;letter-spacing:.04em}
+
+/* ============================================================
+   Sections
+   ============================================================ */
+.section{padding:4rem 0}
+.section.alt{background:var(--white);border-block:1px solid var(--line)}
+.section-title{
+  font-size:clamp(1.25rem,3vw,1.75rem);margin:0 0 .55rem;color:var(--navy);
+  font-weight:700;letter-spacing:.01em;
+}
+.section-title::before{
+  content:"";display:inline-block;width:4px;height:1em;background:var(--blue);
+  border-radius:2px;margin-right:.6rem;vertical-align:-.12em;
+}
+.section-sub{color:var(--muted);margin:0 0 2.2rem;font-size:.92rem;max-width:70ch}
+
+/* ============================================================
+   Principle cards
+   ============================================================ */
+.principles{display:grid;gap:1.1rem;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.principle{
+  background:var(--white);border:1px solid var(--line);border-radius:var(--radius-lg);
+  padding:1.5rem;box-shadow:var(--shadow);border-top:3px solid var(--blue);
+}
+.principle:nth-child(2){border-top-color:var(--amber)}
+.principle:nth-child(3){border-top-color:var(--green)}
+.principle h3{margin:0 0 .55rem;font-size:1rem;color:var(--navy);letter-spacing:.01em}
+.principle p{margin:0;font-size:.88rem;color:var(--muted);line-height:1.8}
+.principle .p-num{
+  display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.1em;
+  color:var(--blue);margin-bottom:.5rem;
+}
+
+/* ============================================================
+   Flow map
+   ============================================================ */
+.flowmap{display:grid;gap:.9rem}
+.phase{
+  background:var(--white);border:1px solid var(--line);border-radius:var(--radius-lg);
+  padding:1.1rem 1.25rem;display:grid;gap:.8rem;
+  grid-template-columns:minmax(120px,150px) 1fr;align-items:center;box-shadow:var(--shadow);
+}
+.phase-label{display:flex;flex-direction:column;gap:.15rem}
+.phase-label b{font-size:.95rem;color:var(--navy);letter-spacing:.02em}
+.phase-label span{font-size:.7rem;color:var(--muted);letter-spacing:.06em}
+.phase-steps{display:flex;flex-wrap:wrap;gap:.45rem}
+.chip{
+  display:inline-flex;align-items:center;gap:.4rem;font-size:.78rem;font-weight:600;
+  background:var(--bg);border:1px solid var(--line);border-radius:999px;
+  padding:.34rem .78rem;color:var(--navy);transition:.18s;
+}
+.chip:hover{background:var(--blue-soft);border-color:var(--blue);color:var(--blue);text-decoration:none}
+.chip b{
+  font-family:var(--mono);font-size:.68rem;background:var(--navy);color:#fff;
+  border-radius:3px;padding:.05rem .32rem;font-weight:700;
+}
+
+/* ============================================================
+   Progress
+   ============================================================ */
+.progress-wrap{
+  background:var(--white);border:1px solid var(--line);border-radius:var(--radius-lg);
+  padding:1.25rem 1.4rem;box-shadow:var(--shadow);margin-bottom:2rem;
+}
+.progress-head{display:flex;align-items:baseline;gap:.7rem;flex-wrap:wrap;margin-bottom:.7rem}
+.progress-head b{font-size:.9rem;color:var(--navy)}
+.progress-head span{font-size:.8rem;color:var(--muted);margin-left:auto}
+.progress-bar{height:8px;background:var(--line);border-radius:999px;overflow:hidden}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--green));transition:width .35s ease}
+.btn-reset{
+  font:inherit;font-size:.74rem;font-weight:600;color:var(--muted);background:none;
+  border:1px solid var(--line);border-radius:var(--radius);padding:.28rem .7rem;
+  cursor:pointer;transition:.18s;
+}
+.btn-reset:hover{color:var(--red);border-color:var(--red)}
+
+/* ============================================================
+   Step cards
+   ============================================================ */
+.step{
+  background:var(--white);border:1px solid var(--line);border-radius:var(--radius-lg);
+  box-shadow:var(--shadow);margin-bottom:1.5rem;overflow:hidden;transition:box-shadow .25s;
+  scroll-margin-top:76px;
+}
+.step:hover{box-shadow:var(--shadow-lg)}
+.step.done{border-color:var(--green)}
+.step.done .step-head{background:linear-gradient(135deg,#065f46,#047857)}
+.step-head{
+  background:linear-gradient(135deg,var(--navy),var(--navy-soft));
+  color:#fff;padding:1.15rem 1.5rem;display:flex;align-items:flex-start;gap:1rem;flex-wrap:wrap;
+  transition:background .3s;
+}
+.step-no{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:.09em;
+  background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.2);
+  border-radius:var(--radius);padding:.3rem .6rem;white-space:nowrap;flex-shrink:0;
+}
+.step-titles{flex:1;min-width:200px}
+.step-titles h3{margin:0 0 .25rem;font-size:1.08rem;font-weight:700;letter-spacing:.01em}
+.step-titles p{margin:0;font-size:.8rem;color:#94a3b8}
+.step-meta{display:flex;gap:.4rem;flex-wrap:wrap;align-items:center}
+.badge{
+  font-size:.68rem;font-weight:700;letter-spacing:.06em;border-radius:999px;
+  padding:.24rem .62rem;white-space:nowrap;
+}
+.badge.must{background:var(--amber);color:#4a2c00}
+.badge.rec{background:rgba(255,255,255,.16);color:#e2e8f0;border:1px solid rgba(255,255,255,.24)}
+.badge.opt{background:transparent;color:#94a3b8;border:1px dashed rgba(148,163,184,.55)}
+.badge.day{background:rgba(37,99,235,.28);color:#bfdbfe;border:1px solid rgba(147,197,253,.34);font-family:var(--mono)}
+
+.step-body{padding:1.5rem}
+.role-split{display:grid;gap:.7rem;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin-bottom:1.4rem}
+.role{border-radius:var(--radius);padding:.75rem .95rem;font-size:.84rem;line-height:1.7}
+.role b{display:block;font-size:.68rem;letter-spacing:.1em;margin-bottom:.25rem}
+.role.ai{background:var(--blue-soft);border-left:3px solid var(--blue)}
+.role.ai b{color:var(--blue)}
+.role.me{background:var(--amber-soft);border-left:3px solid var(--amber)}
+.role.me b{color:#b45309}
+
+.step-body h4{
+  font-size:.82rem;letter-spacing:.08em;color:var(--muted);margin:1.6rem 0 .7rem;
+  font-weight:700;text-transform:uppercase;
+}
+.step-body h4:first-child{margin-top:0}
+.tasklist{list-style:none;padding:0;margin:0 0 .5rem}
+.tasklist li{
+  position:relative;padding-left:1.6rem;margin-bottom:.55rem;font-size:.9rem;line-height:1.8;
+}
+.tasklist li::before{
+  content:"";position:absolute;left:.35rem;top:.72em;width:6px;height:6px;
+  background:var(--blue);border-radius:50%;
+}
+.tasklist li strong{color:var(--navy)}
+
+.criteria{display:grid;gap:.6rem;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));margin:.4rem 0 0}
+.criterion{
+  background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);
+  padding:.7rem .85rem;font-size:.83rem;line-height:1.65;
+}
+.criterion b{display:block;color:var(--navy);font-size:.86rem;margin-bottom:.15rem}
+
+.callout{
+  border-radius:var(--radius);padding:.85rem 1.05rem;font-size:.86rem;line-height:1.8;margin:1.1rem 0 0;
+}
+.callout.warn{background:var(--red-soft);border-left:3px solid var(--red)}
+.callout.warn b{color:var(--red)}
+.callout.tip{background:var(--green-soft);border-left:3px solid var(--green)}
+.callout.tip b{color:#047857}
+.callout.note{background:var(--bg);border-left:3px solid var(--muted)}
+.callout.note b{color:var(--navy)}
+
+.ng-ok{display:grid;gap:.7rem;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin-top:.6rem}
+.ng,.ok{border-radius:var(--radius);padding:.75rem .95rem;font-size:.84rem;line-height:1.7}
+.ng{background:var(--red-soft);border-left:3px solid var(--red)}
+.ok{background:var(--green-soft);border-left:3px solid var(--green)}
+.ng b,.ok b{display:block;font-size:.7rem;letter-spacing:.09em;margin-bottom:.25rem}
+.ng b{color:var(--red)}
+.ok b{color:#047857}
+
+/* ============================================================
+   Prompt block
+   ============================================================ */
+.prompt{
+  border:1px solid var(--navy);border-radius:var(--radius-lg);overflow:hidden;
+  margin:1rem 0 0;background:var(--navy);
+}
+.prompt-head{
+  display:flex;align-items:center;gap:.7rem;padding:.6rem .95rem;
+  background:rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.1);
+}
+.prompt-head span{
+  font-size:.72rem;font-weight:700;letter-spacing:.09em;color:#93c5fd;
+  display:flex;align-items:center;gap:.4rem;
+}
+.prompt-head span::before{content:"▶";font-size:.6rem;color:var(--amber)}
+.copy-btn{
+  margin-left:auto;font:inherit;font-size:.74rem;font-weight:700;letter-spacing:.04em;
+  background:var(--blue);color:#fff;border:none;border-radius:var(--radius);
+  padding:.36rem .85rem;cursor:pointer;transition:.18s;white-space:nowrap;
+  display:inline-flex;align-items:center;gap:.35rem;
+}
+.copy-btn:hover{background:#1d4ed8}
+.copy-btn:active{transform:translateY(1px)}
+.copy-btn.copied{background:var(--green)}
+.prompt pre{
+  margin:0;padding:1.05rem 1.15rem;color:#e2e8f0;font-family:var(--mono);
+  font-size:.815rem;line-height:1.85;white-space:pre-wrap;word-break:break-word;
+  overflow-x:auto;letter-spacing:.005em;
+}
+.prompt pre mark{background:rgba(245,158,11,.24);color:var(--amber);padding:0 .15em;border-radius:2px}
+
+/* ============================================================
+   Step check
+   ============================================================ */
+.step-check{
+  margin-top:1.5rem;padding-top:1.1rem;border-top:1px dashed var(--line);
+  display:flex;align-items:center;gap:.6rem;
+}
+.step-check label{
+  display:inline-flex;align-items:center;gap:.55rem;font-size:.85rem;font-weight:600;
+  color:var(--muted);cursor:pointer;user-select:none;
+}
+.step-check input{width:17px;height:17px;accent-color:var(--green);cursor:pointer;flex-shrink:0}
+.step-check input:checked + span{color:var(--green)}
+
+/* ============================================================
+   Checklist table
+   ============================================================ */
+.checkgrid{display:grid;gap:.55rem}
+.checkitem{
+  display:flex;align-items:flex-start;gap:.7rem;background:var(--white);
+  border:1px solid var(--line);border-radius:var(--radius);padding:.75rem .95rem;
+  font-size:.88rem;line-height:1.7;cursor:pointer;transition:.18s;
+}
+.checkitem:hover{border-color:var(--blue)}
+.checkitem input{width:17px;height:17px;accent-color:var(--green);margin-top:.28em;cursor:pointer;flex-shrink:0}
+.checkitem input:checked ~ span{color:var(--muted);text-decoration:line-through}
+
+/* ============================================================
+   Table
+   ============================================================ */
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius-lg);background:var(--white)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:.86rem}
+th,td{padding:.75rem .9rem;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--navy);color:#fff;font-weight:600;font-size:.78rem;letter-spacing:.05em;white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:nth-child(even){background:var(--bg)}
+td code{font-family:var(--mono);font-size:.78rem;background:var(--bg);padding:.1rem .35rem;border-radius:3px;color:var(--navy)}
+
+/* ============================================================
+   Quick reference
+   ============================================================ */
+.qr-list{display:grid;gap:.6rem}
+.qr-item{
+  display:flex;align-items:center;gap:.85rem;background:var(--white);
+  border:1px solid var(--line);border-radius:var(--radius);padding:.7rem .95rem;flex-wrap:wrap;
+}
+.qr-item .qr-step{
+  font-family:var(--mono);font-size:.68rem;font-weight:700;background:var(--navy);color:#fff;
+  border-radius:3px;padding:.16rem .45rem;white-space:nowrap;
+}
+.qr-item .qr-name{font-size:.87rem;font-weight:600;color:var(--navy);flex:1;min-width:160px}
+.qr-item .copy-btn{margin-left:auto}
+
+/* ============================================================
+   Footer / toast
+   ============================================================ */
+.site-footer{background:var(--navy);color:#94a3b8;padding:2.5rem 0;font-size:.82rem;line-height:1.9}
+.site-footer strong{color:#e2e8f0;display:block;margin-bottom:.5rem;font-size:.9rem}
+.site-footer a{color:#93c5fd}
+.toast{
+  position:fixed;left:50%;bottom:2rem;transform:translate(-50%,140%);
+  background:var(--navy);color:#fff;font-size:.85rem;font-weight:600;
+  padding:.75rem 1.4rem;border-radius:999px;box-shadow:var(--shadow-lg);
+  z-index:200;transition:transform .3s cubic-bezier(.34,1.56,.64,1);pointer-events:none;
+}
+.toast.show{transform:translate(-50%,0)}
+
+/* ============================================================
+   Motion / responsive / print
+   ============================================================ */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+}
+@media (max-width:720px){
+  .section{padding:2.75rem 0}
+  .hero{padding:3rem 0 2.75rem}
+  .phase{grid-template-columns:1fr}
+  .step-head{padding:1rem 1.1rem}
+  .step-body{padding:1.15rem}
+  .brand small{display:none}
+}
+@media print{
+  .site-header,.toast,.copy-btn,.progress-wrap,.btn-reset{display:none!important}
+  body{background:#fff;font-size:10.5pt}
+  .hero{background:var(--navy)!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .step,.principle,.phase{break-inside:avoid;box-shadow:none}
+  .step-head{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .prompt{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .section{padding:1.5rem 0}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════ HEADER ══════════════════════════ -->
+<header class="site-header">
+  <div class="container header-inner">
+    <span class="brand">記事制作フロー<small>AI × WRITING WORKFLOW</small></span>
+    <nav class="nav">
+      <a href="#about">概要</a>
+      <a href="#principles">3原則</a>
+      <a href="#map">全体像</a>
+      <a href="#steps">12ステップ</a>
+      <a href="#final">最終チェック</a>
+      <a href="#record">記録</a>
+      <a href="#quickref">プロンプト一覧</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ══════════════════════════ HERO ══════════════════════════ -->
+<section class="hero">
+  <div class="container hero-inner">
+    <p class="eyebrow">AI × WRITING WORKFLOW</p>
+    <h1>テーマを決めてから<br><em>1本の記事が完成する</em>まで、<br>迷わないための12ステップ</h1>
+    <p class="lead">
+      21日間チャレンジ（マインド編／AI編 Day1〜14）で学んだ型を、
+      「1本の記事を最後まで書き切る」という一本道に組み直した実務フローです。
+      各工程で使うプロンプトはワンクリックでコピーできます。
+    </p>
+    <ul class="hero-stats">
+      <li><strong>12</strong><span>ステップ</span></li>
+      <li><strong>16</strong><span>コピー可能プロンプト</span></li>
+      <li><strong>7</strong><span>フェーズ</span></li>
+      <li><strong>1本</strong><span>完成する記事</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════════════════════ ABOUT ══════════════════════════ -->
+<section class="section" id="about">
+  <div class="container reveal">
+    <h2 class="section-title">この資料について</h2>
+    <p class="section-sub">
+      教材は「マインド編」と「AI編」が日替わりで進む構成のため、記事を1本書くのに必要な作業が14日分に散らばっています。
+      この資料はそこから<strong>「テーマを決めて1本の記事を完成させる」に直接効く作業だけ</strong>を抜き出し、
+      実際に手を動かす順番に並べ直したものです。
+    </p>
+
+    <div class="criteria">
+      <div class="criterion">
+        <b>入れたもの</b>
+        テーマ選定・切り口・リサーチ・タイトル・構成・リード文・本文・推敲・ファクトチェック・最終確認。
+        つまり記事が形になるまでに必ず通る工程。
+      </div>
+      <div class="criterion">
+        <b>外したもの</b>
+        マインド編の内面ワーク（色眼鏡・先延ばし・お金のブレーキ等）、日々の提出ワーク、
+        カスタムAIへの「開始」入力など、記事の完成物に直接影響しない作業。
+      </div>
+      <div class="criterion">
+        <b>残した考え方</b>
+        マインド編でも「作業の質を直接変える原則」だけは3原則として残しています（次項）。
+        これは削ると各ステップの判断基準が消えるため。
+      </div>
+    </div>
+
+    <div class="callout note">
+      <b>使い方</b>　上から順に進めてください。各ステップ末尾のチェックボックスは自動保存されるので、
+      日をまたいで書く場合も続きから再開できます。<strong>必須</strong>／<strong>推奨</strong>／<strong>任意</strong>のバッジを見れば、
+      時間がないときに削る工程も判断できます。
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ PRINCIPLES ══════════════════════════ -->
+<section class="section alt" id="principles">
+  <div class="container reveal">
+    <h2 class="section-title">全ステップに共通する3原則</h2>
+    <p class="section-sub">どのステップで迷っても、判断はこの3つに戻れば決まります。</p>
+    <div class="principles">
+      <div class="principle">
+        <span class="p-num">PRINCIPLE 01</span>
+        <h3>量はAI、質は人間</h3>
+        <p>
+          悩み30個・切り口10個・タイトル20個・リード文3案。<strong>出させるのはAIの仕事</strong>で、
+          その中から選ぶのが自分の仕事です。この分担ができているかが「AIを使いこなす人」と
+          「AIに使われる人」の分かれ目になります。
+        </p>
+      </div>
+      <div class="principle">
+        <span class="p-num">PRINCIPLE 02</span>
+        <h3>指示 → 出力 → 判断 → 修正</h3>
+        <p>
+          1回で完璧を求めないこと。まず出させて、違う部分だけを直す前提で始めます。
+          このサイクルを何十回も回すのが前提の設計で、<strong>「ここが違う」と判断しているのは常に自分</strong>です。
+        </p>
+      </div>
+      <div class="principle">
+        <span class="p-num">PRINCIPLE 03</span>
+        <h3>体験を1つ加える</h3>
+        <p>
+          AIの文章に感じる「浅い」「自分じゃない」「つまらない」は、
+          <strong>すべて同じ処方箋＝自分の体験を1つ加えること</strong>で解けます。
+          体験は世界に1つしかなく、AIには再現できません。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ MAP ══════════════════════════ -->
+<section class="section" id="map">
+  <div class="container reveal">
+    <h2 class="section-title">全体像 — 7フェーズ / 12ステップ</h2>
+    <p class="section-sub">ステップ名をクリックすると該当箇所に移動します。</p>
+    <div class="flowmap">
+      <div class="phase">
+        <div class="phase-label"><b>準備</b><span>PREPARE</span></div>
+        <div class="phase-steps">
+          <a class="chip" href="#step0"><b>00</b>読者とツールを決める</a>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-label"><b>決める</b><span>DECIDE</span></div>
+        <div class="phase-steps">
+          <a class="chip" href="#step1"><b>01</b>テーマを決める</a>
+          <a class="chip" href="#step2"><b>02</b>切り口を決める</a>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-label"><b>集める</b><span>RESEARCH</span></div>
+        <div class="phase-steps">
+          <a class="chip" href="#step3"><b>03</b>リサーチする</a>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-label"><b>設計する</b><span>DESIGN</span></div>
+        <div class="phase-steps">
+          <a class="chip" href="#step4"><b>04</b>タイトルを決める</a>
+          <a class="chip" href="#step5"><b>05</b>見出し構成を作る</a>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-label"><b>書く</b><span>WRITE</span></div>
+        <div class="phase-steps">
+          <a class="chip" href="#step6"><b>06</b>リード文を書く</a>
+          <a class="chip" href="#step7"><b>07</b>本文前半を書く</a>
+          <a class="chip" href="#step8"><b>08</b>後半＋結論を書く</a>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-label"><b>磨く</b><span>POLISH</span></div>
+        <div class="phase-steps">
+          <a class="chip" href="#step9"><b>09</b>通し読みで流れを直す</a>
+          <a class="chip" href="#step10"><b>10</b>推敲する</a>
+          <a class="chip" href="#step11"><b>11</b>ファクトチェック</a>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-label"><b>仕上げ</b><span>FINISH</span></div>
+        <div class="phase-steps">
+          <a class="chip" href="#step12"><b>12</b>最終確認して記録する</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ STEPS ══════════════════════════ -->
+<section class="section alt" id="steps">
+  <div class="container">
+
+    <h2 class="section-title reveal">12ステップ詳細</h2>
+    <p class="section-sub reveal">チェックの状態はこのブラウザに保存されます。</p>
+
+    <div class="progress-wrap reveal">
+      <div class="progress-head">
+        <b>進捗</b>
+        <span id="progressText">0 / 13 ステップ完了</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <div style="margin-top:.8rem;text-align:right">
+        <button class="btn-reset" id="resetBtn" type="button">進捗をリセット</button>
+      </div>
+    </div>
+
+    <!-- ─────────── STEP 0 ─────────── -->
+    <article class="step reveal" id="step0">
+      <div class="step-head">
+        <span class="step-no">STEP 00</span>
+        <div class="step-titles">
+          <h3>読者とツールを決める</h3>
+          <p>ここが曖昧なままだと、以降すべての出力がぼやけます</p>
+        </div>
+        <div class="step-meta">
+          <span class="badge must">必須</span>
+          <span class="badge day">Day1–2</span>
+        </div>
+      </div>
+      <div class="step-body">
+        <div class="role-split">
+          <div class="role ai"><b>AIの仕事</b>なし（この工程は自分だけで決める）</div>
+          <div class="role me"><b>自分の仕事</b>読者を1人に絞り込み、使うAIを1つに決める</div>
+        </div>
+
+        <h4>やること</h4>
+        <ul class="tasklist">
+          <li><strong>読者を1人に絞る。</strong>「30代会社員」ではまだ広い。「副業に興味はあるが何から始めればいいか分からない30代の会社員」まで具体化する。ここで決めた1文は、以降ほぼ全てのプロンプトに貼り付けることになります。</li>
+          <li><strong>使うAIを1つ決める。</strong>迷ったらChatGPTかClaudeで十分。ツール選びに悩む時間より、指示の質を上げる時間のほうが結果に効きます。</li>
+          <li><strong>トーンを決めておく。</strong>例：「先輩が後輩に話すような、カジュアルだが信頼感のある語り口」。これも毎回使い回します。</li>
+        </ul>
+
+        <div class="criteria">
+          <div class="criterion"><b>ChatGPT</b>万能型。どんなジャンルもそつなくこなし、情報も多い</div>
+          <div class="criterion"><b>Claude</b>長い文章が得意。記事全体・構成を考えさせたいときに強い</div>
+          <div class="criterion"><b>Gemini</b>情報検索との相性がよく、最新情報を含めた文章に便利</div>
+        </div>
+
+        <h4>全プロンプトの土台になる型</h4>
+        <p style="font-size:.88rem;color:var(--muted);margin:0">
+          以降のプロンプトは、すべてこの5要素（誰に／何を／切り口／トーン／量）の穴埋めでできています。
+          毎回5つ全部を完璧に入れる必要はありませんが、意識しているかどうかで出力が変わります。
+        </p>
+
+        <div class="prompt">
+          <div class="prompt-head">
+            <span>土台テンプレ｜プロンプトの5要素</span>
+            <button class="copy-btn" type="button">コピー</button>
+          </div>
+          <pre>【誰に】に向けて、【何を】について、【切り口】という角度から、【トーン】で、【量】で書いてください。</pre>
+        </div>
+
+        <div class="callout warn">
+          <b>⚠ 指定しないとこうなる</b>　読者を指定しない→誰にも刺さらない無難な文章／
+          何をを指定しない→全部を薄く触る文章／トーンを指定しない→教科書的な文章。
+        </div>
+
+        <div class="step-check">
+          <label><input type="checkbox" data-key="step0"><span>STEP 00 完了</span></label>
+        </div>
+      </div>
+    </article>
+
+    <!-- ─────────── STEP 1 ─────────── -->
+    <article class="step reveal" id="step1">
+      <div class="step-head">
+        <span class="step-no">STEP 01</span>
+        <div class="step-titles">
+          <h3>テーマを決める</h3>
+          <p>「書きたいこと」ではなく「読者が困っていること」から逆算する</p>
+        </div>
+        <div class="step-meta">
+          <span class="badge must">必須</span>
+          <span class="badge day">Day4</span>
+        </div>
+      </div>
+      <div class="step-body">
+        <div class="role-split">
+          <div class="role ai"><b>AIの仕事</b>読者の悩みを30個出す</div>
+          <div class="role me"><b>自分の仕事</b>3基準で3個に絞り、最終的に1個を選ぶ</div>
+        </div>
+
+        <h4>やること</h4>
+        <ul class="tasklist">
+          <li>AIに<strong>「テーマを出して」ではなく「困っていること」を聞く</strong>。記事は読者の悩みを解決するものなので、悩みから逆算するとテーマの質が上がります。</li>
+          <li><strong>「あるあるレベルで」と指定する</strong>。これを入れないと「副業の始め方」のような大きすぎるテーマが返り、中身が薄くなります。</li>
+          <li>出てきた30個を3基準で判定し、3個まで絞る。</li>
+        </ul>
+
+        <div class="prompt">
+          <div class="prompt-head">
+            <span>プロンプト 01｜読者の悩みを30個出させる</span>
+            <button class="copy-btn" type="button">コピー</button>
+          </div>
+          <pre><mark>副業に興味があるけれどまだ始めていない30代の会社員</mark>が、
+今最も知りたいこと・困っていること・不安を30個挙げてください。
+具体的に「あるある」と思えるレベルでお願いします。</pre>
+        </div>
+
+        <h4>30個 → 3個に絞る3基準</h4>
+        <div class="criteria">
+          <div class="criterion"><b>① 自分が書けるか</b>体験がある／調べて理解できる／深掘りできる。特に自分の体験が入るとAIだけでは書けない記事になる</div>
+          <div class="criterion"><b>② 読者が読みたいか</b>「自分が書きたい」と「読者が読みたい」はズレやすい。読者が本当に困っていそうかで選ぶ</div>
+          <div class="criterion"><b>③ 差別化できるか</b>同じテーマ・同じ切り口では埋もれる。自分の体験と視点が差別化のカギ</div>
+        </div>
+
+        <h4>読まれるテーマの3特徴（3つ揃えば最強）</h4>
+        <div class="criteria">
+          <div class="criterion"><b>悩みが深い</b>「ちょっと気になる」より「夜も眠れないほど困っている」悩みを選ぶ</div>
+          <div class="criterion"><b>検索する人が多い</b>悩みが深くても、抱える人が極端に少ないと読まれない</div>
+          <div class="criterion"><b>自分の体験が活きる</b>体験がないとAIに書かせても「どこにでもある記事」で止まる</div>
+        </div>
+
+        <div class="callout warn">
+          <b>⚠ 選んではいけないテーマ</b>　「確定申告のやり方」など、正確な知識がないと間違いを書くリスクがあるテーマは外す。書けないテーマは選ばない。
+        </div>
+
+        <div class="step-check">
+          <label><input type="checkbox" data-key="step1"><span>STEP 01 完了</span></label>
+        </div>
+      </div>
+    </article>
+
+    <!-- ─────────── STEP 2 ─────────── -->
+    <article class="step reveal" id="step2">
+      <div class="step-head">
+        <span class="step-no">STEP 02</span>
+        <div class="step-titles">
+          <h3>切り口を決める</h3>
+          <p>読まれるかどうかは、テーマではなく切り口で決まる</p>
+        </div>
+        <div class="step-meta">
+          <span class="badge must">必須</span>
+          <span class="badge day">Day6</span>
+        </div>
+      </div>
+      <div class="step-body">
+        <div class="role-split">
+          <div class="role ai"><b>AIの仕事</b>独自の切り口を10個出す</div>
+          <div class="role me"><b>自分の仕事</b>「おっ」と思う2〜3個から1個選び、体験を入れる場所を決める</div>
+        </div>
+
+        <h4>やること</h4>
+        <ul class="tasklist">
+          <li>同じテーマでも、切り口が変われば別の記事になります。検索結果に同じテーマが何千と並ぶ中で目に留まるかは、切り口で決まります。</li>
+          <li>10個すべてが良いわけではありません。<strong>ありきたりなものに混じって2〜3個ある「おっ」を選ぶのが自分の仕事</strong>です。</li>
+          <li>選んだ切り口に対して、<strong>自分の体験を最低1つ入れると決めておく</strong>。</li>
+        </ul>
+
+        <div class="prompt">
+          <div class="prompt-head">
+            <span>プロンプト 02｜切り口を10個出させる</span>
+            <button class="copy-btn" type="button">コピー</button>
+          </div>
+          <pre>「<mark>〇〇（STEP01で決めたテーマ）</mark>」というテーマで、
+他の記事にはない独自の切り口を10個考えてください。
+読者が「え、そういう視点があるの？」と思う意外性のあるものを混ぜてください。</pre>
+        </div>
+
+        <h4>切り口による違い（同じ「副業の始め方」でも）</h4>
+        <div class="criteria">
+          <div class="criterion"><b>ありふれている</b>「最初の30日でやるべきことリスト」— 実用的だが埋もれる</div>
+          <div class="criterion"><b>意外性がある</b>「最初にやるべきは、スキルを身につけることではなかった」</div>
+          <div class="criterion"><b>好奇心を引く</b>「副業を始めて1ヶ月、最も後悔していること」</div>
+        </div>
+
+        <div class="callout tip">
+          <b>✅ 最強の切り口は「自分の体験」</b>　AIは膨大なデータから「よくあるパターン」を組み合わせるだけなので、
+          「それっぽいが誰でも書けそう」になります。体験だけはAIに絶対書けません。
+          選ぶときはSTEP01の3基準（書けるか／読みたいか／差別化）をそのまま使ってください。
+        </div>
+
+        <div class="step-check">
+          <label><input type="checkbox" data-key="step2"><span>STEP 02 完了</span></label>
+        </div>
+      </div>
+    </article>
+
+    <!-- ─────────── STEP 3 ─────────── -->
+    <article class="step reveal" id="step3">
+      <div class="step-head">
+        <span class="step-no">STEP 03</span>
+        <div class="step-titles">
+          <h3>リサーチする</h3>
+          <p>3つの型を順番に回すだけで、記事に必要な情報がほぼ揃う</p>
+        </div>
+        <div class="step-meta">
+          <span class="badge must">必須</span>
+          <span class="badge day">Day5</span>
+        </div>
+      </div>
+      <div class="step-body">
+        <div class="role-split">
+          <div class="role ai"><b>AIの仕事</b>疑問リスト・両面の対比・深掘り回答を出す</div>
+          <div class="role me"><b>自分の仕事</b>結論に影響する情報と数字・固有名詞を裏取りする</div>
+        </div>
+
+        <h4>やること</h4>
+        <ul class="tasklist">
+          <li>「読者視点の疑問出し → 両面の対比 → 深掘り」の3ステップを順番に回します。<strong>手動なら1時間かかる作業が、慣れれば10分程度</strong>で終わります。</li>
+          <li>集めた情報は、STEP05で作る見出しの下に1つずつ配置していきます（情報は集めただけでは記事になりません）。</li>
+          <li>足りない見出しだけ追加でリサーチする。全体を一気に調べようとしないこと。</li>
+        </ul>
+
+        <div class="prompt">
+          <div class="prompt-head">
+            <span>プロンプト 03｜読者が知りたいことを出させる</span>
+            <button class="copy-btn" type="button">コピー</button>
+          </div>
+          <pre><mark>副業を始めたい30代の会社員</mark>が、
+「<mark>〇〇（テーマ）</mark>」について最も知りたいこと・疑問を10個挙げてください。</pre>
+        </div>
+
+        <div class="prompt">
+          <div class="prompt-head">
+            <span>プロンプト 04｜メリット・デメリットを対比させる</span>
+            <button class="copy-btn" type="button">コピー</button>
+          </div>
+          <pre>「<mark>〇〇（テーマ）</mark>」のメリットとデメリットを、それぞれ5つずつ挙げてください。
+一般論ではなく、実体験レベルでお願いします。</pre>
+        </div>
+
+        <div class="prompt">
+          <div class="prompt-head">
+            <span>プロンプト 05｜深掘りする</span>
+            <button class="copy-btn" type="button">コピー</button>
+          </div>
+          <pre>いま挙げてもらった中の「<mark>〇〇（詳しく知りたい項目）</mark>」について、
+もう一段掘り下げてください。
+・具体的にどういう場面で起きるのか
+・なぜそうなるのか
+この2点を中心にお願いします。</pre>
+        </div>
+
+        <div class="callout tip">
+          <b>✅ 両面を見せる記事は信頼される</b>　良い面だけでなくリスクも正直に伝える構成にできるのが、
+          メリット・デメリット対比を挟む理由です。
+        </div>
+
+        <div class="callout note">
+          <b>💡 任意：時間を計測する</b>　リサーチの開始前と終了後の時刻を記録しておくと、
+          「時間がない」ではなく「時間の使い方を知らなかっただけ」だと体感できます。
+        </div>
+
+        <div class="step-check">
+          <label><input type="checkbox" data-key="step3"><span>STEP 03 完了</span></label>
+        </div>
+      </div>
+    </article>
+
+    <!-- ─────────── STEP 4 ─────────── -->
+    <article class="step reveal" id="step4">
+      <div class="step-head">
+        <span class="step-no">STEP 04</span>
+        <div class="step-titles">
+          <h3>タイトルを決める</h3>
+          <p>読まれるかは入口で8割決まる。だから構成より先に決める</p>
+        </div>
+        <div class="step-meta">
+          <span class="badge must">必須</span>
+          <span class="badge day">Day8</span>
+        </div>
+      </div>
+      <div class="step-body">
+        <div class="role-split">
+          <div class="role ai"><b>AIの仕事</b>タイトル案を20個出す</div>
+          <div class="role me"><b>自分の仕事</b>「自分が読者ならどれをクリックするか」で1つに決める</div>
+        </div>
+
+        <h4>やること</h4>
+        <ul class="tasklist">
+          <li>読者は検索結果やタイムラインで、<strong>まずタイトルだけを見て「読む／読まない」を判断</strong>しています。中身より先に入口を作るのが最優先。</li>
+          <li>20個すべてを読んで、「自分が読者ならどれをクリックするか」で選びます。<strong>「自分が書きたいタイトル」で選ばないこと。</strong></li>
+        </ul>
+
+        <div class="prompt">
+          <div class="prompt-head">
+            <span>プロンプト 06｜タイトル案を20個出させる</span>
+            <button class="copy-btn" type="button">コピー</button>
+          </div>
+          <pre>「<mark>〇〇（テーマ＋切り口）</mark>」というテーマで、<mark>△△（読者）</mark>向けに記事を書きます。
+読者が思わずクリックしたくなるタイトル案を20個出してください。
+具体的な数字・読者のメリット・意外性を意識してください。</pre>
+        </div>
+
+        <h4>読まれるタイトルの3条件（最低1つは必ず入れる）</h4>
+        <div class="criteria">
+          <div class="criterion"><b>① 具体的な数字</b>「副業の始め方」→「副業で月3万稼ぐまでにやった5つのこと」</div>
+          <div class="criterion"><b>② 読者のメリット</b>「AIライティングの技術」→「AIを使って記事を30分で書き上げる方法」。3秒で伝わらないとスルーされる</div>
+          <div class="criterion"><b>③ 好奇心を刺激する言葉</b>「副業で最初にやるべきこと」→「…は、スキルを身につけることではなかった」</div>
+        </div>
+
+        <h4>最後に1つへ絞るコツ</h4>
+        <div class="ng-ok">
+          <div class="ok"><b>声に出して読む</b>自然に聞こえるタイトルは、読者の頭の中でもスムーズに処理される</div>
+          <div class="ok"><b>友達に勧めるとき何と言うか</b>そのまま口に出せるタイトルが、読者にも刺さる</div>
+        </div>
+
+        <div class="ng-ok">
+          <div class="ng"><b>NG例</b>「AIを使ったライティングの効率化方法」<br>数字なし・メリット曖昧・好奇心弱い（＝情報の提示）</div>
+          <div class="ok"><b>OK例</b>「AIに記事を書かせたら、2時間の作業が15分で終わった話」<br>3条件すべて入り（＝体験＋数字）</div>
+        </div>
+
+        <div class="step-check">
+          <label><input type="checkbox" data-key="step4"><span>STEP 04 完了</span></label>
+        </div>
+      </div>
+    </article>
+
+    <!-- ─────────── STEP 5 ─────────── -->
+    <article class="step reveal" id="step5">
+      <div class="step-head">
+        <span class="step-no">STEP 05</span>
+        <div class="step-titles">
+          <h3>見出し構成（設計図）を作る</h3>
+          <p>本文よりも先に設計図。プロは必ず構成を先に決める</p>
+        </div>
+        <div class="step-meta">
+          <span class="badge must">必須</span>
+          <span class="badge day">Day3 / Day8</span>
+        </div>
+      </div>
+      <div class="step-body">
+        <div class="role-split">
+          <div class="role ai"><b>AIの仕事</b>見出し構成を5つ程度出す／並べ替える</div>
+          <div class="role me"><b>自分の仕事</b>3チェックで評価し、リサーチ結果を各見出しに配置する</div>
+        </div>
+
+        <h4>やること</h4>
+        <ul class="tasklist">
+          <li>家を建てるのにいきなりレンガを積む人はいません。<strong>構成が決まっていれば、本文を書くのは驚くほどスムーズ</strong>になります。</li>
+          <li>1回で完璧は出ません。「見出し3と4を入れ替えて」等の修正指示を回してください。</li>
+          <li>構成が固まったら、<strong>STEP03のリサーチ結果を各見出しの下に配置</strong>していきます。全ての見出しに情報が埋まれば「この構成で書ける」という見通しが立ちます。</li>
+        </ul>
+
+        <div class="prompt">
+          <div class="prompt-head">
+            <span>プロンプト 07｜タイトルに合わせて見出しを組む</span>
+            <button class="copy-btn" type="button">コピー</button>
+          </div>
+          <pre>記事のタイトルは「<mark>〇〇（STEP04で決めたタイトル）</mark>」です。
+読者は<mark>△△</mark>です。
+このタイトルの記事の見出し構成を5つ程度で作ってください。
+意外性を最初の見出しで活かし、最後まで読みたくなる順番にしてください。</pre>
+        </div>
+
+        <h4>読者を引き込む構成の型</h4>
+        <div class="criteria">
+          <div class="criterion"><b>① 疑問</b>自分に当てはまる問題を認識する</div>
+          <div class="criterion"><b>② 気づき</b>今までのやり方が間違っていたと知る</div>
+          <div class="criterion"><b>③ 答え</b>正しい答えを知る</div>
+          <div class="criterion"><b>④ 具体策</b>具体的なやり方を学ぶ</div>
+          <div class="criterion"><b>⑤ 行動</b>すぐ動ける行動を得る</div>
+        </div>
+
+        <h4>確定前の3チェック</h4>
+        <div class="criteria">
+          <div class="criterion"><b>① 離脱しないか</b>この順番で読んで途中で飽きないか。見出し間の飛躍を通しで確認する</div>
+          <div class="criterion"><b>② 抜けている視点はないか</b>AIは「それっぽい構成」は得意だが、読者が本当に知りたいことを漏らしやすい</div>
+          <div class="criterion"><b>③ 体験を入れる場所はあるか</b>体験が入らない構成は、ありふれた記事になる</div>
+        </div>
+
+        <div class="callout warn">
+          <b>⚠ 並べ替えの軸を間違えない</b>　基準は「何を学ぶか」ではなく<strong>「どう引き込むか」</strong>。
+          「副業とは何か→種類→メリット」は正しいが退屈。
+          「月3万稼いだ僕が最初にやったこと→9割が間違えるポイント→実はスキルより大切なもの」は内容がほぼ同じでも読了率が変わります。
+        </div>
+
+        <div class="step-check">
+          <label><input type="checkbox" data-key="step5"><span>STEP 05 完了</span></label>
+        </div>
+      </div>
+    </article>
+
+    <!-- ─────────── STEP 6 ─────────── -->
+    <article class="step reveal" id="step6">
+      <div class="step-head">
+        <span class="step-no">STEP 06</span>
+        <div class="step-titles">
+          <h3>リード文を書く</h3>
+          <p>タイトルは「開くか」を決め、リード文は「読み続けるか」を決める</p>
+        </div>
+        <div class="step-meta">
+          <span class="badge must">必須</span>
+          <span class="badge day">Day9</span>
+        </div>
+      </div>
+      <div class="step-body">
+        <div class="role-split">
+          <div class="role ai"><b>AIの仕事</b>3つの型でリード文を書き分ける</div>
+          <div class="role me"><b>自分の仕事</b>1つ選び、選んだ理由を言葉にする</div>
+        </div>
+
+        <h4>やること</h4>
+        <ul class="tasklist">
+          <li>リード文＝記事冒頭の3〜5行。読者が続きを読むか閉じるかの判断は、<strong>ほんの3秒</strong>で行われています。</li>
+          <li>選ぶ基準は「どれが正しいか」ではなく<strong>「自分が読者ならどれの続きを読みたいか」</strong>。3つとも正しく、刺さり方が違うだけです。</li>
+          <li><strong>「自分の体験と接続しやすい」パターンを優先</strong>すると、後から体験を足しやすくなります。</li>
+        </ul>
+
+        <div class="prompt">
+          <div class="prompt-head">
+            <span>プロンプト 08｜リード文を3パターン書かせる</span>
+            <button class="copy-btn" type="button">コピー</button>
+          </div>
+          <pre>「<mark>〇〇（タイトル）</mark>」という記事のリード文を3パターン書いてください。
+① 問題提起型　② ストーリー型　③ データ型
+各100〜150字。読者が続きを読みたくなるようにしてください。</pre>
+        </div>
+
+        <h4>3つの型（優劣はない）</h4>
+        <div class="criteria">
+          <div class="criterion"><b>問題提起型</b>読者の悩みをズバリ突く。脳は「快感を得る」より「痛みを避ける」に強く反応するため、痛みを言語化されると「わかってくれている」と感じる</div>
+          <div class="criterion"><b>ストーリー型</b>具体的なエピソードから始める。データや理論より1人の体験のほうが記憶に残る。自分の体験を入れやすい</div>
+          <div class="criterion"><b>データ型</b>意外な数字や事実から始める。ポイントは意外性。「増えています」は弱く、「わずか8%」は刺さる</div>
+        </div>
+
+        <div class="callout warn">
+          <b>⚠ データ型の落とし穴</b>　AIは「もっともらしい嘘の数字」を出すことがあります。
+          リード文の数字が誤っていると記事全体の信頼が崩れるため、この時点で必ずファクトチェックしてください。
+        </div>
+
+        <div class="callout tip">
+          <b>✅ 「選んだ理由」を言語化する</b>　「なんとなく好き」で止めず、
+          「読者の悩みに直接刺さる」「場面が想像しやすい」「自分の体験と近く後から体験を足しやすい」など具体的な理由に落とす。
+          言葉にしようとする行為そのものが、判断力を鍛えます。
+        </div>
+
+        <div class="step-check">
+          <label><input type="checkbox" data-key="step6"><span>STEP 06 完了</span></label>
+        </div>
+      </div>
+    </article>
+
+    <!-- ─────────── STEP 7 ─────────── -->
+    <article class="step reveal" id="step7">
+      <div class="step-head">
+        <span class="step-no">STEP 07</span>
+        <div class="step-titles">
+          <h3>本文の前半を書く</h3>
+          <p>「何か違う」は潰さない。それが判断力の働いている証拠</p>
+        </div>
+        <div class="step-meta">
+          <span class="badge must">必須</span>
+          <span class="badge day">Day10</span>
+        </div>
+      </div>
+      <div class="step-body">
+        <div class="role-split">
+          <div class="role ai"><b>AIの仕事</b>見出しごとに400字程度の本文を書く</div>
+          <div class="role me"><b>自分の仕事</b>違和感を3つ見つけ、1箇所に自分の体験を加える</div>
+        </div>
+
+        <h4>やること</h4>
+        <ul class="tasklist">
+          <li><strong>記事全体を一度に書かせない。</strong>見出しごとに1回ずつ指示を出し、出力を見てから次へ進みます。</li>
+          <li><strong>プロンプトには必ず記事タイトルを入れる。</strong>入れないと各見出しがバラバラの方向を向いた文章になります。</li>
+          <li>今日進めるのは前半（見出し1〜3程度）だけでOK。大きな作業を分割するのが原則です。</li>
+        </ul>
+
+        <div class="prompt">
+          <div class="prompt-head">
+            <span>プロンプト 09｜本文を見出しごとに書かせる</span>
+            <button class="copy-btn" type="button">コピー</button>
+          </div>
+          <pre>以下の見出しの下に入る本文を400字程度で書いてください。
+読者は<mark>〇〇（ターゲット）</mark>です。
+トーンは<mark>△△</mark>で。
+この記事のタイトルは「<mark>□□</mark>」です。
+
+見出し：<mark>◇◇</mark></pre>
+        </div>
+
+        <h4>通し読みで必ず出てくる3つの違和感</h4>
+        <div class="criteria">
+          <div class="criterion"><b>なんか全部同じトーンだな</b>AIは見出しごとに独立して生成するため、単体では悪くないのに通して読むと抑揚がない</div>
+          <div class="criterion"><b>説明が表面的だな</b>「一般的に正しいこと」は得意でも、「この読者が本当に知りたい深さ」までは掘れない</div>
+          <div class="criterion"><b>心に残らないな</b>情報は入っているが感情が動かないため、読み終わって「で、結局何だっけ？」となる</div>
+        </div>
+
+        <h4>違和感の正体は3つ。処方箋は全部同じ</h4>
+        <div class="criteria">
+          <div class="criterion"><b>「浅い」</b>読者が知りたいのは一般論ではなく、もう一段深い情報 → <strong>体験を足すと「深い」に変わる</strong></div>
+          <div class="criterion"><b>「自分じゃない」</b>誰が書いても同じ文章になっている → <strong>体験を足すと「自分の言葉」に変わる</strong></div>
+          <div class="criterion"><b>「つまらない」</b>正しいけれど面白くない、教科書的 → <strong>体験を足すと「面白い」に変わる</strong></div>
+        </div>
+
+        <div class="ng-ok">
+          <div class="ng">
+            <b>BEFORE（AI出力のみ）＝情報</b>
+            「副業を始めるとき、多くの人が最初にぶつかる壁は時間の確保です」<br>
+            <em style="color:var(--muted);font-size:.78rem">正しいけれど教科書的で、読者の心に刺さらない</em>
+          </div>
+          <div class="ok">
+            <b>AFTER（体験を1つ加えた）＝物語</b>
+            「僕も最初は"時間がない"と思っていました。でも実際に1日のスケジュールを書き出してみたら、SNSに2時間使っていることがわかった。その2時間のうち30分を副業に回しただけで、1ヶ月で記事が4本書けました」
+          </div>
+        </div>
+
+        <div class="callout tip">
+          <b>✅ 加えるのは1箇所だけでいい</b>　完璧を目指して全体を書き直す必要はありません。
+          その1箇所が「AIが書いた記事」を「あなたの記事」に変える転換点になります。
+        </div>
+
+        <div class="step-check">
+          <label><input type="checkbox" data-key="step7"><span>STEP 07 完了</span></label>
+        </div>
+      </div>
+    </article>
+
+    <!-- ─────────── STEP 8 ─────────── -->
+    <article class="step reveal" id="step8">
+      <div class="step-head">
+        <span class="step-no">STEP 08</span>
+        <div class="step-titles">
+          <h3>後半＋結論を書く</h3>
+          <p>トーンは言葉で指定せず、前半の文章を見本として渡す</p>
+        </div>
+        <div class="step-meta">
+          <span class="badge must">必須</span>
+          <span class="badge day">Day11</span>
+        </div>
+      </div>
+      <div class="step-body">
+        <div class="role-split">
+          <div class="role ai"><b>AIの仕事</b>前半のトーンに合わせて後半と結論を書く</div>
+          <div class="role me"><b>自分の仕事</b>結論のアクションを1つに絞り込む</div>
+        </div>
+
+        <h4>やること</h4>
+        <ul class="tasklist">
+          <li>AIは見出しごとに別々に生成するため、前半と後半で文体（です・ます／だ・である）や雰囲気がズレやすくなります。<strong>「カジュアルに」と言葉で伝えるより、実際の文章を見本として渡すほうが正確に揃います。</strong></li>
+          <li>結論は記事全体の印象を決める場所。<strong>「読んで良かった」ではなく「今日から何をしよう」で終わらせる</strong>。</li>
+        </ul>
+
+        <div class="prompt">
+          <div class="prompt-head">
+            <span>プロンプト 10｜後半をトーンを揃えて書かせる</span>
+            <button class="copy-btn" type="button">コピー</button>
+          </div>
+          <pre>以下は記事の前半部分です。
+この文章と同じトーン・文体で、見出し「<mark>〇〇</mark>」の本文を400字程度で書いてください。
+
+---
+<mark>（ここに前半の本文を貼り付ける）</mark>
+---</pre>
+        </div>
+
+        <div class="prompt">
+          <div class="prompt-head">
+            <span>プロンプト 11｜結論を書かせる</span>
+            <button class="copy-btn" type="button">コピー</button>
+          </div>
+          <pre>読者が「今日から1つだけ実践してみよう」と思える結論を300字で書いてください。
+具体的なアクションを1つだけ提示してください。</pre>
+        </div>
+
+        <div class="callout warn">
+          <b>⚠ アクションを増やすのは親切ではない</b>　3つも5つも提示すると
+          「どれからやればいいかわからない」で終わります。選択肢が多いと人は動けなくなる。
+          AIが書きがちな「いかがでしたでしょうか」型の結論も、読者の行動を引き出せません。
+        </div>
+
+        <div class="step-check">
+          <label><input type="checkbox" data-key="step8"><span>STEP 08 完了</span></label>
+        </div>
+      </div>
+    </article>
+
+    <!-- ─────────── STEP 9 ─────────── -->
+    <article class="step reveal" id="step9">
+      <div class="step-head">
+        <span class="step-no">STEP 09</span>
+        <div class="step-titles">
+          <h3>通し読みで流れを直す</h3>
+          <p>見つけるのは3つ、直すのは1つだけ</p>
+        </div>
+        <div class="step-meta">
+          <span class="badge rec">推奨</span>
+          <span class="badge day">Day11</span>
+        </div>
+      </div>
+      <div class="step-body">
+        <div class="role-split">
+          <div class="role ai"><b>AIの仕事</b>つなぎ文の作成など、指示した箇所の修正のみ</div>
+          <div class="role me"><b>自分の仕事</b>読者の目線で一気に読み、違和感を3つ見つける</div>
+        </div>
+
+        <h4>やること</h4>
+        <ul class="tasklist">
+          <li>書いている間は前後のつながりを意識できていません。<strong>読者は最初から最後まで一気に読む</strong>ので、その目線で読み直します。</li>
+          <li>バラバラに書いたときには見えなかったズレ（話の飛び・重複・トーンの変化・見出し順序の不自然さ）が浮かび上がります。</li>
+          <li><strong>全部直す必要はありません。</strong>最もインパクトの大きい1つだけ直し、残りはSTEP10の推敲に回します。</li>
+        </ul>
+
+        <h4>流れの違和感は3パターン</h4>
+        <div class="criteria">
+          <div class="criterion">
+            <b>① つなぎが弱い</b>
+            症状：読者が「なぜいきなりこの話？」と感じる<br>
+            対処：次の見出しの冒頭につなぎ文を1文入れる（例：「テーマの選び方がわかったところで、次は具体的な切り口の作り方に入ります」）
+          </div>
+          <div class="criterion">
+            <b>② 同じことの繰り返し</b>
+            症状：AIは「大事なこと」を何度も言いたがるため、同じ主張が複数箇所に出る<br>
+            対処：最も良い表現を1つ残し、他は削除する
+          </div>
+          <div class="criterion">
+            <b>③ 論理の飛躍</b>
+            症状：「AだからB」のつながりが説明されていない<br>
+            対処：AとBの間に「なぜAからBになるのか」を1〜2文挟む
+          </div>
+        </div>
+
+        <div class="step-check">
+          <label><input type="checkbox" data-key="step9"><span>STEP 09 完了</span></label>
+        </div>
+      </div>
+    </article>
+
+    <!-- ─────────── STEP 10 ─────────── -->
+    <article class="step reveal" id="step10">
+      <div class="step-head">
+        <span class="step-no">STEP 10</span>
+        <div class="step-titles">
+          <h3>推敲する</h3>
+          <p>AIの修正提案を「疑う」。全部受け入れるのは疑えていないサイン</p>
+        </div>
+        <div class="step-meta">
+          <span class="badge must">必須</span>
+          <span class="badge day">Day12</span>
+        </div>
+      </div>
+      <div class="step-body">
+        <div class="role-split">
+          <div class="role ai"><b>AIの仕事</b>修正案と修正理由をセットで出す</div>
+          <div class="role me"><b>自分の仕事</b>1つずつ採用／却下を決め、却下理由をメモする</div>
+        </div>
+
+        <h4>やること</h4>
+        <ul class="tasklist">
+          <li>「この文章を直してください」だけでは効果が薄い。<strong>目的を1つに絞って指示</strong>します。</li>
+          <li><strong>「修正した箇所と修正理由を教えてください」を必ず添える。</strong>理由がわかって初めて採否を判断できます。</li>
+          <li>推敲①は全員、②は余裕があれば、③は記事が長い人だけでOKです。</li>
+        </ul>
+
+        <div class="prompt">
+          <div class="prompt-head">
+            <span>プロンプト 12｜推敲① 読みやすさ（必須）</span>
+            <button class="copy-btn" type="button">コピー</button>
+          </div>
+          <pre>この文章の読みやすさを改善してください。
+1文が40字を超える箇所は分割し、難しい言葉は平易な言葉に置き換えてください。
+修正した箇所と修正理由を教えてください。</pre>
+        </div>
+
+        <div class="prompt">
+          <div class="prompt-head">
+            <span>プロンプト 13｜推敲② 論理チェック（任意）</span>
+            <button class="copy-btn" type="button">コピー</button>
+          </div>
+          <pre>この文章の中で、「AだからB」のつながりが不明確な箇所、
+読者が「なぜ？」と感じそうな箇所を指摘してください。</pre>
+        </div>
+
+        <div class="prompt">
+          <div class="prompt-head">
+            <span>プロンプト 14｜推敲③ 冗長さの削減（記事が長い人だけ）</span>
+            <button class="copy-btn" type="button">コピー</button>
+          </div>
+          <pre>この文章の中で、同じことの繰り返しになっている箇所と、
+削除しても意味が変わらない「なくても通じる一文」を挙げてください。</pre>
+        </div>
+
+        <h4>AIの修正を「疑う」4つの判断パターン</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>感じたこと</th><th>判断</th></tr></thead>
+            <tbody>
+              <tr><td>確かに読みやすくなった</td><td><strong style="color:var(--green)">採用</strong></td></tr>
+              <tr><td>内容は合っているが、元の表現のほうがリズムが良い</td><td><strong style="color:var(--red)">却下</strong></td></tr>
+              <tr><td>方向性は正しいが、ニュアンスが変わった</td><td><strong style="color:var(--red)">却下</strong>し、自分で別の修正をする</td></tr>
+              <tr><td>言いたいことが変わってしまった</td><td><strong style="color:var(--red)">即却下</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout warn">
+          <b>⚠ 採用6〜7割・却下3〜4割が健全</b>　全部採用は「疑えていない」サインです。
+          あえてリズムを崩す・口語を残す・1文を長くする、といった判断ができるのは書き手だけ。
+          <strong>却下した理由はメモに残す</strong>と、それが自分のトーンの基準になります。
+        </div>
+
+        <div class="callout note">
+          <b>💡 補足：AIは文字数を正確に数えられない</b>　言葉を文字単位ではなく「トークン」で処理しているため、
+          「41字」と「38字」の区別は原理的に苦手です。実用上は40字を<strong>感覚の指示</strong>として渡し、
+          正確な字数はエディタで数え、採否は音読で決めるのが現実的です。以下は改良版プロンプト。
+        </div>
+
+        <div class="prompt">
+          <div class="prompt-head">
+            <span>プロンプト 15｜1文が長い箇所を理由つきで挙げさせる（改良版）</span>
+            <button class="copy-btn" type="button">コピー</button>
+          </div>
+          <pre>以下の文章から、1文が長くて読みにくい箇所を挙げてください。
+目安は40字前後です。
+各箇所について、次の3つをセットで示してください。
+
+1. 元の文（そのまま引用）
+2. 読みにくい理由（なぜ読みにくいのか。字数だけでなく構造の問題も）
+3. 修正案
+
+修正案は提示するだけにして、本文の書き換えはしないでください。</pre>
+        </div>
+
+        <h4>最後は必ず音読する（所要5分）</h4>
+        <div class="criteria">
+          <div class="criterion"><b>1文が長すぎる箇所</b>息が続かない文は2つに分割する</div>
+          <div class="criterion"><b>同じ語尾の繰り返し</b>「〜です」の3連続は単調。語尾を混ぜてリズムを作る</div>
+          <div class="criterion"><b>読み方がわからない漢字</b>自分が読めない漢字は読者も読めない。ひらがなに開くか言い換える</div>
+        </div>
+
+        <div class="callout tip">
+          <b>✅ つまずいた箇所は、読者も必ずつまずく</b>　AIが書いた文章では
+          「文法は正しいが人はこう言わない」箇所が、音読であぶり出されます。
+        </div>
+
+        <div class="step-check">
+          <label><input type="checkbox" data-key="step10"><span>STEP 10 完了</span></label>
+        </div>
+      </div>
+    </article>
+
+    <!-- ─────────── STEP 11 ─────────── -->
+    <article class="step reveal" id="step11">
+      <div class="step-head">
+        <span class="step-no">STEP 11</span>
+        <div class="step-titles">
+          <h3>ファクトチェックする</h3>
+          <p>読者はたった1つの間違いで「この記事は信用できない」と判断する</p>
+        </div>
+        <div class="step-meta">
+          <span class="badge must">必須</span>
+          <span class="badge day">Day5 / Day13</span>
+        </div>
+      </div>
+      <div class="step-body">
+        <div class="role-split">
+          <div class="role ai"><b>AIの仕事</b>なし（AIの出力を検証する側の工程）</div>
+          <div class="role me"><b>自分の仕事</b>結論に影響する情報と、数字・固有名詞を裏取りする</div>
+        </div>
+
+        <h4>やること</h4>
+        <ul class="tasklist">
+          <li><strong>全情報を確認する必要はありません。</strong>確認すべきは「記事の結論に影響する情報」と「数字・固有名詞」だけ。</li>
+          <li>「AIが書いたから正しい」は最も危険な思い込み。<strong>AIの回答は正解ではなく参考意見</strong>です。</li>
+        </ul>
+
+        <h4>3ステップ</h4>
+        <div class="criteria">
+          <div class="criterion"><b>① 本当か？と疑う</b>数字・固有名詞・「AだからB」の因果を1つずつ問い直す</div>
+          <div class="criterion"><b>② 1つの情報源で確認</b>検索して同じ情報が出るか。出てこなければ「もっともらしい嘘」の可能性</div>
+          <div class="criterion"><b>③ 重要な数字は2つ以上で確認</b>結論や読者の行動を左右する数字は、複数ソースの一致で信頼度を上げる</div>
+        </div>
+
+        <h4>AIが間違いやすい4パターン</h4>
+        <div class="criteria">
+          <div class="criterion"><b>数字の間違い</b>実在の調査に似た統計データを、自信満々に作り出す。「年間△△万人が利用」のような数値は要検索</div>
+          <div class="criterion"><b>固有名詞の間違い</b>存在しない組織名・人名を堂々と出す。「〇〇大学の研究によると」の大学が実在しないことも</div>
+          <div class="criterion"><b>因果関係の飛躍</b>相関しかないのに「Aすれば必ずBになる」と断言する</div>
+          <div class="criterion"><b>時制の混乱</b>過去の情報を現在の事実として書く（学習データには期限がある）</div>
+        </div>
+
+        <div class="callout warn">
+          <b>⚠ 実例</b>　AIが「副業人口は約2000万人」と書いたが、実際は約800万人（2023年時点）。
+          2.5倍に盛られていました。そのまま載せれば記事全体の信頼が崩壊します。
+        </div>
+
+        <div class="step-check">
+          <label><input type="checkbox" data-key="step11"><span>STEP 11 完了</span></label>
+        </div>
+      </div>
+    </article>
+
+    <!-- ─────────── STEP 12 ─────────── -->
+    <article class="step reveal" id="step12">
+      <div class="step-head">
+        <span class="step-no">STEP 12</span>
+        <div class="step-titles">
+          <h3>最終確認して記録する</h3>
+          <p>2本目の速度と品質は、ここで手順を言語化できたかで決まる</p>
+        </div>
+        <div class="step-meta">
+          <span class="badge must">必須</span>
+          <span class="badge rec">記録は推奨</span>
+          <span class="badge day">Day13 / Day14</span>
+        </div>
+      </div>
+      <div class="step-body">
+        <div class="role-split">
+          <div class="role ai"><b>AIの仕事</b>なし</div>
+          <div class="role me"><b>自分の仕事</b>チェックリストを通し、自分の手順を言語化して残す</div>
+        </div>
+
+        <h4>やること</h4>
+        <ul class="tasklist">
+          <li>下の「最終チェック」セクションを通してから公開・提出します。<strong>8項目すべてOKで完成。2〜3個「微妙」があっても大丈夫です（完璧より完了）。</strong></li>
+          <li><strong>「なんとなくできた」は危険。</strong>10回やって10回成功できる状態が本物のスキルです。言語化するから再現でき、再現できるからスキルになります。</li>
+          <li>完成した1本は練習作品ではなく<strong>ポートフォリオ第1号</strong>として扱ってください。</li>
+        </ul>
+
+        <div class="callout tip">
+          <b>✅ 難しかったステップの「移動」が成長の証拠</b>　最初は「テーマ選び」が最難関でも、
+          基準ができるとすぐ決まるようになります。次に「推敲」が最難関になる——
+          この移動は基礎が自動化され、意識がより高度な部分に向いた状態です。記録があるから可視化できます。
+        </div>
+
+        <div class="step-check">
+          <label><input type="checkbox" data-key="step12"><span>STEP 12 完了</span></label>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════ FINAL CHECK ══════════════════════════ -->
+<section class="section" id="final">
+  <div class="container reveal">
+    <h2 class="section-title">最終チェックリスト</h2>
+    <p class="section-sub">公開・提出の直前に通します。チェック状態は保存されます。</p>
+
+    <h4 style="font-size:.82rem;letter-spacing:.08em;color:var(--muted);margin:0 0 .8rem;font-weight:700">
+      まず見る3項目（これがOKなら完成）
+    </h4>
+    <div class="checkgrid" style="margin-bottom:2rem">
+      <label class="checkitem"><input type="checkbox" data-key="fin-a"><span><strong>タイトルと中身が一致しているか。</strong>読者はタイトルに引かれてクリックしている。タイトルの約束が本文で果たされていなければ「騙された」と感じる</span></label>
+      <label class="checkitem"><input type="checkbox" data-key="fin-b"><span><strong>リード文で続きを読みたくなるか。</strong>書いた直後ではなく、今の目で冷静に読み返して判断する</span></label>
+      <label class="checkitem"><input type="checkbox" data-key="fin-c"><span><strong>結論に具体的なアクションがあるか。</strong>「読んで終わり」ではなく「読んだら動く」になっているか</span></label>
+    </div>
+
+    <h4 style="font-size:.82rem;letter-spacing:.08em;color:var(--muted);margin:0 0 .8rem;font-weight:700">
+      仕上げの8項目
+    </h4>
+    <div class="checkgrid">
+      <label class="checkitem"><input type="checkbox" data-key="fin-1"><span>タイトルと本文の内容が一致しているか（約束したことを書いているか）</span></label>
+      <label class="checkitem"><input type="checkbox" data-key="fin-2"><span>リード文を読んで「続きを読みたい」と感じるか</span></label>
+      <label class="checkitem"><input type="checkbox" data-key="fin-3"><span>見出しの順番は論理的に自然か（STEP05の3チェックで再確認）</span></label>
+      <label class="checkitem"><input type="checkbox" data-key="fin-4"><span>各見出しの内容が重複していないか</span></label>
+      <label class="checkitem"><input type="checkbox" data-key="fin-5"><span>読者への呼びかけが一方的でないか（「〇〇しましょう」の連発になっていないか）</span></label>
+      <label class="checkitem"><input type="checkbox" data-key="fin-6"><span>専門用語を使いすぎていないか</span></label>
+      <label class="checkitem"><input type="checkbox" data-key="fin-7"><span>1文が長すぎないか（40字超は分割を検討）</span></label>
+      <label class="checkitem"><input type="checkbox" data-key="fin-8"><span>結論で具体的なアクションを提示しているか（「いかがでしたでしょうか」で終わっていないか）</span></label>
+    </div>
+
+    <div class="callout tip" style="margin-top:1.6rem">
+      <b>✅ 完璧より完了</b>　8項目すべてがOKでなくても大丈夫です。
+      「読まれない良い記事」より「読まれる60点の記事」のほうが価値があります。
+      2〜3個「微妙」が残っていても、出してから改善するほうが前に進みます。
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ RECORD ══════════════════════════ -->
+<section class="section alt" id="record">
+  <div class="container reveal">
+    <h2 class="section-title">1本目の記録テンプレート</h2>
+    <p class="section-sub">
+      2本目を書いたあとに比較するためのデータです。どのステップが速くなり、どのステップの品質が上がったかが見えます。
+    </p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th style="width:34%">項目</th><th>記入内容</th></tr></thead>
+        <tbody>
+          <tr><td>タイトル</td><td>—</td></tr>
+          <tr><td>文字数</td><td>—</td></tr>
+          <tr><td>使ったAIツール</td><td>—</td></tr>
+          <tr><td>かかった日数</td><td>—</td></tr>
+          <tr><td>最も難しかったステップ</td><td>ここが<strong>伸びしろ</strong>。次に重点的に鍛える部分</td></tr>
+          <tr><td>最も楽しかったステップ</td><td>ここが<strong>強み</strong>。自然にやれていることと重なる可能性がある</td></tr>
+          <tr><td>自分の体験を加えた箇所</td><td>「この人にしか書けない1文」がどこに入ったか</td></tr>
+          <tr><td>却下した推敲提案</td><td>却下の理由＝<strong>自分のトーンの基準</strong>になる</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout note" style="margin-top:1.5rem">
+      <b>💡 手順を言語化しておく</b>　「タイトルを決めた」ではなく
+      「AIに案を20個出させ、3条件でベスト3を選び、声に出して1つに決めた」のように、
+      <strong>他の人に説明できるレベル</strong>で書き出します。
+      これが再現可能なマニュアルになり、2本目が格段に楽になります。
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ QUICK REF ══════════════════════════ -->
+<section class="section" id="quickref">
+  <div class="container reveal">
+    <h2 class="section-title">プロンプト早見表</h2>
+    <p class="section-sub">全16件。書き慣れてきたら、この一覧だけを見れば1本書けます。</p>
+    <div class="qr-list" id="qrList"></div>
+
+    <div class="callout note" style="margin-top:1.6rem">
+      <b>差し替え箇所</b>　<code style="font-family:var(--mono);background:var(--amber-soft);padding:.1rem .35rem;border-radius:3px">〇〇</code>
+      <code style="font-family:var(--mono);background:var(--amber-soft);padding:.1rem .35rem;border-radius:3px">△△</code>
+      <code style="font-family:var(--mono);background:var(--amber-soft);padding:.1rem .35rem;border-radius:3px">□□</code>
+      <code style="font-family:var(--mono);background:var(--amber-soft);padding:.1rem .35rem;border-radius:3px">◇◇</code>
+      は自分のテーマ・読者・タイトル・見出しに置き換えて使ってください。
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ FOOTER ══════════════════════════ -->
+<footer class="site-footer">
+  <div class="container">
+    <strong>出典・権利について</strong>
+    本資料は「21日間チャレンジ マインド編／AI編 Day1〜Day14」（note・poten_coach）の内容をもとに、
+    <strong style="display:inline">1本の記事を完成させる</strong>という目的に沿って再構成した個人の学習アウトプットです。
+    プロンプト文および各原則は同教材に基づいています。<br><br>
+    第三者の著作物を含むため、社外公開・再配布の際は権利者への確認が必要です。
+    <br><br>
+    <span style="font-size:.76rem;color:#64748b">
+      チェック状態はこのブラウザの localStorage にのみ保存され、外部には送信されません。
+    </span>
+  </div>
+</footer>
+
+<div class="toast" id="toast">コピーしました</div>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ---------- Toast ---------- */
+  var toast = document.getElementById('toast'), toastTimer;
+  function showToast(msg){
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toast.classList.remove('show'); }, 1800);
+  }
+
+  /* ---------- Copy to clipboard ---------- */
+  function copyText(text){
+    if(navigator.clipboard && window.isSecureContext){
+      return navigator.clipboard.writeText(text);
+    }
+    return new Promise(function(resolve, reject){
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly','');
+      ta.style.position = 'fixed';
+      ta.style.top = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      try{
+        document.execCommand('copy') ? resolve() : reject();
+      }catch(e){ reject(e); }
+      document.body.removeChild(ta);
+    });
+  }
+
+  function bindCopy(btn, getText){
+    btn.addEventListener('click', function(){
+      copyText(getText()).then(function(){
+        var original = btn.textContent;
+        btn.textContent = '✓ コピー済み';
+        btn.classList.add('copied');
+        showToast('プロンプトをコピーしました');
+        setTimeout(function(){
+          btn.textContent = original;
+          btn.classList.remove('copied');
+        }, 1800);
+      }).catch(function(){
+        showToast('コピーできませんでした。手動で選択してください');
+      });
+    });
+  }
+
+  /* ---------- Wire up prompt blocks ---------- */
+  var prompts = [];
+  Array.prototype.forEach.call(document.querySelectorAll('.prompt'), function(block){
+    var pre = block.querySelector('pre');
+    var btn = block.querySelector('.copy-btn');
+    var label = block.querySelector('.prompt-head span').textContent.trim();
+    var step = block.closest('.step');
+    bindCopy(btn, function(){ return pre.textContent; });
+    prompts.push({
+      label: label,
+      text: pre.textContent,
+      stepId: step ? step.id : null,
+      stepNo: step ? step.querySelector('.step-no').textContent.replace('STEP ','') : '—'
+    });
+  });
+
+  /* ---------- Build quick reference ---------- */
+  var qr = document.getElementById('qrList');
+  prompts.forEach(function(p){
+    var row = document.createElement('div');
+    row.className = 'qr-item';
+
+    var s = document.createElement('span');
+    s.className = 'qr-step';
+    s.textContent = 'STEP ' + p.stepNo;
+
+    var n = document.createElement('span');
+    n.className = 'qr-name';
+    if(p.stepId){
+      var a = document.createElement('a');
+      a.href = '#' + p.stepId;
+      a.textContent = p.label;
+      n.appendChild(a);
+    } else {
+      n.textContent = p.label;
+    }
+
+    var b = document.createElement('button');
+    b.className = 'copy-btn';
+    b.type = 'button';
+    b.textContent = 'コピー';
+    bindCopy(b, function(){ return p.text; });
+
+    row.appendChild(s); row.appendChild(n); row.appendChild(b);
+    qr.appendChild(row);
+  });
+
+  /* ---------- Persistent checkboxes ---------- */
+  var STORE = 'article-workflow-progress-v1';
+  var state = {};
+  try{ state = JSON.parse(localStorage.getItem(STORE) || '{}'); }catch(e){ state = {}; }
+
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('input[type="checkbox"][data-key]'));
+  var stepBoxes = boxes.filter(function(b){ return /^step/.test(b.dataset.key); });
+
+  function save(){
+    try{ localStorage.setItem(STORE, JSON.stringify(state)); }catch(e){}
+  }
+
+  function refresh(){
+    stepBoxes.forEach(function(b){
+      var card = b.closest('.step');
+      if(card) card.classList.toggle('done', b.checked);
+    });
+    var done = stepBoxes.filter(function(b){ return b.checked; }).length;
+    var total = stepBoxes.length;
+    var fill = document.getElementById('progressFill');
+    var text = document.getElementById('progressText');
+    if(fill) fill.style.width = (total ? (done / total * 100) : 0) + '%';
+    if(text) text.textContent = done + ' / ' + total + ' ステップ完了';
+  }
+
+  boxes.forEach(function(b){
+    if(state[b.dataset.key]) b.checked = true;
+    b.addEventListener('change', function(){
+      state[b.dataset.key] = b.checked;
+      save();
+      refresh();
+    });
+  });
+  refresh();
+
+  var resetBtn = document.getElementById('resetBtn');
+  if(resetBtn){
+    resetBtn.addEventListener('click', function(){
+      if(!confirm('チェックした進捗をすべてリセットします。よろしいですか？')) return;
+      state = {};
+      save();
+      boxes.forEach(function(b){ b.checked = false; });
+      refresh();
+      showToast('進捗をリセットしました');
+    });
+  }
+
+  /* ---------- Reveal on scroll ---------- */
+  var reveals = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){
+          en.target.classList.add('in');
+          io.unobserve(en.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+    Array.prototype.forEach.call(reveals, function(el){ io.observe(el); });
+  } else {
+    Array.prototype.forEach.call(reveals, function(el){ el.classList.add('in'); });
+  }
+
+  /* ---------- Nav active state ---------- */
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav a'));
+  var sections = navLinks.map(function(a){
+    return document.querySelector(a.getAttribute('href'));
+  }).filter(Boolean);
+
+  function onScroll(){
+    var pos = window.scrollY + 120;
+    var current = null;
+    sections.forEach(function(sec){
+      if(sec.offsetTop <= pos) current = sec.id;
+    });
+    navLinks.forEach(function(a){
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  }
+  var ticking = false;
+  window.addEventListener('scroll', function(){
+    if(ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(function(){ onScroll(); ticking = false; });
+  }, { passive: true });
+  onScroll();
+
+})();
+</script>
+
+</body>
+</html>
