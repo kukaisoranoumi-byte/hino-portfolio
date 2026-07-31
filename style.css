@@ -297,6 +297,29 @@ img { max-width: 100%; height: auto; display: block; }
 .work-no-img { flex-direction: column; }
 .work-no-img .work-body { flex: none; width: 100%; max-width: 760px; }
 
+/* Meta広告アカウント設計カード（工程ステップで縦積み） */
+.work-process { flex-direction: column; }
+.work-process .work-body { flex: none; width: 100%; }
+.process-gallery { display: grid; gap: 1.8rem; margin-top: 1.6rem; }
+.process-step figcaption {
+  display: flex; align-items: center; gap: .6rem;
+  font-size: .92rem; font-weight: 700; color: var(--primary); margin-bottom: .6rem;
+}
+.process-step .step-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 1.7rem; height: 1.7rem; flex-shrink: 0;
+  background: var(--secondary); color: #fff; border-radius: 50%;
+  font-size: .76rem; font-weight: 800;
+}
+.process-step a { display: block; }
+.process-step img {
+  width: 100%; height: auto; display: block; background: #fff;
+  border: 1px solid var(--border); border-radius: var(--radius);
+  box-shadow: var(--shadow); transition: box-shadow .2s, transform .15s;
+}
+.process-step a:hover img { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.process-hint { font-size: .8rem; color: var(--muted); margin-top: 1rem; text-align: right; }
+
 /* 注記（本文と同等の視認性） */
 .work-note {
   color: var(--text); font-size: .92rem; line-height: 1.75;
