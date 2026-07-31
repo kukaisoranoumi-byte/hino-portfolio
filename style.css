@@ -300,25 +300,44 @@ img { max-width: 100%; height: auto; display: block; }
 /* Meta広告アカウント設計カード（工程ステップで縦積み） */
 .work-process { flex-direction: column; }
 .work-process .work-body { flex: none; width: 100%; }
-.process-gallery { display: grid; gap: 1.8rem; margin-top: 1.6rem; }
+.process-gallery {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 1.1rem 1.2rem; margin-top: 1.5rem;
+}
 .process-step figcaption {
-  display: flex; align-items: center; gap: .6rem;
-  font-size: .92rem; font-weight: 700; color: var(--primary); margin-bottom: .6rem;
+  display: flex; align-items: center; gap: .5rem;
+  font-size: .82rem; font-weight: 700; color: var(--primary); margin-bottom: .45rem;
 }
 .process-step .step-num {
   display: inline-flex; align-items: center; justify-content: center;
-  width: 1.7rem; height: 1.7rem; flex-shrink: 0;
+  width: 1.5rem; height: 1.5rem; flex-shrink: 0;
   background: var(--secondary); color: #fff; border-radius: 50%;
-  font-size: .76rem; font-weight: 800;
+  font-size: .72rem; font-weight: 800;
 }
-.process-step a { display: block; }
-.process-step img {
-  width: 100%; height: auto; display: block; background: #fff;
+.process-step a {
+  display: block; position: relative; overflow: hidden;
   border: 1px solid var(--border); border-radius: var(--radius);
-  box-shadow: var(--shadow); transition: box-shadow .2s, transform .15s;
+  box-shadow: var(--shadow); background: #fff;
 }
-.process-step a:hover img { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.process-step img {
+  width: 100%; height: 168px; display: block; background: #fff;
+  object-fit: cover; object-position: top left;
+  transition: transform .3s;
+}
+.process-step a:hover img { transform: scale(1.05); }
+/* 拡大ヒントのバッジ（ホバーで表示） */
+.process-step a::after {
+  content: "🔍 拡大"; position: absolute; right: .5rem; bottom: .5rem;
+  background: rgba(15,23,42,.78); color: #fff;
+  font-size: .7rem; font-weight: 600; padding: .2rem .55rem; border-radius: 999px;
+  opacity: 0; transition: opacity .2s;
+}
+.process-step a:hover::after { opacity: 1; }
 .process-hint { font-size: .8rem; color: var(--muted); margin-top: 1rem; text-align: right; }
+@media (max-width: 560px) {
+  .process-gallery { grid-template-columns: 1fr; }
+  .process-step img { height: 200px; }
+}
 
 /* 注記（本文と同等の視認性） */
 .work-note {
