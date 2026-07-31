@@ -64,6 +64,8 @@ a:hover{text-decoration:underline}
 }
 .nav a:hover{background:var(--bg);color:var(--navy);text-decoration:none}
 .nav a.active{color:var(--blue);background:var(--blue-soft)}
+.nav a.nav-back{color:var(--blue);border:1px solid var(--line);margin-left:.4rem}
+.nav a.nav-back:hover{background:var(--blue);border-color:var(--blue);color:#fff}
 
 /* ============================================================
    Hero
@@ -400,6 +402,7 @@ td code{font-family:var(--mono);font-size:.78rem;background:var(--bg);padding:.1
       <a href="#final">最終チェック</a>
       <a href="#record">記録</a>
       <a href="#quickref">プロンプト一覧</a>
+      <a href="index.html" class="nav-back">← ポートフォリオ</a>
     </nav>
   </div>
 </header>
@@ -1655,7 +1658,7 @@ td code{font-family:var(--mono);font-size:.78rem;background:var(--bg);padding:.1
   }
 
   /* ---------- Nav active state ---------- */
-  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav a'));
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav a[href^="#"]'));
   var sections = navLinks.map(function(a){
     return document.querySelector(a.getAttribute('href'));
   }).filter(Boolean);
