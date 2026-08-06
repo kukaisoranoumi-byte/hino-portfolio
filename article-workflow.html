@@ -436,24 +436,6 @@ td code{font-family:var(--mono);font-size:.78rem;background:var(--bg);padding:.1
       実際に手を動かす順番に並べ直したものです。
     </p>
 
-    <div class="criteria">
-      <div class="criterion">
-        <b>入れたもの</b>
-        テーマ選定・切り口・リサーチ・タイトル・構成・リード文・本文・推敲・ファクトチェック・最終確認。
-        つまり記事が形になるまでに必ず通る工程。
-      </div>
-      <div class="criterion">
-        <b>外したもの</b>
-        マインド編の内面ワーク（色眼鏡・先延ばし・お金のブレーキ等）、日々の提出ワーク、
-        カスタムAIへの「開始」入力など、記事の完成物に直接影響しない作業。
-      </div>
-      <div class="criterion">
-        <b>残した考え方</b>
-        マインド編でも「作業の質を直接変える原則」だけは3原則として残しています（次項）。
-        これは削ると各ステップの判断基準が消えるため。
-      </div>
-    </div>
-
     <div class="callout note">
       <b>使い方</b>　上から順に進めてください。各ステップ末尾のチェックボックスは自動保存されるので、
       日をまたいで書く場合も続きから再開できます。<strong>必須</strong>／<strong>推奨</strong>／<strong>任意</strong>のバッジを見れば、
@@ -507,7 +489,7 @@ td code{font-family:var(--mono);font-size:.78rem;background:var(--bg);padding:.1
       <div class="phase">
         <div class="phase-label"><b>準備</b><span>PREPARE</span></div>
         <div class="phase-steps">
-          <a class="chip" href="#step0"><b>00</b>読者とツールを決める</a>
+          <a class="chip" href="#step0"><b>00</b>読者を決める</a>
         </div>
       </div>
       <div class="phase">
@@ -579,7 +561,7 @@ td code{font-family:var(--mono);font-size:.78rem;background:var(--bg);padding:.1
       <div class="step-head">
         <span class="step-no">STEP 00</span>
         <div class="step-titles">
-          <h3>読者とツールを決める</h3>
+          <h3>読者を決める</h3>
           <p>ここが曖昧なままだと、以降すべての出力がぼやけます</p>
         </div>
         <div class="step-meta">
@@ -590,21 +572,14 @@ td code{font-family:var(--mono);font-size:.78rem;background:var(--bg);padding:.1
       <div class="step-body">
         <div class="role-split">
           <div class="role ai"><b>AIの仕事</b>なし（この工程は自分だけで決める）</div>
-          <div class="role me"><b>自分の仕事</b>読者を1人に絞り込み、使うAIを1つに決める</div>
+          <div class="role me"><b>自分の仕事</b>読者を1人に絞り込み、トーンを決める</div>
         </div>
 
         <h4>やること</h4>
         <ul class="tasklist">
           <li><strong>読者を1人に絞る。</strong>「30代会社員」ではまだ広い。「副業に興味はあるが何から始めればいいか分からない30代の会社員」まで具体化する。ここで決めた1文は、以降ほぼ全てのプロンプトに貼り付けることになります。</li>
-          <li><strong>使うAIを1つ決める。</strong>迷ったらChatGPTかClaudeで十分。ツール選びに悩む時間より、指示の質を上げる時間のほうが結果に効きます。</li>
           <li><strong>トーンを決めておく。</strong>例：「先輩が後輩に話すような、カジュアルだが信頼感のある語り口」。これも毎回使い回します。</li>
         </ul>
-
-        <div class="criteria">
-          <div class="criterion"><b>ChatGPT</b>万能型。どんなジャンルもそつなくこなし、情報も多い</div>
-          <div class="criterion"><b>Claude</b>長い文章が得意。記事全体・構成を考えさせたいときに強い</div>
-          <div class="criterion"><b>Gemini</b>情報検索との相性がよく、最新情報を含めた文章に便利</div>
-        </div>
 
         <h4>全プロンプトの土台になる型</h4>
         <p style="font-size:.88rem;color:var(--muted);margin:0">
