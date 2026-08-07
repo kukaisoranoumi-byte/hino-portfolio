@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>お日様珈琲 クリエイティブギャラリー</title>
+<style>
+:root{
+  --cream:#faf6f0;
+  --paper:#fffdfa;
+  --ink:#241c16;
+  --ink-soft:#4a3c31;
+  --brown:#3a2820;
+  --deep:#17100c;
+  --copper:#a1622b;
+  --copper-lt:#c07f42;
+  --gold:#b99049;
+  --line:#e2d7c8;
+  --maxw:1240px;
+
+  /* オーディエンス別カラー（元スプレッドシートの枠色を踏襲） */
+  --c-audience:#b0413e;
+  --c-detail:#3a5a8c;
+  --c-custom:#3f7d52;
+  --c-lookalike:#c07f2e;
+  --c-remarketing:#9c8a2e;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--ink);
+  font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:16px;
+  line-height:1.9;
+  letter-spacing:.02em;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+h1,h2,.mincho{
+  font-family:"Hiragino Mincho ProN","Yu Mincho","YuMincho",serif;
+  font-weight:600;
+  letter-spacing:.04em;
+}
+
+/* ---------- 注記バー ---------- */
+.notice{
+  background:#2b2b2b;color:#e8e2d8;
+  font-size:12px;line-height:1.6;
+  padding:10px 16px;text-align:center;
+  letter-spacing:.03em;
+}
+.notice b{color:#f0c987}
+
+/* ---------- 戻る導線 ---------- */
+.backbar{
+  background:var(--paper);border-bottom:1px solid var(--line);
+  padding:12px 20px;
+}
+.backbar .inner{max-width:var(--maxw);margin:0 auto;display:flex;gap:18px;flex-wrap:wrap}
+.backbar a{
+  font-size:13px;color:var(--copper);text-decoration:none;
+  display:inline-flex;align-items:center;gap:5px;
+}
+.backbar a:hover{text-decoration:underline}
+
+/* ---------- ヒーロー ---------- */
+.hero{
+  background:
+    repeating-linear-gradient(45deg,rgba(255,255,255,.022) 0 14px,transparent 14px 28px),
+    radial-gradient(ellipse at 50% 15%,#4d382a 0%,#20160f 62%,#120c08 100%);
+  color:#f3ece1;
+  text-align:center;
+  padding:64px 20px 54px;
+}
+.hero .eyebrow{
+  display:inline-block;font-size:11px;letter-spacing:.28em;
+  color:var(--gold);border:1px solid rgba(185,144,73,.5);
+  padding:5px 16px;border-radius:2px;margin-bottom:24px;
+}
+.hero h1{
+  font-size:32px;line-height:1.5;margin:0 0 16px;
+  text-shadow:0 2px 24px rgba(0,0,0,.55);
+}
+.hero h1 .sm{
+  display:block;font-size:16px;letter-spacing:.1em;color:var(--gold);
+  font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif;
+  font-weight:600;margin-bottom:10px;
+}
+.hero p{
+  font-size:14px;color:#d8c7b3;max-width:620px;margin:0 auto;line-height:1.9;
+}
+.hero .stats{
+  display:flex;justify-content:center;gap:10px;flex-wrap:wrap;
+  margin-top:32px;
+}
+.hero .stat{
+  border:1px solid rgba(185,144,73,.4);border-radius:2px;
+  padding:10px 18px;background:rgba(185,144,73,.07);
+  font-size:12px;color:#e8d5b4;letter-spacing:.05em;
+}
+.hero .stat b{display:block;font-size:20px;color:#fff;font-family:"Hiragino Mincho ProN","Yu Mincho",serif;margin-bottom:2px}
+
+/* ---------- 概要セクション ---------- */
+.summary{padding:48px 20px 8px}
+.summary .inner{max-width:var(--maxw);margin:0 auto}
+.summary p{font-size:14px;color:var(--ink-soft);max-width:70ch}
+.legend{
+  display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;
+}
+.legend-item{
+  display:flex;align-items:center;gap:8px;
+  font-size:12.5px;color:var(--ink-soft);
+  background:var(--paper);border:1px solid var(--line);
+  padding:7px 14px;border-radius:2px;
+}
+.legend-dot{width:10px;height:10px;border-radius:50%;flex:0 0 10px}
+
+/* ---------- ギャラリー ---------- */
+.gallery{padding:20px 20px 80px}
+.gallery .inner{max-width:var(--maxw);margin:0 auto}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:20px;
+  margin-top:12px;
+}
+.col{
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-top:4px solid var(--accent);
+  border-radius:3px;
+  overflow:hidden;
+  min-width:0;
+}
+.col-head{
+  padding:14px 14px 12px;
+  border-bottom:1px dashed var(--line);
+}
+.col-head .tag{
+  display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.06em;
+  color:#fff;background:var(--accent);
+  padding:3px 9px;border-radius:2px;margin-bottom:8px;
+}
+.col-head h2{
+  font-size:14.5px;margin:0;line-height:1.5;color:var(--ink);
+  font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif;
+  font-weight:700;letter-spacing:.02em;
+}
+.banners{display:flex;flex-direction:column}
+.banner{
+  border-bottom:1px solid var(--line);
+  position:relative;
+}
+.banner:last-child{border-bottom:none}
+.banner img{width:100%;aspect-ratio:1/1;object-fit:cover;transition:transform .35s ease}
+.banner:hover img{transform:scale(1.045)}
+.banner .cap{
+  padding:10px 12px 12px;font-size:11.5px;color:var(--ink-soft);
+  line-height:1.6;
+}
+
+/* ---------- CTA ---------- */
+.cta-wrap{text-align:center;margin:44px 0 0}
+.cta{
+  display:inline-block;
+  background:linear-gradient(180deg,var(--copper-lt),var(--copper));
+  color:#fff;text-decoration:none;
+  font-size:15px;font-weight:700;letter-spacing:.05em;
+  padding:16px 30px;border-radius:3px;
+  box-shadow:0 6px 20px rgba(161,98,43,.3);
+  transition:transform .16s ease, box-shadow .16s ease;
+}
+.cta:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(161,98,43,.4)}
+
+/* ---------- フッター ---------- */
+footer{
+  background:var(--deep);color:#a2968a;
+  padding:30px 20px 36px;text-align:center;font-size:12px;line-height:1.9;
+}
+footer a{color:#c8b9a8;text-decoration:none}
+footer a:hover{text-decoration:underline}
+
+/* ---------- レスポンシブ ---------- */
+@media (max-width:1080px){
+  .grid{grid-template-columns:repeat(3,1fr)}
+}
+@media (max-width:680px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .hero{padding:48px 18px 40px}
+  .hero h1{font-size:24px}
+}
+@media (max-width:440px){
+  .grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="notice">
+  ※「お日様珈琲」は<b>架空のブランド</b>で、実在の企業・商品ではありません。バナー内の受賞歴・数値表現はすべて<b>サンプル</b>です。
+</div>
+
+<div class="backbar">
+  <div class="inner">
+    <a href="index.html">← ポートフォリオへ戻る</a>
+    <a href="ohisama-coffee-lp.html">LP カンプ（HTML版）を見る →</a>
+  </div>
+</div>
+
+<header class="hero">
+  <span class="eyebrow">META ADS CREATIVE</span>
+  <h1><span class="sm">架空クライアント：お日様珈琲</span>訴求軸別クリエイティブ<br>15 パターン ギャラリー</h1>
+  <p>
+    5 つの配信ターゲティング（オーディエンス配信・詳細ターゲット・カスタムオーディエンス・類似オーディエンス・リマーケティング）に合わせて、
+    それぞれ 3 パターンずつコピーとビジュアルを設計。AI 画像生成ツールを活用し、訴求軸を変えて制作しました。
+  </p>
+  <div class="stats">
+    <div class="stat"><b>5</b>オーディエンス</div>
+    <div class="stat"><b>15</b>クリエイティブ</div>
+    <div class="stat"><b>1080×1080</b>正方形フォーマット</div>
+  </div>
+</header>
+
+<section class="summary">
+  <div class="inner">
+    <p>
+      StockSun 広告運用道場の課題として作成。架空クライアントを想定したシミュレーションであり、実案件ではありません。
+      同じ商品でも、オーディエンスの温度感（新規〜既存）に合わせて訴求の切り口・コピーのトーンを変えている点に注目してください。
+    </p>
+    <div class="legend">
+      <span class="legend-item"><span class="legend-dot" style="background:var(--c-audience)"></span>CV_オーディエンス配信（新規・興味関心）</span>
+      <span class="legend-item"><span class="legend-dot" style="background:var(--c-detail)"></span>CV_詳細ターゲット（属性・興味の絞り込み）</span>
+      <span class="legend-item"><span class="legend-dot" style="background:var(--c-custom)"></span>CV_カスタムオーディエンス（サイト来訪者データ）</span>
+      <span class="legend-item"><span class="legend-dot" style="background:var(--c-lookalike)"></span>CV_類似オーディエンス（既存顧客と類似の層）</span>
+      <span class="legend-item"><span class="legend-dot" style="background:var(--c-remarketing)"></span>CV_リマーケティング（既接触層への再訴求）</span>
+    </div>
+  </div>
+</section>
+
+<section class="gallery">
+  <div class="inner">
+    <div class="grid">
+
+      <div class="col" style="--accent:var(--c-audience)">
+        <div class="col-head">
+          <span class="tag">01</span>
+          <h2>CV_オーディエンス配信</h2>
+        </div>
+        <div class="banners">
+          <figure class="banner">
+            <img src="image/banner/1.png" alt="創業50年 職人の自家焙煎" loading="lazy">
+            <figcaption class="cap">創業50年 職人の自家焙煎</figcaption>
+          </figure>
+          <figure class="banner">
+            <img src="image/banner/2.png" alt="自宅で味わう極上の一杯を" loading="lazy">
+            <figcaption class="cap">自宅で味わう極上の一杯を</figcaption>
+          </figure>
+          <figure class="banner">
+            <img src="image/banner/5.png" alt="創業50年の匠" loading="lazy">
+            <figcaption class="cap">創業50年の匠</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="col" style="--accent:var(--c-detail)">
+        <div class="col-head">
+          <span class="tag">02</span>
+          <h2>CV_詳細ターゲット</h2>
+        </div>
+        <div class="banners">
+          <figure class="banner">
+            <img src="image/banner/4.png" alt="薫りとコク 贅沢な一杯" loading="lazy">
+            <figcaption class="cap">薫りとコク 贅沢な一杯</figcaption>
+          </figure>
+          <figure class="banner">
+            <img src="image/banner/7.png" alt="世界が認めたスペシャルティ珈琲" loading="lazy">
+            <figcaption class="cap">世界が認めたスペシャルティ珈琲</figcaption>
+          </figure>
+          <figure class="banner">
+            <img src="image/banner/9.png" alt="コーヒータイムで知る贅沢と安らぎ" loading="lazy">
+            <figcaption class="cap">コーヒータイムで知る贅沢と安らぎ</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="col" style="--accent:var(--c-custom)">
+        <div class="col-head">
+          <span class="tag">03</span>
+          <h2>CV_カスタムオーディエンス</h2>
+        </div>
+        <div class="banners">
+          <figure class="banner">
+            <img src="image/banner/6.png" alt="焙煎したて、翌日お届け" loading="lazy">
+            <figcaption class="cap">焙煎したて、翌日お届け</figcaption>
+          </figure>
+          <figure class="banner">
+            <img src="image/banner/10.png" alt="まず一度、試しませんか？" loading="lazy">
+            <figcaption class="cap">まず一度、試しませんか？</figcaption>
+          </figure>
+          <figure class="banner">
+            <img src="image/banner/14.png" alt="40%OFF お試しセット 今だけの特別価格" loading="lazy">
+            <figcaption class="cap">40%OFF お試しセット 今だけの特別価格</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="col" style="--accent:var(--c-lookalike)">
+        <div class="col-head">
+          <span class="tag">04</span>
+          <h2>CV_類似オーディエンス</h2>
+        </div>
+        <div class="banners">
+          <figure class="banner">
+            <img src="image/banner/11.png" alt="妥協しない人のための一杯" loading="lazy">
+            <figcaption class="cap">妥協しない人のための一杯</figcaption>
+          </figure>
+          <figure class="banner">
+            <img src="image/banner/13.png" alt="プロが選ぶ、お日様珈琲" loading="lazy">
+            <figcaption class="cap">プロが選ぶ、お日様珈琲</figcaption>
+          </figure>
+          <figure class="banner">
+            <img src="image/banner/15.png" alt="自分に贈る本物の珈琲" loading="lazy">
+            <figcaption class="cap">自分に贈る本物の珈琲</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="col" style="--accent:var(--c-remarketing)">
+        <div class="col-head">
+          <span class="tag">05</span>
+          <h2>CV_リマーケティング</h2>
+        </div>
+        <div class="banners">
+          <figure class="banner">
+            <img src="image/banner/16.png" alt="【初回限定】40%OFF" loading="lazy">
+            <figcaption class="cap">【初回限定】40%OFF</figcaption>
+          </figure>
+          <figure class="banner">
+            <img src="image/banner/17.png" alt="この極上を40%OFFで" loading="lazy">
+            <figcaption class="cap">この極上を40%OFFで</figcaption>
+          </figure>
+          <figure class="banner">
+            <img src="image/banner/18.png" alt="今が40%OFF" loading="lazy">
+            <figcaption class="cap">今が40%OFF</figcaption>
+          </figure>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="cta-wrap">
+      <a class="cta" href="ohisama-coffee-lp.html">この訴求を使った LP カンプを見る →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  「お日様珈琲」は架空のブランドで、実在の企業・商品ではありません。<br>
+  StockSun 広告運用道場の課題として作成した、Meta 広告アカウント設計の一部です。<br><br>
+  <a href="index.html">← 日野高志 ポートフォリオへ戻る</a>
+</footer>
+
+</body>
+</html>
