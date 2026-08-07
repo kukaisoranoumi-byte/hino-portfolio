@@ -1,0 +1,826 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>お日様珈琲 LP ラフ案</title>
+<style>
+:root{
+  --cream:#faf6f0;
+  --paper:#fffdfa;
+  --ink:#241c16;
+  --ink-soft:#4a3c31;
+  --brown:#3a2820;
+  --deep:#17100c;
+  --copper:#a1622b;
+  --copper-lt:#c07f42;
+  --gold:#b99049;
+  --line:#e2d7c8;
+  --maxw:760px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--ink);
+  font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:16px;
+  line-height:1.9;
+  letter-spacing:.02em;
+  -webkit-font-smoothing:antialiased;
+  padding-bottom:76px;
+}
+img{max-width:100%}
+h1,h2,h3,.mincho{
+  font-family:"Hiragino Mincho ProN","Yu Mincho","YuMincho",serif;
+  font-weight:600;
+  letter-spacing:.04em;
+}
+
+/* ---------- 注記バー ---------- */
+.notice{
+  background:#2b2b2b;color:#e8e2d8;
+  font-size:12px;line-height:1.6;
+  padding:10px 16px;text-align:center;
+  letter-spacing:.03em;
+}
+.notice b{color:#f0c987}
+
+/* ---------- 共通レイアウト ---------- */
+section{padding:72px 20px}
+.inner{max-width:var(--maxw);margin:0 auto}
+.lead{font-size:15px;color:var(--ink-soft)}
+.sec-label{
+  display:inline-block;font-size:11px;letter-spacing:.22em;
+  color:var(--copper);border:1px solid var(--copper);
+  padding:4px 12px;border-radius:2px;margin-bottom:22px;
+}
+h2.sec{font-size:27px;line-height:1.55;margin:0 0 28px}
+h3{font-size:19px;line-height:1.6;margin:40px 0 14px}
+p{margin:0 0 1.3em}
+strong{font-weight:700}
+.em{
+  background:linear-gradient(transparent 62%, rgba(185,144,73,.32) 62%);
+  font-weight:700;
+}
+
+/* ---------- 画像プレースホルダ ---------- */
+.ph{
+  position:relative;
+  background:
+    repeating-linear-gradient(45deg,rgba(255,255,255,.035) 0 12px,transparent 12px 24px),
+    linear-gradient(150deg,#4a3529,#241a13 70%);
+  color:#d8c7b3;
+  border-radius:3px;
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;
+  padding:26px 20px;
+  font-size:12.5px;line-height:1.85;
+  letter-spacing:.04em;
+  min-height:190px;
+  margin:0 0 20px;
+}
+.ph::before{
+  content:"IMAGE";
+  position:absolute;top:9px;left:11px;
+  font-size:9px;letter-spacing:.2em;color:rgba(216,199,179,.5);
+}
+.ph.tall{min-height:270px}
+
+/* ---------- FV ---------- */
+.fv{
+  background:
+    repeating-linear-gradient(45deg,rgba(255,255,255,.022) 0 14px,transparent 14px 28px),
+    radial-gradient(ellipse at 50% 22%,#4d382a 0%,#20160f 62%,#120c08 100%);
+  color:#f3ece1;
+  text-align:center;
+  padding:64px 20px 56px;
+}
+.fv .imgnote{
+  font-size:11px;color:rgba(243,236,225,.42);
+  letter-spacing:.1em;margin-bottom:34px;
+}
+.fv h1{
+  font-size:38px;line-height:1.42;margin:0 0 18px;
+  text-shadow:0 2px 24px rgba(0,0,0,.55);
+}
+.fv .sub{
+  font-size:17px;color:#e0d3c1;margin:0 0 34px;
+  font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+}
+.fv ul{
+  list-style:none;padding:0;margin:0 auto 32px;
+  max-width:400px;text-align:left;
+}
+.fv li{
+  font-size:14.5px;padding:9px 0 9px 26px;position:relative;
+  border-bottom:1px solid rgba(243,236,225,.14);
+  color:#ece1d2;
+}
+.fv li::before{
+  content:"";position:absolute;left:5px;top:19px;
+  width:7px;height:7px;background:var(--gold);
+  transform:rotate(45deg);
+}
+.badges{
+  display:flex;flex-wrap:wrap;gap:8px;justify-content:center;
+  margin:0 auto 34px;max-width:520px;
+}
+.badge{
+  border:1px solid rgba(185,144,73,.6);
+  color:#e8d5b4;font-size:11.5px;line-height:1.5;
+  padding:8px 12px;border-radius:2px;
+  background:rgba(185,144,73,.09);
+}
+
+/* ---------- CTA ---------- */
+.cta-wrap{text-align:center;margin:36px 0 0}
+.cta{
+  display:inline-block;
+  background:linear-gradient(180deg,var(--copper-lt),var(--copper));
+  color:#fff;text-decoration:none;
+  font-size:16.5px;font-weight:700;letter-spacing:.05em;
+  padding:19px 34px;border-radius:3px;
+  box-shadow:0 6px 20px rgba(161,98,43,.36);
+  transition:transform .16s ease, box-shadow .16s ease;
+  max-width:100%;
+}
+.cta:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(161,98,43,.44)}
+.cta small{display:block;font-size:11.5px;font-weight:400;opacity:.9;letter-spacing:.08em;margin-top:3px}
+.cta-note{
+  font-size:11px;color:var(--copper);letter-spacing:.14em;
+  margin-top:12px;
+}
+.fv .cta-note{color:rgba(232,213,180,.7)}
+
+/* ---------- 3つの日常 ---------- */
+.days{display:grid;gap:22px}
+.day{
+  background:var(--paper);border:1px solid var(--line);
+  border-radius:3px;overflow:hidden;
+}
+.day .ph{margin:0;border-radius:0;min-height:170px}
+.day .body{padding:20px}
+.day h3{margin:0 0 6px;font-size:18px}
+.day .num{
+  font-size:11px;letter-spacing:.2em;color:var(--copper);
+  display:block;margin-bottom:6px;
+}
+
+/* ---------- 比較表 ---------- */
+.tablewrap{overflow-x:auto;margin:26px 0}
+table{border-collapse:collapse;width:100%;min-width:460px;font-size:14px;background:var(--paper)}
+th,td{border:1px solid var(--line);padding:12px 14px;text-align:left;vertical-align:top}
+thead th{background:var(--brown);color:#f3ece1;font-weight:600;letter-spacing:.05em}
+thead th:first-child{background:#2a1c15}
+tbody th{background:#f2ebe0;font-weight:600;width:30%}
+td.ours{background:rgba(185,144,73,.09);font-weight:600}
+
+/* ---------- 引用（父の言葉） ---------- */
+blockquote{
+  margin:30px 0;padding:22px 24px;
+  background:var(--brown);color:#f0e6d8;
+  border-left:4px solid var(--gold);
+  font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+  font-size:19px;line-height:1.75;letter-spacing:.05em;
+}
+blockquote p{margin:0}
+blockquote cite{display:block;font-size:13px;font-style:normal;opacity:.72;margin-top:12px;font-family:inherit}
+
+/* ---------- お客様の声 ---------- */
+.voice{
+  background:var(--paper);border:1px solid var(--line);
+  border-radius:3px;padding:22px;margin-bottom:20px;
+}
+.voice .who{
+  display:flex;align-items:center;gap:13px;
+  padding-bottom:14px;margin-bottom:15px;
+  border-bottom:1px dashed var(--line);
+}
+.voice .face{
+  width:52px;height:52px;flex:0 0 52px;border-radius:50%;
+  background:linear-gradient(140deg,#5b4335,#2c1f18);
+  color:rgba(216,199,179,.75);
+  display:flex;align-items:center;justify-content:center;
+  font-size:9px;letter-spacing:.08em;text-align:center;line-height:1.3;
+}
+.voice .name{font-size:16px;font-weight:700;line-height:1.4}
+.voice .attr{font-size:12.5px;color:var(--ink-soft)}
+.voice p{font-size:14.5px;margin-bottom:.9em}
+.voice p:last-child{margin-bottom:0}
+
+/* ---------- オファー ---------- */
+.offer{
+  background:linear-gradient(165deg,#3f2c21,#1d1410);
+  color:#f5eee3;border-radius:4px;
+  padding:34px 22px;margin:34px 0;text-align:center;
+  border:1px solid rgba(185,144,73,.4);
+}
+.offer .ttl{
+  font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+  font-size:14px;letter-spacing:.24em;color:var(--gold);
+  padding-bottom:14px;margin-bottom:20px;
+  border-bottom:1px solid rgba(185,144,73,.32);
+}
+.offer .item{font-size:17px;margin-bottom:10px;letter-spacing:.03em}
+.offer .price{
+  font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+  margin:14px 0 6px;line-height:1.3;
+}
+.offer .price del{font-size:19px;opacity:.55;margin-right:10px}
+.offer .price .now{font-size:44px;font-weight:700;color:#ffd489;letter-spacing:.01em}
+.offer .price .yen{font-size:20px;color:#ffd489}
+.offer .off{
+  display:inline-block;background:#c0392b;color:#fff;
+  font-size:14px;font-weight:700;letter-spacing:.06em;
+  padding:5px 15px;border-radius:2px;margin-bottom:14px;
+}
+.offer .plus{font-size:15.5px;margin:12px 0}
+.offer .free{
+  display:inline-block;border:1px solid var(--gold);color:#ffd489;
+  font-size:13.5px;padding:6px 18px;border-radius:2px;margin-top:6px;
+}
+.offer .fine{font-size:11.5px;opacity:.62;margin-top:18px;line-height:1.7}
+.offer .bonus{
+  background:rgba(255,255,255,.06);border-radius:3px;
+  padding:18px;margin-top:24px;font-size:14px;text-align:left;
+}
+.offer .bonus b{color:#ffd489}
+
+/* ---------- 信頼 ---------- */
+.media{list-style:none;padding:0;margin:0 0 26px}
+.media li{
+  background:var(--paper);border:1px solid var(--line);
+  padding:14px 16px;margin-bottom:9px;border-radius:3px;
+  font-size:14.5px;line-height:1.7;
+}
+.media li b{color:var(--copper)}
+.sites{
+  font-size:13px;color:var(--ink-soft);line-height:2.1;
+  background:var(--paper);border:1px solid var(--line);
+  padding:16px;border-radius:3px;
+}
+
+/* ---------- 4ステップ ---------- */
+.steps{display:grid;gap:12px;margin:26px 0}
+.step{
+  display:flex;gap:15px;align-items:flex-start;
+  background:var(--paper);border:1px solid var(--line);
+  padding:17px;border-radius:3px;
+}
+.step .n{
+  flex:0 0 34px;height:34px;border-radius:50%;
+  background:var(--brown);color:#f3ece1;
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;font-weight:700;
+  font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+}
+.step .t{font-weight:700;font-size:15.5px;margin-bottom:3px}
+.step .d{font-size:13.5px;color:var(--ink-soft);line-height:1.75}
+
+/* ---------- おすすめリスト ---------- */
+.check{list-style:none;padding:0;margin:0 0 26px}
+.check li{
+  position:relative;padding:12px 0 12px 34px;
+  border-bottom:1px solid var(--line);font-size:15.5px;
+}
+.check li::before{
+  content:"✓";position:absolute;left:6px;top:12px;
+  color:var(--copper);font-weight:700;font-size:17px;
+}
+
+/* ---------- FAQ ---------- */
+details{
+  background:var(--paper);border:1px solid var(--line);
+  border-radius:3px;margin-bottom:10px;
+}
+summary{
+  cursor:pointer;padding:16px 44px 16px 18px;
+  font-weight:700;font-size:15px;position:relative;list-style:none;
+}
+summary::-webkit-details-marker{display:none}
+summary::after{
+  content:"＋";position:absolute;right:17px;top:16px;
+  color:var(--copper);font-weight:400;
+}
+details[open] summary::after{content:"－"}
+details .a{padding:0 18px 18px;font-size:14.5px;color:var(--ink-soft)}
+
+/* ---------- ストーリー ---------- */
+.story{background:var(--paper)}
+.story .sign{
+  text-align:right;font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+  font-size:17px;margin-top:24px;
+}
+
+/* ---------- フッター ---------- */
+footer{
+  background:var(--deep);color:#a2968a;
+  padding:34px 20px 40px;text-align:center;font-size:13px;
+}
+footer a{color:#c8b9a8;text-decoration:none;margin:0 9px;line-height:2.4;display:inline-block}
+footer .co{
+  font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+  font-size:17px;color:#e0d3c1;margin-bottom:14px;letter-spacing:.1em;
+}
+
+/* ---------- スマホ追従CTA ---------- */
+.sticky{
+  position:fixed;left:0;right:0;bottom:0;z-index:50;
+  background:rgba(26,18,13,.95);
+  backdrop-filter:blur(8px);
+  padding:10px 14px;
+  border-top:1px solid rgba(185,144,73,.35);
+}
+.sticky a{
+  display:block;text-align:center;
+  background:linear-gradient(180deg,var(--copper-lt),var(--copper));
+  color:#fff;text-decoration:none;border-radius:3px;
+  padding:14px;font-size:15.5px;font-weight:700;letter-spacing:.04em;
+}
+.sticky .sub{
+  display:block;font-size:11px;font-weight:400;opacity:.9;margin-top:2px;
+}
+
+/* ---------- 設計メモ（画面には出すが印刷では消す） ---------- */
+.devnote{
+  max-width:var(--maxw);margin:0 auto;
+  background:#fff8e6;border-left:3px solid var(--gold);
+  padding:12px 16px;font-size:12px;line-height:1.85;
+  color:#6b5836;letter-spacing:.02em;
+}
+.devnote b{color:#8a6d2f}
+@media print{.devnote,.notice,.sticky{display:none}}
+
+/* ---------- レスポンシブ ---------- */
+@media (min-width:700px){
+  section{padding:92px 24px}
+  .fv{padding:88px 24px 76px}
+  .fv h1{font-size:52px}
+  .fv .sub{font-size:20px}
+  h2.sec{font-size:33px}
+  .days{grid-template-columns:repeat(3,1fr)}
+  .day .ph{min-height:150px}
+  .offer{padding:44px 36px}
+  body{padding-bottom:0}
+  .sticky{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="notice">
+  ※「お日様珈琲」は<b>架空のブランド</b>で、実在の企業・商品ではありません。写真・受賞歴・メディア掲載・お客様の声は<b>すべてサンプル</b>です。
+</div>
+
+<!-- ============ FV ============ -->
+<header class="fv">
+  <div class="inner">
+    <div class="imgnote">［背景写真：焙煎機の前で豆を手に取る店主の手元。顔は入れず、手と豆と湯気に寄る。暗めの色調＋電球色の灯り／縦長］</div>
+    <h1>このひととき、<br>自分だけの空間。</h1>
+    <p class="sub">大人のたしなみは、一杯の珈琲から始まる</p>
+    <ul>
+      <li>小さな焙煎所、コーヒー界のドン・キホーテ</li>
+      <li>妥協なしの手作業「ハンドピック」</li>
+      <li>焙煎したその日に配送</li>
+    </ul>
+    <div class="badges">
+      <span class="badge">2025年5月<br>ジャパン・フード・セレクション<br>グランプリ受賞</span>
+      <span class="badge">「料理王国100選」<br>14年連続選出</span>
+      <span class="badge">レクサス会雑誌「moment」<br>掲載</span>
+    </div>
+    <div class="cta-wrap">
+      <a class="cta" href="#offer3">初回お試しセットを詳しく見る</a>
+      <div class="cta-note">CTA① — まだ警戒している人へ／ハードルを下げる言葉</div>
+    </div>
+  </div>
+</header>
+
+<div class="devnote">
+  <b>キャッチコピー</b>：現在は<b>ラフ案1番「このひととき、自分だけの空間。」</b>を掲載中（2026-08-07改訂）。
+  当初は「本物の味を、習慣にする。」を採用していたが、「本物」が根拠のない主観表現で景品表示法リスクがあるため差し替えた。
+  対抗馬は B案「一日の終わりに、素直な自分へ帰る。／焙煎したその日に届く、小さな焙煎所の一杯」（情緒軸）、
+  C案「焙煎した、その日に出荷。／作り置きをしない小さな焙煎所が、あなたのポストへ届けます」（USP直球軸・事実ベース）。
+</div>
+
+<!-- ============ 2. 呼びかけ／導入 ============ -->
+<section>
+  <div class="inner">
+    <span class="sec-label">呼びかけ</span>
+    <h2 class="sec">自分を整える、至福のメンテナンス。<br>そんな一杯に、出会えていますか？</h2>
+    <div class="ph tall">［画像：日本人男性が片手でコーヒーカップを持ち、静かに飲んでいる。<br>表情はしんみりと、視線は下方向］</div>
+    <p>こんなふうに思ったことはありませんか。</p>
+    <ul class="check">
+      <li>毎日飲むものだからこそ、妥協したくない</li>
+      <li>「本物」を知る大人として、趣味を深めたい</li>
+      <li>どこで買っても、結局は同じ味に感じる</li>
+      <li>家族に誇れるこだわりを、ひとつ持っておきたい</li>
+    </ul>
+    <p><strong>いつまでも若くはない。</strong></p>
+    <p>かつて誰かの背中を追っていたあなたは、いま誰かにとっての「向かう先」になっている。</p>
+    <p>どうせなら、その後ろ姿にふさわしい自分でいたい。<br>
+    コーヒータイムとは、自分を見つめ直すための、ほんの少しの旅の時間なのかもしれません。</p>
+    <p>「趣味は珈琲」——そう言えるものがひとつあれば、同年代との違いにもなるはずです。</p>
+    <p><strong>それなのに。</strong></p>
+    <p>理想の一杯に出会えないまま、<span class="em">妥協のコーヒータイム</span>を過ごしていませんか。</p>
+  </div>
+</section>
+
+<!-- ============ 3. 結果 ============ -->
+<section style="background:var(--paper)">
+  <div class="inner">
+    <span class="sec-label">結果</span>
+    <h2 class="sec">安心してお任せください。<br>あなたの相棒になる珈琲が、ここにあります。</h2>
+    <p class="lead">── コーヒー界のドン・キホーテが成せる、匠の技 ──</p>
+    <p>お日様珈琲は、小さな焙煎所で手作りにこだわり続けています。だからこそ、淹れたてはもちろん、<span class="em">冷めてもおいしい</span>という驚きをお約束できます。</p>
+
+    <h3>お日様珈琲がある、3つの新しい日常</h3>
+    <div class="days">
+      <div class="day">
+        <div class="ph">［朝日が差し込むダイニング。<br>湯気の立つカップを両手で持つ男性］</div>
+        <div class="body">
+          <span class="num">DAILY 01</span>
+          <h3 style="margin:0">リビングに広がる香りから、最高の一日が始まる</h3>
+        </div>
+      </div>
+      <div class="day">
+        <div class="ph">［照明を落とした書斎。電球色の灯りの下、<br>読書をしながら珈琲を飲む男性］</div>
+        <div class="body">
+          <span class="num">DAILY 02</span>
+          <h3 style="margin:0">一日の終わりに、自分だけの聖域</h3>
+        </div>
+      </div>
+      <div class="day">
+        <div class="ph">［リビングでコーヒーを淹れる父親に<br>話しかける、年頃の娘］</div>
+        <div class="body">
+          <span class="num">DAILY 03</span>
+          <h3 style="margin:0">「パパ、いい香りだね」会話が弾む、上質な週末</h3>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top:30px">心を癒す芳醇な香り。<br>冷めても変わらない、澄んだ味わい。</p>
+    <p><strong>あなたのコーヒータイムを、素晴らしいひとときに変えてみせます。</strong></p>
+  </div>
+</section>
+
+<!-- ============ 4. 商品・サービス紹介 ============ -->
+<section>
+  <div class="inner">
+    <span class="sec-label">商品について</span>
+    <h2 class="sec">なぜ、わざわざ「小さな」焙煎所なのか</h2>
+    <p>先代である父から受け継いだお日様珈琲は、<span class="em">注文を受けてから焙煎してお届けします。</span><br>作り置きは、していません。</p>
+    <p>私どもは完全家内制手工業です。量ではなく、質を求めています。</p>
+    <p>だからこそ非効率を覚悟のうえで、この目で、この手で厳選した生豆だけを焙煎する。それを徹底しております。</p>
+    <p><strong>「どこの誰が作ったか」が分かる単一農園。</strong><br>その純粋な個性と、安心感と、透明性。これもお日様珈琲の真髄です。</p>
+
+
+
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr><th></th><th>お日様珈琲</th><th>一般的な通販</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>焙煎のタイミング</th><td class="ours">注文を受けてから</td><td>あらかじめ焙煎・在庫</td></tr>
+          <tr><th>出荷</th><td class="ours">焙煎したその日</td><td>在庫から随時</td></tr>
+          <tr><th>生豆の選別</th><td class="ours">全量ハンドピック（手作業）</td><td>機械選別が主流</td></tr>
+          <tr><th>農園</th><td class="ours">単一農園（生産者が分かる）</td><td>複数産地のブレンドが主流</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="devnote" style="margin:0 0 26px">
+      比較表は掲載継続で確定。右列「一般的な通販」は他社比較にあたるため、公開前に根拠（出典・調査方法）を用意してください。
+    </div>
+
+    <h3>コーヒーミルをお持ちでない方へ</h3>
+    <p>手作りのドリップバッグもご用意しております。これも完全家内制手工業です。</p>
+    <p>焙煎直後の珈琲を、ただちにドリップバッグへ詰めて配送いたします。賞味期限は短くなりますが、そのぶん、私たちの手作業で作り上げた鮮度をそのままお届けできます。</p>
+  </div>
+</section>
+
+<!-- ============ 5. 証拠 ============ -->
+<section style="background:var(--paper)">
+  <div class="inner">
+    <span class="sec-label">証拠</span>
+    <h2 class="sec">職人である、ということ</h2>
+
+    <h3>ハンドピック ── 一粒ずつ、手で選ぶ</h3>
+    <div class="ph">［手のひらに広げられた生豆。浅い緑色。<br>指先で欠点豆をつまみ出している］</div>
+    <p>皆さんが普段目にしている珈琲豆は、<strong>焙煎した後の姿</strong>です。本来は、浅い緑色をしています。</p>
+    <p>この生豆を熱で加工することで、あの香りと、あの姿に変わるのです。</p>
+    <p>焙煎の前に、私たちは生豆を徹底してチェックします。一つひとつ手に取り、良質な豆だけを選び抜く——<strong>ハンドピック</strong>という作業です。</p>
+    <p>生豆には、カビが入っていたり、虫に食われていたりする「欠点豆」が混じっていることがあります。この選別を怠れば、お客様が淹れる一杯の味に、そのままダメージが残ってしまう。</p>
+    <p><span class="em">ここでの妥協ひとつが、珈琲という芸術の結果を大きく左右します。</span></p>
+    <p>時間のかかるハンドピックに妥協しないからこそ、淹れて冷めた後でさえ、変わらない味を味わっていただけるのです。</p>
+    <p>さらに私どもは、生豆のままお客様へお渡しすることもしていません。</p>
+
+    <blockquote>
+      <p>「焙煎するものとして、無責任である」</p>
+      <cite>── 創業者である父の言葉</cite>
+    </blockquote>
+
+    <p>父は職人であることにこだわり、それを実践し続けました。この本質は、二代目の私も一寸の狂いなく受け継いでおります。</p>
+
+    <h3>単一農園 ── 絶対的なパートナー</h3>
+    <div class="ph">［海外の珈琲農園。作業する生産者の姿］</div>
+    <p>豆を栽培する農園もまた、効率化との戦いを抱えています。そんななかでも、妥協のない質にこだわった生産を続けてくれている農園だけを、お日様珈琲はパートナーとして選んでいます。</p>
+
+    <h3>小さな焙煎所 ── 在庫を持たないという選択</h3>
+    <p>量より質。だから当然、焙煎した豆を在庫として置くこともしません。</p>
+    <p>注文があれば焙煎し、その日のうちに配送手配をいたします。より良い状態でお客様の元へお届けしたいからです。</p>
+    <p>焙煎した珈琲豆は、<strong>およそ一週間かけて、さらに香りと風味を増していきます。</strong>効率を求めて焙煎済みの豆をストックし、注文があればそれを送る——そのやり方では、私どもの芸術をお届けすることはできません。</p>
+    <p>あなたのコーヒータイムを素敵なひとときに変えるために。「小さな焙煎所」から、自信を持ってお届けします。</p>
+  </div>
+</section>
+
+<!-- ============ 6. 共感 ============ -->
+<section>
+  <div class="inner">
+    <span class="sec-label">お客様の声</span>
+    <h2 class="sec">同じ場所から、始めた方々がいます</h2>
+
+    <div class="devnote" style="margin:0 0 24px">
+      <b>サンプル</b>：以下3件は想定で書かれたサンプルです。実案件では、実在するお客様の声のみを掲載し、掲載許諾と顔写真の可否を必ず取得してください（想定で書いた声の掲載は景品表示法違反にあたります）。
+    </div>
+
+    <div class="voice">
+      <div class="who">
+        <div class="face">［顔写真<br>掲載可否<br>要確認］</div>
+        <div><div class="name">佐々木様</div><div class="attr">49歳・製造メーカー 営業部長</div></div>
+      </div>
+      <p>50歳に差し掛かる自分の年齢に気づいて、もっと大人の領域に入りたいと思ったんです。子供も段々大きくなってきましたしね。</p>
+      <p>そこで、何となく飲んでいたコーヒーに目が向きました。ブラックなら酸味や苦味も正直あまり気にならなかったのですが、豆の産地や煎り具合で違いが出ると知って、知れば知るほど興味が湧いてきて。</p>
+      <p>ネットでお日様珈琲を知って、「自分が求めているコーヒーはここにある」と直感が働きました。今では欠かせないお供です。</p>
+      <p><strong>ブラックの味わいを分かったうえで飲む大人って、カッコよくありません？</strong></p>
+    </div>
+
+    <div class="voice">
+      <div class="who">
+        <div class="face">［顔写真<br>掲載可否<br>要確認］</div>
+        <div><div class="name">中村様</div><div class="attr">52歳・建設業 事務職</div></div>
+      </div>
+      <p>アウトドア派ではないので、何か家でできる趣味を見つけたかったんです。コーヒーは昔から好きでしたが、わざわざ喫茶店巡りをする性格でもなくて。それなら家で飲めるマイコーヒーを探そう、と。</p>
+      <p>どうせなら自分で豆を挽きたいと思って色々試しましたが、<strong>お日様珈琲の味わいは格別でした。他と違って、冷めた後でもおいしいんです。</strong></p>
+      <p>職人肌が溢れる珈琲作りのスタンスが、「私だけの珈琲」という贅沢さをくれている気がします。休日に読書をしながらゆっくり楽しむ時間を、手に入れることができました。</p>
+    </div>
+
+    <div class="voice">
+      <div class="who">
+        <div class="face">［顔写真<br>掲載可否<br>要確認］</div>
+        <div><div class="name">田中様</div><div class="attr">46歳・IT企業 管理職</div></div>
+      </div>
+      <p>昔からカプセル式のコーヒーメーカーを使っていたのですが、たまたま入った喫茶店で、カウンター越しに豆を挽いてくれる姿に目が止まって。自分もやってみたいと思ったんです。</p>
+      <p>豆から挽くと部屋に香りが広がって、中学生の娘が「お父さん、それどこの豆？」と話しかけてくれるようになりました。<strong>豆を挽く、ちょっとカッコいい父親を演じられています（笑）。</strong></p>
+      <p>お日様珈琲の味わいには、他にはない奥深さとまろやかさがあります。子供から魅力のない父親と思われるのが少し怖かったのですが、家族との会話まで生まれて、お日様珈琲に助けてもらいました。</p>
+    </div>
+
+    <!-- オファー① 軽め -->
+    <div class="offer">
+      <div class="ttl">初回お試しセット内容</div>
+      <div class="off">－40%</div>
+      <div class="item">お日様珈琲オリジナルブレンド 200g</div>
+      <div class="price"><del>2,290円</del><span class="now">1,375</span><span class="yen">円</span></div>
+      <div class="plus">＋ お好きな銘柄の豆 100g</div>
+      <div class="free">送料無料</div>
+      <div class="fine">
+        気に入っていただけたら、ぜひ定期購入をご検討ください。<br>
+        初回お試しセットから始められた方は、毎回10%引きでお買い求めいただけます。<br>
+        ※送料無料は初回お試しセットのみとなります。
+      </div>
+    </div>
+
+    <p style="text-align:center">まずは初回お試しセットで飲んでみたい方は——</p>
+    <div class="cta-wrap">
+      <a class="cta" href="#offer3">自分だけの極上のコーヒータイムを手に入れる</a>
+      <div class="cta-note">CTA② — 感情が最も動いた直後／体験を言葉にする</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. 信頼 ============ -->
+<section style="background:var(--paper)">
+  <div class="inner">
+    <span class="sec-label">信頼</span>
+    <h2 class="sec">お日様珈琲は、数々のメディアで<br>ご紹介いただいております</h2>
+
+    <div class="devnote" style="margin:0 0 24px">
+      <b>サンプル</b>：以下の受賞歴・メディア掲載はすべて架空のサンプルです。実案件では掲載号・受賞年・一次情報URLの裏取りを行い、確認できないものは掲載しないでください。
+    </div>
+
+    <div class="ph">［掲載雑誌の表紙・メディアロゴを横並びで羅列］</div>
+
+    <ul class="media">
+      <li>2025年5月「ジャパン・フード・セレクション」<b>グランプリ受賞</b></li>
+      <li>YANASE会員誌「YANASE LIFE」特集『取り寄せたいコーヒー』にて<b>「ブラジル ダテーラ農園」</b>を紹介</li>
+      <li>「Japan Brand Collection 2024」<b>日本の贈答品100選</b>に掲載</li>
+      <li>「料理王国100選」において<b>14年連続</b>選出</li>
+      <li>レクサス会雑誌「moment」『上質なモノ語り』コーナーに掲載</li>
+    </ul>
+
+    <div class="ph">［掲載サイトのスクリーンショット］</div>
+    <p>数々のレビューサイトでもご紹介いただいています。</p>
+    <div class="sites">
+      山口的おいしいコーヒーーブログ ／ アフロ焙煎長のブログ ／ プロの逸品 ／ ひつじの珈琲タイム ／ 珈琲ナビ ／ コーヒー豆研究所 ／ ボイスノートマガジン ／ every coffee うれしいコーヒーに出会う旅 ／ サーフィンのある暮らし（敬称略）
+    </div>
+
+    <div class="cta-wrap">
+      <a class="cta" href="#offer3">お日様珈琲を体験してみる</a>
+      <div class="cta-note">CTA③ — 納得したが財布は閉じている／購入でなく「試用」に言い換える</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. ストーリー ============ -->
+<section class="story">
+  <div class="inner">
+    <span class="sec-label">ストーリー</span>
+    <h2 class="sec">二代目として</h2>
+    <p>こんにちは。日向陽介と申します。</p>
+    <p>父である創業者の理念を受け継ぎ、日々珈琲づくりに情熱を燃やしております。</p>
+    <p>私たちお日様珈琲は「小さな焙煎所」として、あなたにかけがえのないひとときをお届けする<strong>ドン・キホーテ</strong>であると自負しております。</p>
+    <p>効率を選べば、より広く流通させることも可能でしょう。<br><span class="em">私たちは、あえてその選択肢を外しています。</span></p>
+    <p>創業者である父は、こう言いました。</p>
+
+    <blockquote>
+      <p>「自分自身がいいと思えるものだけをつくる」</p>
+    </blockquote>
+
+    <p>これをモットーに、父はお日様珈琲を立ち上げました。</p>
+    <p><strong>いいものとは、何か。</strong></p>
+    <p>唯一無二の特別感を演出し、極上の瞬間を提供すること。それが、私たちにとっての珈琲です。</p>
+    <p>こだわりの生豆から、手間暇かけて良い豆だけを選び抜くハンドピックの徹底。量をこなすのではなく、ひたすら質を求め、非効率を選び、妥協のない一品を作り上げること。</p>
+    <p>父は頑固者でした。近寄りがたい存在でした。<br>しかし<strong>その頑固さゆえのこだわりが職人魂として息づき</strong>、このお日様珈琲が生まれたのです。</p>
+    <p>私は、父の後を継ごうとは1ミリも思っていませんでした。</p>
+    <p>けれど、無意識のうちに譲り受けた職人肌が目を覚ましたのか、質より量を求める社会に馴染めなくなり——<span class="em">気づけば父の背中を追って、同じロマンを求めていました。</span></p>
+    <p>新しい時代にこの珈琲を届ける手段として、ネットを視野に入れました。でも、他人には任せたくなかった。機械的に豆を選別するのを嫌うのと同じように、自分の手でメッセージを伝えたかったのです。</p>
+    <p>悪戦苦闘の日々でしたが、いまのお日様珈琲の流通スタイルを、自力で作り上げてきました。私も、父と同じ頑固者なのかもしれません。</p>
+
+    <h3>なぜ人は、珈琲を飲むのでしょうか</h3>
+    <p>ひと息入れるため。<br>自分の価値を確かめるため。<br>何かに挑もうとする心を、奮い立たせるため。</p>
+    <p>さまざまな場面で、珈琲と共に過ごされる方が多いと思います。単なる珈琲ではおさまらない、<strong>あなたの上質な人生の時間</strong>も提供させていただきたいと思っております。</p>
+    <p>珈琲って、不思議ですよね。</p>
+    <p>あの何とも言えない香りとともに、口の中でまろやかに広がるコクと苦味が、心を落ち着かせてくれる。言葉を発しなくても、自分を肯定してくれる味方であるかのように、あのひとときが極上の瞬間として包み込んでくれる。</p>
+    <p><strong>私も、珈琲が大好きです。</strong></p>
+    <p>お日様珈琲は、あなたの人生を良質な空間に仕立て上げるお手伝いをいたします。ぜひ、手に取ってお召し上がりください。</p>
+    <p class="sign">お日様珈琲 二代目　日向 陽介</p>
+  </div>
+</section>
+
+<!-- ============ 9. 4ステップ① ============ -->
+<section>
+  <div class="inner">
+    <span class="sec-label">お届けまで</span>
+    <h2 class="sec">安心の4ステップ</h2>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><div><div class="t">ご注文・焙煎</div><div class="d">ご注文を受けてから、職人が焙煎いたします（焙煎済みストックはありません）</div></div></div>
+      <div class="step"><div class="n">2</div><div><div class="t">パッキング</div><div class="d">芳醇な香りを守る専用袋へ、丁寧に梱包します</div></div></div>
+      <div class="step"><div class="n">3</div><div><div class="t">焙煎当日に出荷</div><div class="d">最高の鮮度でお届けするため、焙煎したその日に配送します</div></div></div>
+      <div class="step"><div class="n">4</div><div><div class="t">ポストへお届け</div><div class="d">ポストへ投函。ご不在でも安心です</div></div></div>
+    </div>
+    <div class="devnote">
+      <b>この4ステップはFAQの後にもう一度掲載します（ラフ案どおり）。</b>1回目はストーリーで気持ちが動いた人への安心材料、2回目は購入直前の「本当に届くのか」という不安への回答。役割が違うため重複ではありません。
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10. クロージング ============ -->
+<section style="background:var(--paper)">
+  <div class="inner">
+    <span class="sec-label">クロージング</span>
+    <h2 class="sec">こんな方におすすめです</h2>
+    <ul class="check">
+      <li>家で上質な珈琲を飲みたい</li>
+      <li>自分を見つめ直す時間を、珈琲とともに過ごしたい</li>
+      <li>自分だけの一杯に出会いたい</li>
+      <li>こだわりの職人がつくる珈琲を飲みたい</li>
+      <li>本物が分かる、上質な大人でありたい</li>
+    </ul>
+    <p>ひとつでも当てはまったなら——<br><strong>ぜひ、お日様珈琲をあなたの「日常の相棒」に選んでみてください。</strong></p>
+
+    <h3>「でも、初めてだし……」</h3>
+    <p>ためらう気持ちも分かります。<br>だからこそ、こちらをご用意しました。</p>
+
+    <!-- オファー② -->
+    <div class="offer">
+      <div class="ttl">初回お試しセット</div>
+      <div class="off">－40%</div>
+      <div class="item">お日様珈琲オリジナルブレンド 200g</div>
+      <div class="price"><del>2,290円</del><span class="now">1,375</span><span class="yen">円</span></div>
+      <div class="plus">＋ お好きな銘柄の豆 100g</div>
+      <div class="free">送料無料</div>
+      <div class="bonus">
+        <b>【初回セットをご購入いただいた方限定の特別優待】</b><br>
+        初回お試しセットから始められたお客様に限り、<b>2回目以降の定期購入がずっと10%OFF</b>。<br>
+        例：オリジナルブレンド200g　2,290円 → <b>2,061円</b><br>
+        途中解約・休止はいつでも可能ですので、ご安心ください。
+      </div>
+      <div class="fine">※送料無料は初回お試しセットのみとなります。</div>
+    </div>
+
+    <p style="text-align:center"><strong>「このひととき、自分だけの空間」を、日常の習慣に。</strong><br>一度味わっていただければ、その違いは必ずお分かりいただけます。</p>
+    <div class="cta-wrap">
+      <a class="cta" href="#offer3">40%OFFでお日様珈琲を始めてみる</a>
+      <div class="cta-note">CTA④ — 買う気はあり損得を確認中／数字で背中を押す</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 11. FAQ ============ -->
+<section>
+  <div class="inner">
+    <span class="sec-label">よくあるご質問</span>
+    <h2 class="sec">お客様からいただくご質問</h2>
+
+    <details open>
+      <summary>Q1. 本当においしいのですか？</summary>
+      <div class="a">万人受けを狙うのではなく、厳選した生豆と焙煎直後の鮮度による「正しく上質な一杯」を追求してお届けしています。</div>
+    </details>
+    <details>
+      <summary>Q2. 焙煎の鮮度はどうなっていますか？</summary>
+      <div class="a">作り置きは一切しておりません。ご注文を受けてから焙煎し、その日のうちに出荷いたします。</div>
+    </details>
+    <details>
+      <summary>Q3. 焙煎とは何ですか？</summary>
+      <div class="a">生豆に熱を加え、その豆が本来持っている香りや甘みを最大限に引き出す、熟練の技法です。</div>
+    </details>
+    <details>
+      <summary>Q4. 焙煎度合いとは何ですか？</summary>
+      <div class="a">豆の個性を最も活かせる焙煎度を、ハイからイタリアンの範囲でプロが厳選しています。</div>
+    </details>
+    <details>
+      <summary>Q5. 送料は無料ですか？</summary>
+      <div class="a">初回お試しセットのみ無料とさせていただいております。通常のお買い求めでは送料が発生します。生豆のコストを下げるという選択を、取りたくないからです。</div>
+    </details>
+  </div>
+</section>
+
+<!-- ============ 12. 4ステップ②（再掲） ============ -->
+<section style="background:var(--paper)">
+  <div class="inner">
+    <span class="sec-label">お届けまで</span>
+    <h2 class="sec">安心の4ステップ</h2>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><div><div class="t">ご注文・焙煎</div><div class="d">ご注文を受けてから、職人が焙煎いたします（焙煎済みストックはありません）</div></div></div>
+      <div class="step"><div class="n">2</div><div><div class="t">パッキング</div><div class="d">芳醇な香りを守る専用袋へ、丁寧に梱包します</div></div></div>
+      <div class="step"><div class="n">3</div><div><div class="t">焙煎当日に出荷</div><div class="d">最高の鮮度でお届けするため、焙煎したその日に配送します</div></div></div>
+      <div class="step"><div class="n">4</div><div><div class="t">ポストへお届け</div><div class="d">ポストへ投函。ご不在でも安心です</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 13. 最終オファー ============ -->
+<section id="offer3">
+  <div class="inner">
+    <div class="offer">
+      <div class="ttl">初回お試しセット</div>
+      <div class="off">－40%</div>
+      <div class="item">お日様珈琲オリジナルブレンド 200g</div>
+      <div class="price"><del>2,290円</del><span class="now">1,375</span><span class="yen">円</span></div>
+      <div class="plus">＋ お好きな銘柄の豆 100g</div>
+      <div class="free">送料無料</div>
+      <div class="bonus">
+        一人でも多くの方に、焙煎直後の「本物の鮮度」を知っていただきたい。<br>
+        そのための<b>赤字覚悟の特別セット</b>です。<br><br>
+        <b>【初回セットをご購入いただいた方限定の特別優待】</b><br>
+        初回お試しセットから始められたお客様に限り、<b>2回目以降の定期購入がずっと10%OFF</b>。<br>
+        例：オリジナルブレンド200g　2,290円 → <b>2,061円</b><br>
+        途中解約・休止はいつでも可能ですので、ご安心ください。
+      </div>
+      <div class="fine">※送料無料は初回お試しセットのみとなります。</div>
+    </div>
+
+    <p style="text-align:center">まずは初回お試しセットで飲んでみたい方は——</p>
+    <div class="cta-wrap">
+      <a class="cta" href="#offer3">初回限定セットで、至福のひとときを始める</a>
+      <div class="cta-note">CTA⑤ — 読了済み・理屈は足りている／情景で締める</div>
+    </div>
+
+    <div class="devnote" style="margin-top:34px">
+      <b>サンプル</b>：価格・割引率は想定値です。実案件では「赤字覚悟」「40%OFF」が実際の原価・通常販売価格に基づく表示か、<b>二重価格表示の規制</b>に触れないかを必ず確認してください。
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="co">お日様珈琲</div>
+  <div>
+    <a href="#">会社概要</a>／
+    <a href="#">特定商取引法に基づく表記</a>／
+    <a href="#">プライバシーポリシー</a>
+  </div>
+  <div style="margin-top:20px;font-size:11px;opacity:.55;line-height:1.9">
+    「お日様珈琲」は架空のブランドで、実在の企業・商品ではありません。<br>
+    受賞歴・メディア掲載・お客様の声・価格はすべてサンプルです。
+  </div>
+</footer>
+
+<div class="sticky">
+  <a href="#offer3">初回お試しセットを見る<span class="sub">40%OFF・送料無料</span></a>
+</div>
+
+</body>
+</html>
