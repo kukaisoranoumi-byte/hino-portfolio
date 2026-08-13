@@ -446,6 +446,10 @@ img { max-width: 100%; height: auto; display: block; }
   margin: 1rem 0;
 }
 .quote-highlight strong { color: var(--primary); }
+
+/* 赤の強調（要点を1か所だけ立てる用。多用しない） */
+.em-red { color: #d92d20; font-weight: 800; }
+.quote-highlight strong.em-red { color: #d92d20; }
 .quote-box cite {
   display: block; font-size: .83rem; color: var(--muted);
   font-style: normal; font-weight: 700; margin-top: 1.2rem;
