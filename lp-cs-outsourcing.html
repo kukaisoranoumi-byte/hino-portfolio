@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>サポートブリッジ｜ナレッジが御社に残るカスタマーサポート代行（LPサンプル）</title>
+<style>
+:root{
+  --ink:#16202B; --sub:#5A6675; --line:#DCE3EB; --bg:#FFFFFF; --soft:#F5F8FB;
+  --navy:#123A6B; --navy2:#0D2C53; --acc:#1B7FD4; --acc2:#1568B0;
+  --warn:#B23B3B; --ok:#1C7A56;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",system-ui,sans-serif;
+  line-height:1.72;font-size:15px;-webkit-text-size-adjust:100%}
+.wrap{max-width:940px;margin:0 auto;padding:0 20px}
+section{padding:42px 0}
+h2{font-size:23px;line-height:1.42;margin:0 0 6px;letter-spacing:-.02em;font-weight:900;
+   border-left:6px solid var(--navy);padding-left:13px}
+h3{font-size:16.5px;margin:22px 0 6px;font-weight:800}
+p{margin:0 0 12px}
+.lead{color:var(--sub);font-size:14px;margin-bottom:20px}
+.tiny{font-size:12.5px;color:var(--sub)}
+strong{font-weight:800}
+
+.sample-bar{background:var(--warn);color:#fff;font-size:13px;padding:9px 20px;text-align:center;font-weight:700;line-height:1.6}
+
+/* ヘッダー */
+.gnav{border-bottom:1px solid var(--line);background:#fff;position:sticky;top:0;z-index:40}
+.gnav .in{max-width:940px;margin:0 auto;padding:11px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.gnav .lg{font-weight:900;font-size:17px;color:var(--navy);letter-spacing:-.02em}
+.gnav .lg span{display:block;font-size:10.5px;color:var(--sub);font-weight:700;letter-spacing:.02em}
+.gnav a.btn{background:var(--acc);color:#fff;text-decoration:none;font-weight:800;font-size:13.5px;
+  padding:9px 15px;border-radius:6px;white-space:nowrap}
+
+/* FV */
+.fv{background:linear-gradient(180deg,#fff 0%,var(--soft) 100%);padding:40px 0 42px;border-bottom:1px solid var(--line)}
+.fv .kicker{display:inline-block;background:var(--navy);color:#fff;font-size:11.5px;font-weight:800;
+  padding:5px 11px;border-radius:4px;margin-bottom:15px;letter-spacing:.04em}
+.fv h1{font-size:31px;line-height:1.38;margin:0 0 12px;letter-spacing:-.03em;font-weight:900}
+.fv h1 u{text-decoration:none;background:linear-gradient(transparent 62%,#BFE0FA 62%)}
+.fv .sub{font-size:16px;color:var(--sub);font-weight:700;margin-bottom:18px}
+.fvgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+.fvgrid div{background:#fff;border:1px solid var(--line);border-radius:8px;padding:13px 15px}
+.fvgrid b{display:block;font-size:12px;color:var(--acc);font-weight:900;letter-spacing:.05em;margin-bottom:2px}
+.fvgrid span{font-size:15px;font-weight:800;line-height:1.5}
+.ctarow{display:grid;grid-template-columns:1fr;gap:10px}
+
+.cta{display:block;text-align:center;background:var(--acc);color:#fff;font-weight:900;font-size:17px;
+  text-decoration:none;padding:16px 18px;border-radius:7px;box-shadow:0 4px 13px rgba(21,104,176,.26)}
+.cta:hover{background:var(--acc2)}
+.cta .s{display:block;font-size:12px;font-weight:700;opacity:.9;margin-top:2px}
+.cta.ghost{background:#fff;color:var(--navy);border:2px solid var(--navy);box-shadow:none}
+.cta.ghost:hover{background:var(--soft)}
+
+/* 課題 */
+.issue{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.issue div{background:#fff;border:1px solid var(--line);border-left:4px solid var(--navy);border-radius:7px;padding:14px 15px}
+.issue b{display:block;font-size:15px;margin-bottom:3px}
+.issue small{color:var(--sub);font-size:13.5px;line-height:1.65;display:block}
+
+/* 失敗要因 */
+.fail{background:var(--soft)}
+.failbox{background:#fff;border:1px solid var(--line);border-radius:9px;overflow:hidden;margin-bottom:12px}
+.failbox .h{background:#FBEDEC;border-bottom:1px solid #F0D3D1;padding:12px 16px;font-weight:900;font-size:16px;color:#9E3833}
+.failbox .b{padding:14px 16px}
+.failbox .b p{margin:0 0 9px}
+.failbox .b p:last-child{margin:0}
+.failbox .quote{border-left:3px solid var(--line);padding-left:12px;color:var(--sub);font-size:13.5px}
+.failbox .ans{background:#EDF6EF;border:1px solid #C3E2CD;border-radius:6px;padding:11px 13px;font-size:14px;font-weight:700;color:var(--ok)}
+
+/* 解決 */
+.solve{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.solve div{background:#fff;border:2px solid var(--navy);border-radius:9px;padding:16px}
+.solve b{display:block;font-size:11.5px;color:var(--acc);letter-spacing:.06em;font-weight:900;margin-bottom:5px}
+.solve .t{font-size:16px;font-weight:900;margin-bottom:5px;line-height:1.45}
+.solve small{color:var(--sub);font-size:13.5px;line-height:1.65;display:block}
+
+/* 表 */
+.tbl{width:100%;border-collapse:collapse;font-size:14px;margin:12px 0 6px;background:#fff}
+.tbl th,.tbl td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top;color:var(--ink)}
+.tbl th{background:var(--soft);width:32%;font-weight:800}
+.scroll{overflow-x:auto}
+
+/* 料金表 */
+.price{width:100%;border-collapse:collapse;font-size:14px;background:#fff;min-width:560px}
+.price th,.price td{border:1px solid var(--line);padding:12px 13px;text-align:center;color:var(--ink)}
+.price thead th{background:var(--navy);color:#fff;font-weight:900;font-size:15px}
+.price thead th.mid{background:var(--acc)}
+.price tbody th{background:var(--soft);text-align:left;font-weight:800;width:26%}
+.price .amt{font-size:21px;font-weight:900;color:var(--navy);letter-spacing:-.02em;display:block}
+.price .amt small{font-size:12px;color:var(--sub);font-weight:700}
+.price td.mid{background:#F0F8FE}
+
+/* 数字 */
+.nums{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.nums div{border:1px solid var(--line);border-radius:8px;padding:14px;text-align:center;background:#fff}
+.nums b{display:block;font-size:26px;color:var(--navy);line-height:1.2;font-weight:900;letter-spacing:-.03em}
+.nums small{color:var(--sub);font-size:12.5px}
+
+/* スケジュール */
+.sch{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+.sch div{background:#fff;border:1px solid var(--line);border-top:3px solid var(--acc);border-radius:7px;padding:13px}
+.sch b{display:block;font-size:11.5px;color:var(--acc);font-weight:900;letter-spacing:.06em}
+.sch .t{font-size:15px;font-weight:900;margin:3px 0 4px}
+.sch small{color:var(--sub);font-size:13px;line-height:1.6;display:block}
+
+/* 開示 */
+.honest{background:#FFFAF0;border:1px solid #E8C572;border-left:5px solid #E8C572;border-radius:8px;padding:18px 20px}
+.honest h3{margin-top:0}
+.honest ul{padding-left:18px;margin:0}
+.honest li{margin-bottom:7px}
+
+.q{border-left:3px solid var(--navy);padding:2px 0 2px 17px;margin-bottom:17px}
+.q .txt{font-size:15.5px;line-height:1.8}
+.q .who{color:var(--sub);font-size:13px;margin-top:6px}
+
+.tl{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.tl div{background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px}
+.tl b{display:block;font-size:11.5px;color:var(--acc);letter-spacing:.09em;margin-bottom:5px;font-weight:900}
+.tl small{font-size:13.5px;color:var(--ink);line-height:1.65;display:block}
+
+details{border:1px solid var(--line);border-radius:7px;padding:12px 15px;margin-bottom:8px;background:#fff}
+summary{font-weight:800;cursor:pointer;font-size:15px}
+details p{margin:9px 0 0;color:var(--sub);font-size:14px}
+
+.closing{background:var(--soft)}
+.panel{background:#fff;border:2px solid var(--navy);border-radius:11px;padding:26px}
+
+.formnote{background:#FFF1F1;border:1px solid #E7B9B9;color:var(--warn);border-radius:8px;
+  padding:11px 13px;font-size:13px;font-weight:700;margin-bottom:18px;line-height:1.6}
+.apply label{display:block;font-weight:800;font-size:13.5px;margin-bottom:13px}
+.apply .req{background:var(--warn);color:#fff;font-size:10.5px;border-radius:3px;padding:2px 6px;margin-left:7px;vertical-align:2px}
+.apply .opt{background:#8A93A3;color:#fff;font-size:10.5px;border-radius:3px;padding:2px 6px;margin-left:7px;vertical-align:2px}
+.apply input,.apply select{display:block;width:100%;margin-top:6px;border:1px solid #C4CFDA;border-radius:6px;
+  padding:12px;font-size:16px;font-family:inherit;background:#fff;color:var(--ink)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+footer{background:#0D2C53;color:#9DB3CC;font-size:12.5px;padding:26px 0 92px}
+
+.sticky{position:fixed;left:0;right:0;bottom:0;background:rgba(255,255,255,.97);border-top:1px solid var(--line);padding:9px 16px;z-index:50}
+.sticky a{display:block;max-width:520px;margin:0 auto;text-align:center;background:var(--acc);color:#fff;
+  font-weight:900;text-decoration:none;padding:13px;border-radius:7px;font-size:16px}
+
+@media(max-width:780px){
+  .solve{grid-template-columns:1fr}
+  .sch{grid-template-columns:1fr 1fr}
+  .tl{grid-template-columns:1fr}
+}
+@media(max-width:520px){
+  .fv h1{font-size:25px}
+  .fvgrid,.issue{grid-template-columns:1fr}
+  .two{grid-template-columns:1fr}
+  .sch{grid-template-columns:1fr}
+  .gnav a.btn{display:none}
+}
+@media(min-width:781px){
+  .nums{grid-template-columns:repeat(4,1fr)}
+  .ctarow{grid-template-columns:1fr 1fr}
+  .sticky{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="sample-bar">
+  【ポートフォリオ用サンプル】架空サービス「サポートブリッジ」の想定で制作。実在の企業・サービスとは関係ありません。記載の数値はすべてサンプル用の仮値です。
+</div>
+
+<nav class="gnav">
+  <div class="in">
+    <div class="lg">サポートブリッジ<span>カスタマーサポート代行</span></div>
+    <a class="btn" href="#doc">資料請求（無料）</a>
+  </div>
+</nav>
+
+<!-- FV -->
+<header class="fv">
+  <div class="wrap">
+    <span class="kicker">問い合わせ月100〜300件の企業向け</span>
+    <h1>外注しても、<u>ナレッジは御社に残します。</u></h1>
+    <p class="sub">いつでも内製に戻せるカスタマーサポート代行です。</p>
+
+    <div class="fvgrid">
+      <div><b>MONTHLY</b><span>FAQ・対応マニュアル・問い合わせ分析を<br>毎月納品します</span></div>
+      <div><b>PRICE</b><span>月額 30,000円〜。<br>料金表をこのページに掲載しています</span></div>
+    </div>
+
+    <div class="ctarow">
+      <a class="cta" href="#price">料金表を見る<span class="s">3プランを金額で掲載しています</span></a>
+      <a class="cta ghost" href="#doc">稟議用の資料をもらう<span class="s">無料・1分で申し込めます</span></a>
+    </div>
+  </div>
+</header>
+
+<!-- 課題 -->
+<section>
+  <div class="wrap">
+    <h2>こういう状態になっていませんか</h2>
+    <p class="lead">問い合わせが増えたが、1名を採用するほどの量ではない——この規模が、いちばん動きにくい段階です。</p>
+    <div class="issue">
+      <div><b>本来の業務が進まない</b><small>商品企画や販促に使うはずの時間が、問い合わせ対応で消えていく。</small></div>
+      <div><b>採用するには量が中途半端</b><small>月200件では専任1名の仕事にならない。かといって片手間では回らない。</small></div>
+      <div><b>対応品質が人によって違う</b><small>手が空いた人が対応するため、返答の内容も速さも揃わない。</small></div>
+      <div><b>同じ質問に何度も答えている</b><small>FAQを作る時間がないので、毎回ゼロから書いている。</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- 失敗要因 -->
+<section class="fail">
+  <div class="wrap">
+    <h2>ただし、外注して失敗する会社があります</h2>
+    <p class="lead">「対応を外に出す」だけの契約にすると、次の3つが起きます。<strong>先に書いておきます。</strong></p>
+
+    <div class="failbox">
+      <div class="h">失敗1：自社にナレッジが残らなくなる</div>
+      <div class="b">
+        <p class="quote">「業務に携わる機会が少なくなるため、自社にナレッジが蓄積されない。日々の対応で得られる知識や情報が得られず、自社の問題解決能力が低下するリスクがある」——一般に指摘されている論点です。</p>
+        <p><strong>問い合わせは、商品の欠陥・説明の分かりにくさ・サイトの不備が最初に現れる場所です。</strong>そこを丸ごと外に出すと、改善の種が見えなくなります。</p>
+        <p class="ans">→ 当社は、対応内容を要約した<strong>問い合わせ分析レポートを毎月お渡しします。</strong>何が多いか、どこで詰まっているかが数字で残ります。</p>
+      </div>
+    </div>
+
+    <div class="failbox">
+      <div class="h">失敗2：自社対応に戻すときに二度手間になる</div>
+      <div class="b">
+        <p>数年後に内製へ戻そうとしたとき、対応の基準もマニュアルも外注先の中にしかない——という状態です。結果、戻すコストが高くつき、契約を続けるしかなくなります。</p>
+        <p class="ans">→ <strong>対応マニュアルとFAQは御社の所有物として毎月更新してお渡しします。</strong>解約時の引き渡し手順も契約書に明記しています。</p>
+      </div>
+    </div>
+
+    <div class="failbox">
+      <div class="h">失敗3：安さで選ぶと、オプションで元に戻る</div>
+      <div class="b">
+        <p class="quote">「料金の低さを売りにしている業者は、追加料金が発生するオプションを設定しなければいけないことが一般的」「料金体系が細かくなりすぎていて分かりづらい」——これも一般に指摘されている論点です。</p>
+        <p class="ans">→ <strong>料金表をこのページに掲載しています。</strong>超過分の単価も明記しました。問い合わせないと金額が分からない状態にはしていません。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 解決 -->
+<section>
+  <div class="wrap">
+    <h2>毎月、御社にお渡しするもの</h2>
+    <p class="lead">対応を代行するだけでなく、<strong>対応から生まれた情報を御社の資産として返します。</strong>これが他社との違いです。</p>
+    <div class="solve">
+      <div><b>DELIVERABLE 01</b><div class="t">FAQ（更新版）</div><small>実際に来た質問をもとに追記・修正したものを毎月お渡しします。そのまま自社サイトに掲載できる形式です。</small></div>
+      <div><b>DELIVERABLE 02</b><div class="t">対応マニュアル</div><small>回答の基準・言い回し・エスカレーション条件をまとめたもの。<strong>御社の所有物です。</strong></small></div>
+      <div><b>DELIVERABLE 03</b><div class="t">問い合わせ分析レポート</div><small>件数・種類の内訳・増減の理由。<strong>「どこを直せば問い合わせが減るか」まで書きます。</strong></small></div>
+    </div>
+    <p class="tiny" style="margin-top:14px">※3点とも、解約後もそのままお使いいただけます。返却・削除の義務はありません。</p>
+    <a class="cta ghost" href="#doc" style="margin-top:16px">納品物のサンプルを見る<span class="s">資料に3点の実物サンプルを同梱しています</span></a>
+  </div>
+</section>
+
+<!-- 料金 -->
+<section id="price" class="fail">
+  <div class="wrap">
+    <h2>料金表</h2>
+    <p class="lead">※すべてサンプル用の仮の金額です（ポートフォリオ用のため）。</p>
+    <div class="scroll">
+      <table class="price">
+        <thead>
+          <tr><th style="background:var(--soft);color:var(--ink)"></th><th>ライト</th><th class="mid">スタンダード</th><th>フル</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>月額（税別）</th>
+            <td><span class="amt">30,000<small>円</small></span></td>
+            <td class="mid"><span class="amt">80,000<small>円</small></span></td>
+            <td><span class="amt">150,000<small>円</small></span></td></tr>
+          <tr><th>対応件数／月</th><td>100件まで</td><td class="mid">300件まで</td><td>600件まで</td></tr>
+          <tr><th>超過分の単価</th><td>200円／件</td><td class="mid">180円／件</td><td>150円／件</td></tr>
+          <tr><th>対応チャネル</th><td>メール・チャット</td><td class="mid">＋電話</td><td>＋電話・SNS</td></tr>
+          <tr><th>対応時間</th><td>平日 10:00〜18:00</td><td class="mid">平日 9:00〜19:00</td><td>年中無休 9:00〜21:00</td></tr>
+          <tr><th>毎月の納品物3点</th><td>あり</td><td class="mid">あり</td><td>あり</td></tr>
+          <tr><th>初期費用（税別）</th><td colspan="3">50,000円（マニュアル初版の作成・システム連携を含む）</td></tr>
+          <tr><th>最低契約期間</th><td colspan="3">3か月。以降は1か月単位で解約できます</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tiny">上記以外の費用はかかりません。オプションによる追加課金はありません。</p>
+  </div>
+</section>
+
+<!-- 証拠 -->
+<section>
+  <div class="wrap">
+    <h2>数字で見るサポートブリッジ</h2>
+    <p class="lead">※すべてサンプル用の仮値です。</p>
+    <div class="nums">
+      <div><b>68時間</b><small>導入企業の月あたり<br>平均削減時間</small></div>
+      <div><b>1.5時間</b><small>平均の初回応答時間<br>（営業時間内）</small></div>
+      <div><b>月42件</b><small>FAQへの<br>平均追記件数</small></div>
+      <div><b>7社</b><small>納品物をもとに<br>内製へ戻された社数</small></div>
+    </div>
+    <p class="tiny" style="margin-top:12px">最後の数字を出しているのは、<strong>内製に戻ることを想定した設計だからです。</strong>戻れない状態にして契約を続けさせる方法は取っていません。</p>
+  </div>
+</section>
+
+<!-- 導入の流れ -->
+<section class="fail">
+  <div class="wrap">
+    <h2>導入までの流れ（最短3週間）</h2>
+    <div class="sch">
+      <div><b>WEEK 0</b><div class="t">資料請求・お打ち合わせ</div><small>現在の件数・種類・体制をお伺いします。オンライン40分程度。</small></div>
+      <div><b>WEEK 1</b><div class="t">マニュアル初版の作成</div><small>過去の問い合わせ履歴を拝見し、回答基準をこちらで文書化します。</small></div>
+      <div><b>WEEK 2</b><div class="t">ご確認・修正</div><small>回答の言い回しとエスカレーション条件を御社にご確認いただきます。</small></div>
+      <div><b>WEEK 3</b><div class="t">運用開始</div><small>最初の2週間は全件を共有し、ズレがあればその都度修正します。</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- 信頼 -->
+<section>
+  <div class="wrap">
+    <h2>先にお伝えしておくこと</h2>
+
+    <div class="honest">
+      <h3>こういう企業には向きません</h3>
+      <ul>
+        <li><strong>専門的な技術サポートが中心の企業</strong>——製品固有の深い知識が必要な問い合わせは、当社では品質を担保できません。</li>
+        <li><strong>月50件以下の企業</strong>——最低プランでも割高になります。まずは自社での運用をお勧めします。</li>
+        <li><strong>とにかく費用を抑えたい企業</strong>——毎月の納品物を作る工数が含まれているため、対応のみの他社より高くなります。</li>
+        <li><strong>即日で開始したい企業</strong>——マニュアル作成に2週間いただくため、最短でも3週間かかります。</li>
+      </ul>
+    </div>
+
+    <h3>セキュリティ・契約条件</h3>
+    <div class="scroll">
+      <table class="tbl">
+        <tr><th>個人情報の取り扱い</th><td>業務目的にのみ使用します。第三者提供は行いません</td></tr>
+        <tr><th>秘密保持</th><td>契約時にNDAを締結します。担当者個別にも誓約書を取得しています</td></tr>
+        <tr><th>アクセス制限</th><td>担当者以外は御社のデータを閲覧できません。操作ログを保管しています</td></tr>
+        <tr><th>解約時のデータ</th><td>納品物3点は御社の所有物です。<strong>解約後もそのままお使いいただけます。</strong>当社側のデータは30日以内に削除します</td></tr>
+        <tr><th>最低契約期間</th><td>3か月。以降は1か月単位で解約可能（解約金なし）</td></tr>
+      </table>
+    </div>
+
+    <h3>導入企業の声</h3>
+    <div class="q">
+      <div class="txt">「外注すると社内が何も分からなくなるのが怖くて、ずっと踏み切れませんでした。毎月レポートが来るので、むしろ以前より問い合わせの中身が見えています。」</div>
+      <div class="who">EC事業／従業員25名／運営責任者 ※架空の事例です</div>
+    </div>
+    <div class="q">
+      <div class="txt">「FAQを渡してもらえるので、そのままサイトに載せました。その結果、問い合わせ自体が2割減っています。減ると当社の売上も下がるはずですが、そこを提案してくるのが意外でした。」</div>
+      <div class="who">SaaS／従業員40名／カスタマーサクセス責任者 ※架空の事例です</div>
+    </div>
+
+    <h3>会社概要</h3>
+    <div class="scroll">
+      <table class="tbl">
+        <tr><th>商号</th><td>株式会社サポートブリッジ</td></tr>
+        <tr><th>所在地</th><td>〇〇県〇〇市〇〇1-2-3</td></tr>
+        <tr><th>設立</th><td>2019年4月</td></tr>
+        <tr><th>代表者</th><td>代表取締役 〇〇 〇〇</td></tr>
+        <tr><th>資本金</th><td>1,000万円</td></tr>
+        <tr><th>事業内容</th><td>カスタマーサポート業務の受託、FAQ・マニュアル制作</td></tr>
+        <tr><th>従業員数</th><td>34名（うちサポート担当 26名）</td></tr>
+      </table>
+    </div>
+    <p class="tiny"><strong>※上記はすべて架空の設定です。</strong>実案件では、実在の登記情報が入ります。</p>
+  </div>
+</section>
+
+<!-- ストーリー -->
+<section class="fail">
+  <div class="wrap">
+    <h2>導入から1年で、一部を内製に戻した会社の話</h2>
+    <div class="tl">
+      <div><b>導入前</b><small>問い合わせ月210件。運営責任者と担当者2名が片手間で対応。返信までに平均2日かかっており、本来の販促業務が止まっていた。</small></div>
+      <div><b>3か月後</b><small>初回応答が1.5時間に短縮。渡されたFAQをサイトに掲載したところ、問い合わせ件数そのものが2割減った。</small></div>
+      <div><b>1年後</b><small>分析レポートで「返品条件が分かりにくい」と判明。表記を直したことでその種類の問い合わせが消え、<strong>メール対応は自社に戻した。</strong>現在は電話のみ委託。</small></div>
+    </div>
+    <p class="tiny" style="margin-top:12px">※サンプル用の想定事例です。</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="wrap">
+    <h2>よくあるご質問</h2>
+    <details><summary>自社の商品知識がない状態で、正しく回答できますか</summary><p>マニュアル初版を作る2週間で、過去の問い合わせ履歴をもとに回答基準を文書化します。運用開始後の最初の2週間は全件を共有し、ズレがあればその都度修正します。</p></details>
+    <details><summary>判断が難しい問い合わせはどうなりますか</summary><p>エスカレーション条件を事前に決め、該当するものは回答せず御社にお渡しします。条件は運用しながら見直します。</p></details>
+    <details><summary>途中で内製に戻せますか</summary><p>戻せます。マニュアルとFAQは御社の所有物として毎月お渡ししているため、引き継ぎ資料を別途作る必要がありません。解約は1か月単位です（最低契約期間3か月経過後）。</p></details>
+    <details><summary>件数が月によって大きく変動します</summary><p>超過分は1件単位の課金です。プランの変更は月単位で可能です。</p></details>
+    <details><summary>まず相談だけでも可能ですか</summary><p>可能です。資料請求いただいた方には、現在の件数と体制をお伺いする40分程度のオンライン面談をご案内しています。ご相談のみで終了して構いません。</p></details>
+  </div>
+</section>
+
+<!-- クロージング -->
+<section class="closing">
+  <div class="wrap">
+    <div class="panel">
+      <h2>稟議に必要なものは、全部この資料に入れました</h2>
+      <p class="lead">検討は進んでも、社内で説明する材料がないと止まります。<strong>そこで止まらないように作った資料です。</strong></p>
+      <div class="scroll">
+        <table class="tbl">
+          <tr><th>同梱内容</th><td>料金表（超過単価込み）／体制図／セキュリティ体制／契約書のひな形／<strong>納品物3点の実物サンプル</strong>／導入スケジュール</td></tr>
+          <tr><th>形式・分量</th><td>PDF 14ページ。そのまま社内で回覧できる形にしています</td></tr>
+          <tr><th>費用</th><td>無料。営業のお電話は差し上げません</td></tr>
+          <tr><th>送付</th><td>ご入力のメールアドレス宛に、即時お送りします</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- フォーム -->
+<section id="doc">
+  <div class="wrap">
+    <h2>資料請求（無料）</h2>
+    <p class="lead">入力は4項目です。ご記入いただいた内容での営業電話は行いません。</p>
+
+    <div class="formnote">【サンプル】このフォームは動作しません。ポートフォリオ用の表示サンプルです。入力された内容はどこにも送信・保存されません。</div>
+
+    <form class="apply" onsubmit="return false;">
+      <div class="two">
+        <label>会社名<span class="req">必須</span>
+          <input type="text" placeholder="株式会社〇〇" autocomplete="off"></label>
+        <label>お名前<span class="req">必須</span>
+          <input type="text" placeholder="山田 太郎" autocomplete="off"></label>
+      </div>
+      <div class="two">
+        <label>メールアドレス<span class="req">必須</span>
+          <input type="text" placeholder="example@example.co.jp" autocomplete="off"></label>
+        <label>現在の問い合わせ件数（月）<span class="req">必須</span>
+          <select>
+            <option>50件未満</option>
+            <option>50〜100件</option>
+            <option>100〜300件</option>
+            <option>300〜600件</option>
+            <option>600件以上</option>
+            <option>把握していない</option>
+          </select></label>
+      </div>
+      <label>ご検討の段階<span class="opt">任意</span>
+        <select>
+          <option>情報収集の段階</option>
+          <option>他社と比較検討中</option>
+          <option>社内で提案する予定</option>
+          <option>導入時期が決まっている</option>
+        </select></label>
+      <button type="button" class="cta" style="width:100%;border:0;cursor:not-allowed;opacity:.6">
+        稟議用の資料をダウンロード（無料）<span class="s">サンプルのため送信されません</span>
+      </button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><strong>【ポートフォリオ用サンプル】</strong><br>
+      架空サービス「サポートブリッジ」を想定して制作したLPサンプルです。実在の企業・サービス・人物とは一切関係ありません。<br>
+      料金・削減時間・件数などの数値はすべてサンプル用の仮値であり、実データではありません。<br>
+      実案件では、この位置に出典を明示した実数が入ります。</p>
+    <p>制作: 日野高志 ／ 2026年8月</p>
+  </div>
+</footer>
+
+<div class="sticky"><a href="#price">料金と体制を確認する</a></div>
+
+</body>
+</html>
