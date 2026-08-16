@@ -25,6 +25,10 @@ blockquote{margin:14px 0;padding:12px 15px;background:var(--noteBg);
 blockquote p:last-child{margin-bottom:0}
 code{background:var(--soft);padding:1px 5px;border-radius:3px;font-size:.92em}
 strong{font-weight:700}
+.toc{margin:18px 0 6px;padding:12px 15px;background:var(--soft);
+ border:1px solid var(--line);border-radius:4px;font-size:14.5px}
+.toc strong{display:block;margin-bottom:4px;color:var(--sub);font-size:13px}
+.toc a{margin-right:2px}
 @media(max-width:520px){main{padding:24px 16px 80px}h1{font-size:22px}h2{font-size:19px}}
 </style></head>
 <body><main>
@@ -36,71 +40,12 @@ strong{font-weight:700}
 <strong>「なぜ横並びになるか」は筆者の推測</strong>であり、本文でも推測と明記しています。
 <strong>2026年時点の他社サービスの仕組み</strong>（上位3社のみ連絡）は、競合調査で確認した事実です。</p>
 </blockquote>
+<nav class="toc">
+<strong>この記事の構成</strong>
+<a href="#honbun">本文</a>　/　<a href="#kikaku">企画（設計の過程）</a>　/　<a href="#memo">制作メモ</a>
+</nav>
 <hr />
-<h1>【企画】この記事の設計</h1>
-<h2>STEP00　読者</h2>
-<pre><code>車を売ろうとしていて、一括査定を使うか迷っている人
-</code></pre>
-<h2>STEP01　テーマ</h2>
-<p><strong>車一括査定 おすすめ</strong>（関連: 一括査定 やめたほうがいい／一括査定 電話）</p>
-<h2>STEP02　切り口（10案 → 1つ）</h2>
-<p>採用: <strong>「一括査定をおすすめしない人間が書く、一括査定の使い方」</strong></p>
-<ul>
-<li>上位6本は全部ランキング形式で、全部が「おすすめ」で終わる。<strong>大半が送客する側の運営記事なので「面倒くさい」と書けない</strong></li>
-<li><strong>「面倒くさい」と書ける人が、この検索結果にいない。</strong> そこが空白</li>
-<li>批判で終わらず<strong>対処法を持っている</strong>ので、記事として成立する</li>
-</ul>
-<h2>STEP04　タイトル（20案 → 1つ）</h2>
-<p>採用: <strong>「一括査定の敵は、電話の数ではありませんでした」</strong>
-→ 読者に「じゃあ何が敵なのか」を持たせたまま読ませる。上位記事の共通フレーム（電話ラッシュ）を正面から否定する形。</p>
-<h2>STEP06　トーン</h2>
-<p>一人称「<strong>私</strong>」／です・ます／<strong>意見をはっきり言う</strong>（立場を宣言する記事なので濁さない）／<strong>推測は推測と明記</strong>／良かった点も1行入れて客観性を保つ</p>
-<blockquote>
-<p><strong>タクシー記事は「僕」。この記事は「私」。</strong> 題材によって語り口を変えている。</p>
-</blockquote>
-<h2>STEP07　リード文（先に執筆 → 3案を作成 → 選択）</h2>
-<p><strong>原案（他の案を見る前）:</strong></p>
-<blockquote>
-<p>ラジオのCMとかでなんか簡単に金額が提示されて簡単に車がお得に売れるみたいなニュアンスで流れていますが、とんでもなかった。（中略）どれもヨイショしてくれるし、<strong>お互いに心の裏の読み合いで、めちゃくちゃ疲れます。</strong>2度とやりたくない経験ですが、それでもうまくいった方法があるので、シェア出来たらと思います。</p>
-</blockquote>
-<p>→ 3案から<strong>②ストーリー型を採用</strong>。</p>
-<p><strong>選定理由:</strong></p>
-<blockquote>
-<p><strong>査定申込みする時の生活環境がイメージしやすかったからです。共感を得れるかな？と思いました。</strong></p>
-</blockquote>
-<h2>事実の扱い（書かなかったもの・断定しなかったもの）</h2>
-<table>
-<thead>
-<tr>
-<th>項目</th>
-<th>判断</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>体験の時期</td>
-<td><strong>2018年と明記する。</strong>8年前の体験を現在形で書くと、古い情報を今のこととして書くことになる</td>
-</tr>
-<tr>
-<td>現在のサービスの仕組み</td>
-<td><strong>上位3社のみ連絡する形があることを、自分から書く。</strong> タイトル（敵は電話の数ではない）が論理的に立つ</td>
-</tr>
-<tr>
-<td>社数が減っても構造は残るか</td>
-<td><strong>断定しない。</strong>「体験していないので書けません」と本文に明記</td>
-</tr>
-<tr>
-<td>なぜ横並びになるか</td>
-<td><strong>推測と明記。</strong> 営業から説明を受けたわけではない</td>
-</tr>
-<tr>
-<td>ディーラー見積書の話</td>
-<td><strong>別の車のときの話と明記して</strong>入れる</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h1>【本文】</h1>
+<h1 id="honbun">【本文】</h1>
 <h1>一括査定の敵は、電話の数ではありませんでした</h1>
 <p><strong>2026年8月14日更新</strong> ／ 一括査定でミニバンを売却（2018年）</p>
 <blockquote>
@@ -214,7 +159,70 @@ strong{font-weight:700}
 <p><strong>「大体これくらい」で話が始まる前に、こちらから条件を出す。</strong> これだけで、私が数日かけた駆け引きは、たぶん短くなります。</p>
 <p>うまくいかなかったら、それはそれで結構です。<strong>次の会社にも同じことを言えばいいだけなので。</strong></p>
 <hr />
-<h1>【制作メモ】</h1>
+<h1 id="kikaku">【企画】この記事の設計</h1>
+<h2>STEP00　読者</h2>
+<pre><code>車を売ろうとしていて、一括査定を使うか迷っている人
+</code></pre>
+<h2>STEP01　テーマ</h2>
+<p><strong>車一括査定 おすすめ</strong>（関連: 一括査定 やめたほうがいい／一括査定 電話）</p>
+<h2>STEP02　切り口（10案 → 1つ）</h2>
+<p>採用: <strong>「一括査定をおすすめしない人間が書く、一括査定の使い方」</strong></p>
+<ul>
+<li>上位6本は全部ランキング形式で、全部が「おすすめ」で終わる。<strong>大半が送客する側の運営記事なので「面倒くさい」と書けない</strong></li>
+<li><strong>「面倒くさい」と書ける人が、この検索結果にいない。</strong> そこが空白</li>
+<li>批判で終わらず<strong>対処法を持っている</strong>ので、記事として成立する</li>
+</ul>
+<h2>STEP04　タイトル（20案 → 1つ）</h2>
+<p>採用: <strong>「一括査定の敵は、電話の数ではありませんでした」</strong>
+→ 読者に「じゃあ何が敵なのか」を持たせたまま読ませる。上位記事の共通フレーム（電話ラッシュ）を正面から否定する形。</p>
+<h2>STEP06　トーン</h2>
+<p>一人称「<strong>私</strong>」／です・ます／<strong>意見をはっきり言う</strong>（立場を宣言する記事なので濁さない）／<strong>推測は推測と明記</strong>／良かった点も1行入れて客観性を保つ</p>
+<blockquote>
+<p><strong>タクシー記事は「僕」。この記事は「私」。</strong> 題材によって語り口を変えている。</p>
+</blockquote>
+<h2>STEP07　リード文（先に執筆 → 3案を作成 → 選択）</h2>
+<p><strong>原案（他の案を見る前）:</strong></p>
+<blockquote>
+<p>ラジオのCMとかでなんか簡単に金額が提示されて簡単に車がお得に売れるみたいなニュアンスで流れていますが、とんでもなかった。（中略）どれもヨイショしてくれるし、<strong>お互いに心の裏の読み合いで、めちゃくちゃ疲れます。</strong>2度とやりたくない経験ですが、それでもうまくいった方法があるので、シェア出来たらと思います。</p>
+</blockquote>
+<p>→ 3案から<strong>②ストーリー型を採用</strong>。</p>
+<p><strong>選定理由:</strong></p>
+<blockquote>
+<p><strong>査定申込みする時の生活環境がイメージしやすかったからです。共感を得れるかな？と思いました。</strong></p>
+</blockquote>
+<h2>事実の扱い（書かなかったもの・断定しなかったもの）</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>体験の時期</td>
+<td><strong>2018年と明記する。</strong>8年前の体験を現在形で書くと、古い情報を今のこととして書くことになる</td>
+</tr>
+<tr>
+<td>現在のサービスの仕組み</td>
+<td><strong>上位3社のみ連絡する形があることを、自分から書く。</strong> タイトル（敵は電話の数ではない）が論理的に立つ</td>
+</tr>
+<tr>
+<td>社数が減っても構造は残るか</td>
+<td><strong>断定しない。</strong>「体験していないので書けません」と本文に明記</td>
+</tr>
+<tr>
+<td>なぜ横並びになるか</td>
+<td><strong>推測と明記。</strong> 営業から説明を受けたわけではない</td>
+</tr>
+<tr>
+<td>ディーラー見積書の話</td>
+<td><strong>別の車のときの話と明記して</strong>入れる</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="memo">【制作メモ】</h1>
 <h2>タクシー記事との違い（意図的に変えた点）</h2>
 <p><strong>同じ人が書いた2本が同じ型に見えないよう、構造を変えている。</strong></p>
 <table>
