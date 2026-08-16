@@ -346,6 +346,13 @@ img { max-width: 100%; height: auto; display: block; }
   font-weight: 600;
 }
 
+/* 成果物カードの箇条書き内リンク（全体の a はリンク色を持たないため、ここだけ明示する） */
+.work-body .list a {
+  color: var(--secondary); text-decoration: underline;
+  text-underline-offset: 2px; font-weight: 700;
+}
+.work-body .list a:hover { color: #1d4ed8; }
+
 /* 作品リンク（CTAボタン風） */
 .work-link {
   display: inline-flex; align-items: center; gap: .4rem;
