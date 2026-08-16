@@ -4,6 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;800;900&family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
 <title>ひなた交通｜タクシードライバー募集（LPサンプル）</title>
 <style>
 :root{
@@ -11,135 +14,225 @@
   --ink:#1B1B1E; --sub:#5C6270; --line:#DDE2EA; --bg:#FFFFFF; --soft:#F5F7FA;
   --warn:#B23B3B;
   --max:760px;
+  /* 影は2枚重ね。接地する薄い影＋浮きを作る広い影 */
+  --sh-1:0 1px 2px rgba(18,35,63,.06), 0 2px 8px rgba(18,35,63,.05);
+  --sh-2:0 1px 3px rgba(18,35,63,.08), 0 8px 24px rgba(18,35,63,.09);
+  --sh-3:0 2px 6px rgba(18,35,63,.10), 0 18px 44px rgba(18,35,63,.14);
+  --sh-gold:0 2px 6px rgba(180,120,0,.22), 0 12px 28px rgba(180,120,0,.28);
+  --ease:cubic-bezier(.22,1,.36,1);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);
-  font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",system-ui,sans-serif;
-  line-height:1.75;font-size:16px;-webkit-text-size-adjust:100%}
+  font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",system-ui,sans-serif;
+  line-height:1.8;font-size:16px;-webkit-text-size-adjust:100%;
+  font-feature-settings:"palt";letter-spacing:.01em}
 img{max-width:100%}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
-section{padding:56px 0}
-h2{font-size:26px;line-height:1.45;margin:0 0 8px;letter-spacing:-.01em}
-h3{font-size:19px;margin:28px 0 8px}
-p{margin:0 0 14px}
-.lead{color:var(--sub);font-size:15px;margin-bottom:26px}
+section{padding:72px 0}
+/* セクションの地色を交互に切り替えて、切れ目を作る */
+section:nth-of-type(even){background:var(--soft)}
+h2{font-size:27px;line-height:1.45;margin:0 0 14px;letter-spacing:-.02em;font-weight:900;
+  position:relative;padding-bottom:14px}
+h2::after{content:"";position:absolute;left:0;bottom:0;width:52px;height:4px;
+  background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:2px}
+h3{font-size:19px;margin:32px 0 8px;font-weight:800}
+p{margin:0 0 15px}
+.lead{color:var(--sub);font-size:15px;margin-bottom:30px}
+strong{font-weight:800}
 
-/* サンプル告知 */
-.sample-bar{background:var(--warn);color:#fff;font-size:13px;padding:9px 20px;text-align:center;font-weight:700;line-height:1.6}
+/* 出現アニメーション（JSが .reveal を付けたときだけ効く） */
+.reveal{opacity:0;transform:translateY(18px)}
+.reveal.in{opacity:1;transform:none;transition:opacity .7s var(--ease),transform .7s var(--ease)}
+@media(prefers-reduced-motion:reduce){
+  .reveal,.reveal.in{opacity:1;transform:none;transition:none}
+  html{scroll-behavior:auto}
+}
+
+.sample-bar{background:var(--warn);color:#fff;font-size:13px;padding:10px 20px;text-align:center;
+  font-weight:700;line-height:1.6;letter-spacing:.01em}
 
 /* FV */
-.fv{position:relative;background:var(--navy);color:#fff;padding:52px 0 48px;overflow:hidden}
+.fv{position:relative;background:var(--navy);color:#fff;padding:76px 0 68px;overflow:hidden}
 .fv::before{content:"";position:absolute;inset:0;
-  background:url("lp-a-img/fv-night-road.jpg") center 62%/cover no-repeat}
+  background:url("lp-a-img/fv-night-road.jpg") center 62%/cover no-repeat;
+  transform:scale(1.04)}
 .fv::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(165deg,rgba(18,35,63,.93) 0%,rgba(18,35,63,.74) 52%,rgba(27,49,87,.93) 100%)}
+  background:linear-gradient(165deg,rgba(18,35,63,.94) 0%,rgba(18,35,63,.72) 50%,rgba(27,49,87,.95) 100%)}
 .fv .wrap{position:relative;z-index:2}
-.fv .tag{display:inline-block;border:1px solid rgba(255,255,255,.45);border-radius:999px;
-  font-size:12.5px;padding:5px 13px;margin-bottom:20px;letter-spacing:.02em}
-.fv h1{font-size:33px;line-height:1.42;margin:0 0 16px;letter-spacing:-.02em;font-weight:900}
-.fv h1 .mark{background:linear-gradient(transparent 62%,rgba(255,183,3,.9) 62%);padding:0 2px}
-.fv .sub{font-size:16px;color:#C9D4E4;margin-bottom:26px}
-.fv .facts{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
-.fv .facts span{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);
-  border-radius:6px;font-size:13.5px;padding:7px 12px}
+.fv .tag{display:inline-block;border:1px solid rgba(255,255,255,.42);border-radius:999px;
+  background:rgba(255,255,255,.07);backdrop-filter:blur(4px);
+  font-size:12.5px;padding:6px 14px;margin-bottom:22px;letter-spacing:.03em;font-weight:700}
+.fv h1{font-size:34px;line-height:1.4;margin:0 0 18px;letter-spacing:-.03em;font-weight:900;
+  text-shadow:0 2px 24px rgba(0,0,0,.35)}
+.fv h1 .mark{background:linear-gradient(transparent 60%,rgba(255,183,3,.92) 60%);padding:0 3px}
+.fv .sub{font-size:16px;color:#CBD6E6;margin-bottom:28px;line-height:1.85}
+.fv .facts{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px}
+.fv .facts span{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.20);
+  border-radius:8px;font-size:13.5px;padding:9px 14px;font-weight:700;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
 
 /* CTA */
-.cta{display:block;text-align:center;background:var(--gold);color:#241A00;
-  font-weight:900;font-size:19px;text-decoration:none;padding:19px 20px;border-radius:10px;
-  box-shadow:0 6px 18px rgba(0,0,0,.18);letter-spacing:-.01em}
-.cta:hover{background:var(--gold2)}
-.cta .s{display:block;font-size:12.5px;font-weight:700;opacity:.72;margin-top:3px;letter-spacing:0}
+.cta{display:block;text-align:center;
+  background:linear-gradient(180deg,#FFC533 0%,var(--gold) 46%,var(--gold2) 100%);
+  color:#241A00;font-weight:900;font-size:19px;text-decoration:none;padding:20px;
+  border-radius:12px;box-shadow:var(--sh-gold);letter-spacing:-.01em;
+  transition:transform .22s var(--ease),box-shadow .22s var(--ease),filter .22s var(--ease)}
+.cta:hover{transform:translateY(-3px);filter:saturate(1.06);
+  box-shadow:0 4px 10px rgba(180,120,0,.26),0 20px 40px rgba(180,120,0,.34)}
+.cta:active{transform:translateY(0);box-shadow:var(--sh-1)}
+.cta:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.cta .s{display:block;font-size:12.5px;font-weight:700;opacity:.76;margin-top:4px;letter-spacing:0}
 
 /* 共感 */
-.worry{background:var(--soft)}
 .worry ul{list-style:none;padding:0;margin:0}
 .worry li{background:#fff;border:1px solid var(--line);border-left:4px solid var(--navy);
-  border-radius:6px;padding:15px 17px;margin-bottom:11px;font-weight:700;font-size:16.5px}
-.worry li small{display:block;font-weight:400;color:var(--sub);font-size:14px;margin-top:5px}
+  border-radius:10px;padding:18px 20px;margin-bottom:13px;font-weight:800;font-size:16.5px;
+  box-shadow:var(--sh-1);transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.worry li:hover{transform:translateY(-2px);box-shadow:var(--sh-2)}
+.worry li small{display:block;font-weight:400;color:var(--sub);font-size:14px;margin-top:6px;line-height:1.8}
 
 /* 表 */
-.tbl{width:100%;border-collapse:collapse;font-size:15px;margin:14px 0 6px}
-.tbl th,.tbl td{border:1px solid var(--line);padding:11px 13px;text-align:left;vertical-align:top}
-.tbl th{background:var(--soft);width:38%;font-weight:700}
-.scroll{overflow-x:auto}
-/* 濃色セクション内の表は、親のcolor:#fffを継承すると白背景に白文字になって読めなくなる */
+.scroll{overflow-x:auto;border-radius:12px;box-shadow:var(--sh-1);margin:16px 0 8px}
+.tbl{width:100%;border-collapse:separate;border-spacing:0;font-size:15px;margin:16px 0 8px;
+  background:#fff;border-radius:12px;overflow:hidden;box-shadow:var(--sh-1)}
+.scroll .tbl{margin:0;box-shadow:none}
+.tbl th,.tbl td{border-bottom:1px solid var(--line);padding:13px 15px;text-align:left;vertical-align:top}
+.tbl tr:last-child th,.tbl tr:last-child td{border-bottom:none}
+.tbl th{background:linear-gradient(180deg,#F8FAFD,var(--soft));width:38%;font-weight:800}
+.tbl td{font-variant-numeric:tabular-nums}
 .closing .tbl th,.closing .tbl td{color:var(--ink)}
 
 /* 計算式 */
-.calc{background:var(--navy);color:#fff;border-radius:10px;padding:20px 22px;margin:18px 0}
-.calc .row{display:flex;justify-content:space-between;gap:14px;padding:7px 0;font-size:15px;
-  border-bottom:1px dashed rgba(255,255,255,.22)}
-.calc .row:last-child{border:none;font-weight:900;font-size:18px;padding-top:12px}
+.calc{background:linear-gradient(158deg,var(--navy) 0%,var(--navy2) 100%);color:#fff;
+  border-radius:14px;padding:24px 26px;margin:20px 0;box-shadow:var(--sh-3)}
+.calc .row{display:flex;justify-content:space-between;gap:14px;padding:9px 0;font-size:15px;
+  border-bottom:1px dashed rgba(255,255,255,.22);font-variant-numeric:tabular-nums}
+.calc .row:last-child{border:none;font-weight:900;font-size:19px;padding-top:14px;color:var(--gold)}
 .calc .row span:last-child{white-space:nowrap}
 
 /* 数字 */
-.nums{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.nums div{border:1px solid var(--line);border-radius:8px;padding:16px;text-align:center}
-.nums b{display:block;font-size:31px;color:var(--navy);line-height:1.2;font-weight:900}
-.nums small{color:var(--sub);font-size:13px}
+.nums{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.nums div{position:relative;background:#fff;border:1px solid var(--line);border-radius:12px;
+  padding:22px 16px 18px;text-align:center;box-shadow:var(--sh-1);overflow:hidden;
+  transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.nums div::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--gold),var(--gold2))}
+.nums div:hover{transform:translateY(-3px);box-shadow:var(--sh-2)}
+.nums b{display:block;font-size:38px;color:var(--navy);line-height:1.15;font-weight:900;
+  letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.nums small{color:var(--sub);font-size:13px;display:block;margin-top:4px}
 
 /* 不都合の開示 */
-.honest{background:#FFF8E8;border:2px solid var(--gold);border-radius:10px;padding:22px}
+.honest{background:linear-gradient(180deg,#FFFBF0,#FFF6E2);border:2px solid var(--gold);
+  border-radius:14px;padding:26px;box-shadow:var(--sh-2)}
 .honest h3{margin-top:0}
-.honest ul{padding-left:20px;margin:0}
-.honest li{margin-bottom:9px}
+.honest ul{padding-left:22px;margin:0}
+.honest li{margin-bottom:10px}
 
 /* 声 */
-.voice{border:1px solid var(--line);border-radius:10px;padding:26px;margin-bottom:18px;
-  display:flex;gap:26px;align-items:flex-start;background:#fff;
-  box-shadow:0 2px 10px rgba(18,35,63,.05)}
+.voice{border:1px solid var(--line);border-radius:14px;padding:28px;margin-bottom:18px;
+  display:flex;gap:28px;align-items:flex-start;background:#fff;box-shadow:var(--sh-2)}
 .voice .ph{flex:0 0 168px}
-.voice .ph img{width:168px;height:168px;border-radius:50%;object-fit:cover;display:block}
-.voice .ph small{display:block;text-align:center;font-size:11px;color:#8A93A3;margin-top:8px;line-height:1.4}
-.voice .txt{flex:1;min-width:0;font-size:17.5px;line-height:1.85}
-.voice .who{color:var(--sub);font-size:14px;margin-top:14px;line-height:1.6}
+.voice .ph img{width:168px;height:168px;border-radius:50%;object-fit:cover;display:block;
+  box-shadow:0 6px 18px rgba(18,35,63,.18)}
+.voice .ph small{display:block;text-align:center;font-size:11px;color:#8A93A3;margin-top:9px;line-height:1.5}
+.voice .txt{flex:1;min-width:0;font-size:17.5px;line-height:1.95}
+.voice .who{color:var(--sub);font-size:14px;margin-top:16px;line-height:1.6}
 @media(max-width:560px){
-  .voice{flex-direction:column;align-items:center;text-align:center;gap:18px;padding:22px}
+  .voice{flex-direction:column;align-items:center;text-align:center;gap:18px;padding:24px}
   .voice .ph{flex:none}
   .voice .txt{text-align:left;font-size:16.5px}
 }
 
 /* story */
-.story{background:var(--soft)}
-.step{border-left:3px solid var(--gold);padding:2px 0 2px 16px;margin-bottom:20px}
-.step b{display:block;font-size:13px;color:var(--gold2);letter-spacing:.06em}
+.step{position:relative;border-left:3px solid var(--gold);padding:2px 0 2px 18px;margin-bottom:24px}
+.step::before{content:"";position:absolute;left:-8px;top:6px;width:13px;height:13px;
+  border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(255,183,3,.22)}
+.step b{display:block;font-size:13px;color:var(--gold2);letter-spacing:.08em;font-weight:800}
 
 /* FAQ */
-details{border:1px solid var(--line);border-radius:8px;padding:14px 16px;margin-bottom:10px}
-summary{font-weight:700;cursor:pointer;font-size:16px}
-details p{margin:11px 0 0;color:var(--sub);font-size:15px}
+details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;
+  margin-bottom:12px;box-shadow:var(--sh-1);transition:box-shadow .25s var(--ease)}
+details:hover{box-shadow:var(--sh-2)}
+details[open]{box-shadow:var(--sh-2)}
+summary{font-weight:800;cursor:pointer;font-size:16px;list-style:none;
+  display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"";flex:0 0 10px;width:10px;height:10px;margin-top:7px;
+  border-right:2.5px solid var(--sub);border-bottom:2.5px solid var(--sub);
+  transform:rotate(45deg);transition:transform .28s var(--ease)}
+details[open] summary::after{transform:rotate(-135deg)}
+details p{margin:13px 0 0;color:var(--sub);font-size:15px}
 
 /* closing */
 .closing{background:linear-gradient(160deg,var(--navy) 0%,var(--navy2) 100%);color:#fff}
+section.closing:nth-of-type(even){background:linear-gradient(160deg,var(--navy) 0%,var(--navy2) 100%)}
 .closing h2{color:#fff}
-.closing .lead{color:#C9D4E4}
+.closing h2::after{background:linear-gradient(90deg,var(--gold),var(--gold2))}
+.closing .lead{color:#CBD6E6}
 
-footer{background:#0C1728;color:#8894A8;font-size:13px;padding:30px 0 96px}
+footer{background:#0C1728;color:#8894A8;font-size:13px;padding:36px 0 104px}
 footer a{color:#8894A8}
 
 /* フォーム */
-.formnote{background:#FFF1F1;border:1px solid #E7B9B9;color:var(--warn);border-radius:8px;
-  padding:12px 14px;font-size:13.5px;font-weight:700;margin-bottom:20px;line-height:1.6}
-.apply label{display:block;font-weight:700;font-size:15px;margin-bottom:16px}
-.apply .req{background:var(--warn);color:#fff;font-size:11px;border-radius:3px;padding:2px 6px;margin-left:8px;vertical-align:2px}
-.apply .opt{background:#8A93A3;color:#fff;font-size:11px;border-radius:3px;padding:2px 6px;margin-left:8px;vertical-align:2px}
-.apply input,.apply select,.apply textarea{display:block;width:100%;margin-top:7px;
-  border:1px solid #C3CBD8;border-radius:7px;padding:13px 12px;font-size:16px;
-  font-family:inherit;background:#fff;color:var(--ink)}
+.formnote{background:#FFF1F1;border:1px solid #E7B9B9;color:var(--warn);border-radius:10px;
+  padding:14px 16px;font-size:13.5px;font-weight:700;margin-bottom:22px;line-height:1.7;
+  box-shadow:var(--sh-1)}
+.apply label{display:block;font-weight:800;font-size:15px;margin-bottom:18px}
+.apply .req{background:var(--warn);color:#fff;font-size:11px;border-radius:4px;padding:3px 7px;margin-left:8px;vertical-align:2px}
+.apply .opt{background:#8A93A3;color:#fff;font-size:11px;border-radius:4px;padding:3px 7px;margin-left:8px;vertical-align:2px}
+.apply input,.apply select,.apply textarea{display:block;width:100%;margin-top:8px;
+  border:1px solid #C3CBD8;border-radius:9px;padding:14px 13px;font-size:16px;
+  font-family:inherit;background:#fff;color:var(--ink);
+  transition:border-color .2s,box-shadow .2s}
+.apply input:focus,.apply select:focus,.apply textarea:focus{outline:none;
+  border-color:var(--navy);box-shadow:0 0 0 3px rgba(18,35,63,.12)}
 .apply textarea{resize:vertical}
 
 /* 追従 */
-.sticky{position:fixed;left:0;right:0;bottom:0;background:rgba(18,35,63,.96);padding:10px 16px;
-  z-index:50;backdrop-filter:blur(6px)}
-.sticky a{display:block;max-width:520px;margin:0 auto;text-align:center;background:var(--gold);
-  color:#241A00;font-weight:900;text-decoration:none;padding:14px;border-radius:9px;font-size:17px}
+.sticky{position:fixed;left:0;right:0;bottom:0;background:rgba(18,35,63,.96);
+  padding:10px 16px calc(10px + env(safe-area-inset-bottom));z-index:50;
+  backdrop-filter:blur(10px);box-shadow:0 -6px 22px rgba(0,0,0,.20);
+  border-top:1px solid rgba(255,255,255,.10)}
+.sticky a{display:block;max-width:520px;margin:0 auto;text-align:center;
+  background:linear-gradient(180deg,#FFC533,var(--gold2));color:#241A00;font-weight:900;
+  text-decoration:none;padding:15px;border-radius:10px;font-size:17px;
+  box-shadow:0 3px 12px rgba(0,0,0,.28)}
 
 @media(min-width:721px){
-  .fv h1{font-size:41px}
-  h2{font-size:30px}
+  .fv{padding:104px 0 92px}
+  .fv h1{font-size:44px}
+  h2{font-size:31px}
+  section{padding:88px 0}
   .nums{grid-template-columns:repeat(4,1fr)}
   .sticky{display:none}
+}
+
+/* ===== 明朝の使い分け =====
+   見出しと語りは明朝（誠実さ・読み物感）。
+   FV・数字・ボタンはゴシックのまま（インパクトと可読性を落とさない）。 */
+:root{ --serif:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif; }
+
+h2{font-family:var(--serif);font-weight:700;letter-spacing:.01em;line-height:1.5}
+h3{font-family:var(--serif);font-weight:700;letter-spacing:.01em}
+.lead{font-family:var(--serif);font-weight:400;font-size:16px;line-height:1.95}
+
+/* 体験談は明朝。手紙のように読ませる */
+.voice .txt{font-family:var(--serif);font-weight:400;font-size:18px;line-height:2.05;letter-spacing:.02em}
+.voice .who{font-family:var(--serif)}
+
+/* 不都合の開示も明朝。重みを持たせる */
+.honest li{font-family:var(--serif);font-weight:400;line-height:1.95}
+
+/* FV見出し・数字・ボタン・表・フォームはゴシック維持 */
+.fv h1{font-family:"Noto Sans JP",sans-serif;font-weight:900}
+.nums b,.calc,.tbl,.cta,.sticky a,.apply,summary{font-family:"Noto Sans JP",sans-serif}
+.worry li{font-family:"Noto Sans JP",sans-serif}
+@media(max-width:560px){
+  /* スマホでは明朝が細く見えるので、見出しの太さを保つ */
+  h2{font-weight:700;letter-spacing:0}
+  .voice .txt{font-size:17px;line-height:2}
 }
 </style>
 </head>
@@ -424,5 +517,20 @@ footer a{color:#8894A8}
 
 <div class="sticky"><a href="#apply">話を聞いてみる</a></div>
 
+
+<script>
+/* スクロールで要素を出現させる。
+   対応していないブラウザ・動きを減らす設定では何もしない（内容は常に表示される） */
+(function(){
+  if (!('IntersectionObserver' in window)) return;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var t = document.querySelectorAll('section .wrap > *, .voice, .nums div, .worry li, details');
+  t.forEach(function(el){ el.classList.add('reveal'); });
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {rootMargin:'0px 0px -8% 0px', threshold:0.06});
+  t.forEach(function(el){ io.observe(el); });
+})();
+</script>
 </body>
 </html>
