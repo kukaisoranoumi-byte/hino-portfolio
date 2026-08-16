@@ -25,6 +25,10 @@ blockquote{margin:14px 0;padding:12px 15px;background:var(--noteBg);
 blockquote p:last-child{margin-bottom:0}
 code{background:var(--soft);padding:1px 5px;border-radius:3px;font-size:.92em}
 strong{font-weight:700}
+.toc{margin:18px 0 6px;padding:12px 15px;background:var(--soft);
+ border:1px solid var(--line);border-radius:4px;font-size:14.5px}
+.toc strong{display:block;margin-bottom:4px;color:var(--sub);font-size:13px}
+.toc a{margin-right:2px}
 @media(max-width:520px){main{padding:24px 16px 80px}h1{font-size:22px}h2{font-size:19px}}
 </style></head>
 <body><main>
@@ -35,119 +39,12 @@ strong{font-weight:700}
 体験の中身（5つの項目・1日15件・月3回・昼のほうが緊張する・データが溜まる・営収の実際）は<strong>すべて筆者の実体験です</strong>。
 ただし<strong>語り手の設定（勤続年数3年目・前職は工場勤務）は、記事として整えたものです。</strong></p>
 </blockquote>
+<nav class="toc">
+<strong>この記事の構成</strong>
+<a href="#honbun">本文</a>　/　<a href="#kikaku">企画（設計の過程）</a>　/　<a href="#memo">制作メモ</a>
+</nav>
 <hr />
-<h1>【企画】この記事の設計</h1>
-<h2>STEP00　読者</h2>
-<pre><code>タクシー業界は未経験で、転職を考えているが、
-求人票を信じきれずに踏み切れていない30〜40代の会社員・現場職の人
-</code></pre>
-<h2>STEP01　テーマ（悩み30個 → 11個 → 5クラスタ → 1つ）</h2>
-<p>読者の悩みを30個洗い出し、「<strong>自分に体験があるか</strong>」だけで○×を判定 → <strong>11個が残る</strong>。
-11個は独立した11テーマではなく<strong>5つの塊</strong>になったため、クラスタ化して1つを選択。</p>
-<table>
-<thead>
-<tr>
-<th>塊</th>
-<th>番号</th>
-<th>選択</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>A お金の実際</td>
-<td>1・2・6</td>
-<td></td>
-</tr>
-<tr>
-<td>B 夜勤と体</td>
-<td>7・8</td>
-<td></td>
-</tr>
-<tr>
-<td>C 仕事を覚えられるか</td>
-<td>14</td>
-<td></td>
-</tr>
-<tr>
-<td>D 事故とリスク</td>
-<td>15・16</td>
-<td></td>
-</tr>
-<tr>
-<td><strong>E 入社後のギャップと辞める理由</strong></td>
-<td>17・27・29</td>
-<td><strong>← 採用</strong></td>
-</tr>
-</tbody>
-</table>
-<h2>STEP02　切り口（10案 → 1つ）</h2>
-<p>採用: <strong>「入社前に信じていた5つを、3年目の自分が採点する」</strong></p>
-<ul>
-<li><strong>LPサンプルAとの立場の違いを先に固定した。</strong> LP-Aは「採用する会社側」の声、この記事は「先に入った当事者側」の声。同じ材料でも喋る主体が逆なので、重複しない</li>
-</ul>
-<h2>STEP03　リサーチ（実際に開いて確認）</h2>
-<table>
-<thead>
-<tr>
-<th>媒体</th>
-<th>立場</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>GOジョブ／ドライバーファースト／taxi-tenshoku.net</td>
-<td><strong>転職支援サービス・求人媒体の運営記事</strong></td>
-</tr>
-<tr>
-<td>note「マトンさんの営業日報」</td>
-<td>現役9年目ドライバー本人（唯一の個人当事者）</td>
-</tr>
-</tbody>
-</table>
-<p><strong>上位の大半が、最後に応募へ誘導する側</strong>。だから「後悔」も書くが深く掘らない。</p>
-<p>ドライバーファーストの「後悔したこと」3項目——<strong>仕事の内容は毎日同じことの繰り返し／出勤しないと収入が減少／自動運転技術による不安</strong>。
-<strong>→ 筆者の5項目と1つも重ならない。</strong> 媒体が想像で書く「後悔」と、実際に入る前に怖かったことがズレている。</p>
-<p><strong>空白</strong>: 上位は「後悔したこと」と「よかったこと」を並列に置く。読者は読み終えても結局どちらか分からない。<strong>採点する主体がいない。</strong></p>
-<h2>STEP04　タイトル（20案 → 1つ）</h2>
-<p>採用: <strong>「タクシー未経験が心配する5つは、だいたい心配しなくていい」</strong>
-選定基準: 声に出して自然／友達に勧めるときそのまま言える</p>
-<h2>STEP06　トーン</h2>
-<p>一人称「僕」／敬体／<strong>勧誘しない</strong>（求人媒体との最大の差）／<strong>経験していないことは断定しない</strong>／当時の心の声をカギカッコで／上から教えない</p>
-<h2>STEP07　リード文（先に15分執筆 → 3案を作成 → 選択）</h2>
-<p><strong>先に書いた原文（他の案を見る前）:</strong></p>
-<blockquote>
-<p>そんな夢のような仕事があるの？稼げるなら絶対にやりたい。（中略）でもそれって才能がある人だけの特徴であって結局自分がやるとどうにもならない低給料ドライバーで悶々とする日々を送るのでは？事故でも起こしたら人生終わりじゃない？<strong>何が正解なのか全くわからない</strong></p>
-</blockquote>
-<p>→ 3案（問題提起型・ストーリー型・データ型）を作成し、<strong>②ストーリー型を採用</strong>。</p>
-<p><strong>選定理由（そのまま記録）:</strong></p>
-<blockquote>
-<p>読んでいてスーッと入っていったので。この先も読みたいという感覚で、また読むストレスもなく自然に入れました。<strong>自分で考えた案なのに、そんな気がせず面白い文章を読んでいる気分になりました。</strong></p>
-</blockquote>
-<h2>事実の扱い（書かなかったもの）</h2>
-<table>
-<thead>
-<tr>
-<th>項目</th>
-<th>判断</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>事故の天引き額</td>
-<td><strong>書かない。</strong>筆者に天引きの経験がないため。「会社によるが全額自腹の形にはならない」に留めた</td>
-</tr>
-<tr>
-<td>絡まれる頻度の%</td>
-<td><strong>書かない。</strong>1日15件×月13〜14乗務で計算すると筆者の体感（1%未満）と合わないため、<strong>件数のまま</strong>記載</td>
-</tr>
-<tr>
-<td>外部の統計</td>
-<td><strong>一切使わない。</strong>データ型リード文も、自前の「5項目」だけで構成</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h1>【本文】</h1>
+<h1 id="honbun">【本文】</h1>
 <h1>タクシー未経験が心配する5つは、だいたい心配しなくていい</h1>
 <p><strong>2026年8月14日更新</strong> ／ 現役タクシードライバー3年目</p>
 <blockquote>
@@ -291,7 +188,118 @@ strong{font-weight:700}
 <p>応募でなくて構いません。問い合わせでも、面接でも。<strong>この1つだけは、入る前にしか確認できず、入ったあとに効いてきます。</strong></p>
 <p>残りの4つは、僕と同じように、入ってから「なんだ」と思うことになると思います。</p>
 <hr />
-<h1>【制作メモ】</h1>
+<h1 id="kikaku">【企画】この記事の設計</h1>
+<h2>STEP00　読者</h2>
+<pre><code>タクシー業界は未経験で、転職を考えているが、
+求人票を信じきれずに踏み切れていない30〜40代の会社員・現場職の人
+</code></pre>
+<h2>STEP01　テーマ（悩み30個 → 11個 → 5クラスタ → 1つ）</h2>
+<p>読者の悩みを30個洗い出し、「<strong>自分に体験があるか</strong>」だけで○×を判定 → <strong>11個が残る</strong>。
+11個は独立した11テーマではなく<strong>5つの塊</strong>になったため、クラスタ化して1つを選択。</p>
+<table>
+<thead>
+<tr>
+<th>塊</th>
+<th>番号</th>
+<th>選択</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A お金の実際</td>
+<td>1・2・6</td>
+<td></td>
+</tr>
+<tr>
+<td>B 夜勤と体</td>
+<td>7・8</td>
+<td></td>
+</tr>
+<tr>
+<td>C 仕事を覚えられるか</td>
+<td>14</td>
+<td></td>
+</tr>
+<tr>
+<td>D 事故とリスク</td>
+<td>15・16</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>E 入社後のギャップと辞める理由</strong></td>
+<td>17・27・29</td>
+<td><strong>← 採用</strong></td>
+</tr>
+</tbody>
+</table>
+<h2>STEP02　切り口（10案 → 1つ）</h2>
+<p>採用: <strong>「入社前に信じていた5つを、3年目の自分が採点する」</strong></p>
+<ul>
+<li><strong>LPサンプルAとの立場の違いを先に固定した。</strong> LP-Aは「採用する会社側」の声、この記事は「先に入った当事者側」の声。同じ材料でも喋る主体が逆なので、重複しない</li>
+</ul>
+<h2>STEP03　リサーチ（実際に開いて確認）</h2>
+<table>
+<thead>
+<tr>
+<th>媒体</th>
+<th>立場</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GOジョブ／ドライバーファースト／taxi-tenshoku.net</td>
+<td><strong>転職支援サービス・求人媒体の運営記事</strong></td>
+</tr>
+<tr>
+<td>note「マトンさんの営業日報」</td>
+<td>現役9年目ドライバー本人（唯一の個人当事者）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>上位の大半が、最後に応募へ誘導する側</strong>。だから「後悔」も書くが深く掘らない。</p>
+<p>ドライバーファーストの「後悔したこと」3項目——<strong>仕事の内容は毎日同じことの繰り返し／出勤しないと収入が減少／自動運転技術による不安</strong>。
+<strong>→ 筆者の5項目と1つも重ならない。</strong> 媒体が想像で書く「後悔」と、実際に入る前に怖かったことがズレている。</p>
+<p><strong>空白</strong>: 上位は「後悔したこと」と「よかったこと」を並列に置く。読者は読み終えても結局どちらか分からない。<strong>採点する主体がいない。</strong></p>
+<h2>STEP04　タイトル（20案 → 1つ）</h2>
+<p>採用: <strong>「タクシー未経験が心配する5つは、だいたい心配しなくていい」</strong>
+選定基準: 声に出して自然／友達に勧めるときそのまま言える</p>
+<h2>STEP06　トーン</h2>
+<p>一人称「僕」／敬体／<strong>勧誘しない</strong>（求人媒体との最大の差）／<strong>経験していないことは断定しない</strong>／当時の心の声をカギカッコで／上から教えない</p>
+<h2>STEP07　リード文（先に15分執筆 → 3案を作成 → 選択）</h2>
+<p><strong>先に書いた原文（他の案を見る前）:</strong></p>
+<blockquote>
+<p>そんな夢のような仕事があるの？稼げるなら絶対にやりたい。（中略）でもそれって才能がある人だけの特徴であって結局自分がやるとどうにもならない低給料ドライバーで悶々とする日々を送るのでは？事故でも起こしたら人生終わりじゃない？<strong>何が正解なのか全くわからない</strong></p>
+</blockquote>
+<p>→ 3案（問題提起型・ストーリー型・データ型）を作成し、<strong>②ストーリー型を採用</strong>。</p>
+<p><strong>選定理由（そのまま記録）:</strong></p>
+<blockquote>
+<p>読んでいてスーッと入っていったので。この先も読みたいという感覚で、また読むストレスもなく自然に入れました。<strong>自分で考えた案なのに、そんな気がせず面白い文章を読んでいる気分になりました。</strong></p>
+</blockquote>
+<h2>事実の扱い（書かなかったもの）</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>事故の天引き額</td>
+<td><strong>書かない。</strong>筆者に天引きの経験がないため。「会社によるが全額自腹の形にはならない」に留めた</td>
+</tr>
+<tr>
+<td>絡まれる頻度の%</td>
+<td><strong>書かない。</strong>1日15件×月13〜14乗務で計算すると筆者の体感（1%未満）と合わないため、<strong>件数のまま</strong>記載</td>
+</tr>
+<tr>
+<td>外部の統計</td>
+<td><strong>一切使わない。</strong>データ型リード文も、自前の「5項目」だけで構成</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="memo">【制作メモ】</h1>
 <h2>1本目（車一括査定）との違い</h2>
 <p>1本目は「<strong>当たり障りのない文章</strong>」「<strong>冒頭に全く魅力を感じない。インパクトもワクワク感も、次章に対する期待感もない</strong>」という評価を受けた。原因は16ステップのうち<strong>3つしか実行していなかったこと</strong>。</p>
 <table>
