@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;800;900&family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
+<title>クルマ査定ラボ｜下がり幅を先に書く一括査定（LPサンプル）</title>
+<style>
+:root{
+  --ink:#141A17; --sub:#616B66; --line:#E1E7E3; --bg:#FFFFFF; --soft:#F3F7F4;
+  --deep:#0F3D2E; --money:#0B7A54; --accent:#FF6B35; --accent2:#E85A25;
+  --warn:#B23B3B; --down:#C4453F; --gray:#98A29C;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",system-ui,sans-serif;
+  line-height:1.7;font-size:15.5px;-webkit-text-size-adjust:100%}
+.wrap{max-width:900px;margin:0 auto;padding:0 20px}
+section{padding:44px 0}
+h2{font-size:24px;line-height:1.4;margin:0 0 6px;letter-spacing:-.02em;font-weight:900}
+h2 .n{color:var(--accent);font-size:14px;display:block;letter-spacing:.1em;margin-bottom:4px;font-weight:800}
+h3{font-size:17px;margin:24px 0 6px;font-weight:800}
+p{margin:0 0 12px}
+.lead{color:var(--sub);font-size:14.5px;margin-bottom:22px}
+.tiny{font-size:12.5px;color:var(--sub)}
+
+.sample-bar{background:var(--warn);color:#fff;font-size:13px;padding:9px 20px;text-align:center;font-weight:700;line-height:1.6}
+
+/* ===== FV ===== */
+.fv{background:linear-gradient(180deg,#FFFFFF 0%,var(--soft) 100%);padding:40px 0 44px;border-bottom:1px solid var(--line)}
+.fv .tag{display:inline-block;background:var(--deep);color:#fff;border-radius:4px;
+  font-size:12px;padding:5px 11px;margin-bottom:16px;font-weight:800;letter-spacing:.04em}
+.fv h1{font-size:29px;line-height:1.4;margin:0 0 10px;letter-spacing:-.03em;font-weight:900}
+.fv h1 .dn{color:var(--down)}
+.fv h1 .up{color:var(--money)}
+.fv .sub{font-size:16px;color:var(--sub);margin-bottom:20px;font-weight:700}
+
+/* 3段階パネル */
+.ladder{background:#fff;border:2px solid var(--deep);border-radius:12px;padding:20px;margin-bottom:8px}
+.ladder .row{display:flex;align-items:center;gap:12px;padding:10px 0;flex-wrap:wrap}
+.ladder .row + .row{border-top:1px dashed var(--line)}
+.ladder .lbl{flex:1 1 200px;font-size:13.5px;font-weight:800;color:var(--sub)}
+.ladder .val{font-size:32px;font-weight:900;letter-spacing:-.03em;line-height:1}
+.ladder .v-web{color:var(--gray)}
+.ladder .v-fin{color:var(--money);font-size:40px}
+.ladder .v-dl{color:var(--gray)}
+.ladder .chip{border-radius:6px;padding:5px 11px;font-weight:900;font-size:14px;white-space:nowrap}
+.ladder .minus{background:#FDECEB;color:var(--down);border:1px solid #F2C4C1}
+.ladder .plus{background:#FFF0E9;color:var(--accent2);border:1px solid #FFCDB6}
+
+.fv .chips{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 20px}
+.fv .chips span{background:#fff;border:1px solid var(--line);border-radius:999px;font-size:13px;padding:6px 13px;font-weight:700}
+
+.cta{display:block;text-align:center;background:var(--accent);color:#fff;
+  font-weight:900;font-size:18px;text-decoration:none;padding:17px 20px;border-radius:8px;
+  box-shadow:0 4px 14px rgba(232,90,37,.28);letter-spacing:-.01em}
+.cta:hover{background:var(--accent2)}
+.cta .s{display:block;font-size:12px;font-weight:700;opacity:.9;margin-top:2px;letter-spacing:0}
+
+/* ===== 3例カード ===== */
+.cards{display:grid;gap:12px}
+.card{border:1px solid var(--line);border-radius:10px;background:#fff;overflow:hidden}
+.card .hd{background:var(--soft);padding:10px 16px;font-weight:800;font-size:14.5px;border-bottom:1px solid var(--line)}
+.card .hd small{font-weight:400;color:var(--sub);margin-left:8px}
+.card .bd{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+.card .cell{padding:14px 12px;text-align:center;border-right:1px solid var(--line)}
+.card .cell:last-child{border-right:0}
+.card .cell .k{font-size:11.5px;color:var(--sub);font-weight:800;letter-spacing:.04em;margin-bottom:3px}
+.card .cell .v{font-size:22px;font-weight:900;letter-spacing:-.02em}
+.card .cell .d{font-size:12.5px;font-weight:800;margin-top:3px}
+.card .web .v{color:var(--gray)}
+.card .fin .v{color:var(--money);font-size:26px}
+.card .fin .d{color:var(--down)}
+.card .dl .v{color:var(--gray)}
+.card .dl .d{color:var(--accent2)}
+
+/* ===== 理由 ===== */
+.reasons{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.reasons div{background:#fff;border:1px solid var(--line);border-left:4px solid var(--down);
+  border-radius:8px;padding:14px 15px}
+.reasons b{display:block;font-size:15.5px;margin-bottom:3px}
+.reasons small{color:var(--sub);font-size:13.5px;line-height:1.65;display:block}
+
+/* 下がりにくくする */
+.tips{background:#EAF7F1;border:2px solid var(--money);border-radius:10px;padding:20px}
+.tips h3{margin-top:0}
+.tips ol{padding-left:20px;margin:0}
+.tips li{margin-bottom:8px}
+
+/* 共感 */
+.worry{background:var(--soft)}
+.wlist{list-style:none;padding:0;margin:0;counter-reset:w;display:grid;gap:9px}
+.wlist li{counter-increment:w;background:#fff;border:1px solid var(--line);border-radius:8px;
+  padding:13px 15px 13px 48px;position:relative;font-weight:800;font-size:15.5px}
+.wlist li::before{content:counter(w);position:absolute;left:14px;top:13px;width:22px;height:22px;
+  background:var(--deep);color:#fff;border-radius:4px;display:grid;place-items:center;font-size:12.5px}
+.wlist li small{display:block;font-weight:400;color:var(--sub);font-size:13.5px;margin-top:3px}
+
+/* フロー */
+.flowsteps{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:18px 0 6px}
+.flowsteps .st{background:#fff;border:1px solid var(--line);border-top:3px solid var(--deep);border-radius:8px;padding:13px 12px}
+.flowsteps .st .no{font-size:11px;font-weight:900;color:var(--accent);letter-spacing:.08em}
+.flowsteps .st b{display:block;font-size:14.5px;margin:3px 0 5px;line-height:1.4}
+.flowsteps .st small{color:var(--sub);font-size:12.5px;line-height:1.6;display:block}
+
+/* 対比 */
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0 8px}
+.vs > div{border-radius:10px;padding:16px;text-align:center}
+.vs .bad{background:#FFF3F3;border:1px solid #F0C9C9}
+.vs .good{background:#EAF7F1;border:2px solid var(--money)}
+.vs .ttl{font-size:12.5px;font-weight:800;color:var(--sub);margin-bottom:9px}
+.vs .dots{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-bottom:9px;min-height:46px;align-items:center}
+.vs .dot{width:17px;height:17px;border-radius:50%;display:inline-block}
+.vs .bad .dot{background:#D96A6A}
+.vs .good .dot{background:var(--money);width:30px;height:30px}
+.vs .cap{font-size:15px;font-weight:900;line-height:1.4}
+.vs .bad .cap{color:#B23B3B}
+.vs .good .cap{color:var(--money)}
+
+.nums{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.nums div{border:1px solid var(--line);border-radius:8px;padding:14px;text-align:center;background:#fff}
+.nums b{display:block;font-size:26px;color:var(--deep);line-height:1.2;font-weight:900;letter-spacing:-.03em}
+.nums small{color:var(--sub);font-size:12.5px}
+
+.tbl{width:100%;border-collapse:collapse;font-size:14.5px;margin:12px 0 6px;background:#fff}
+.tbl th,.tbl td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top;color:var(--ink)}
+.tbl th{background:var(--soft);width:34%;font-weight:800}
+.scroll{overflow-x:auto}
+
+.honest{background:#FFFAF0;border:1px solid #E8C572;border-left:5px solid #E8C572;border-radius:8px;padding:18px 20px}
+.honest h3{margin-top:0}
+.honest ul{padding-left:18px;margin:0}
+.honest li{margin-bottom:7px}
+
+.q{border-left:3px solid var(--deep);padding:2px 0 2px 18px;margin-bottom:18px}
+.q .txt{font-size:16px;line-height:1.8}
+.q .who{color:var(--sub);font-size:13px;margin-top:6px}
+
+.tl{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.tl div{background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px}
+.tl b{display:block;font-size:11.5px;color:var(--accent);letter-spacing:.1em;margin-bottom:5px;font-weight:900}
+.tl small{font-size:13.5px;color:var(--ink);line-height:1.65;display:block}
+
+details{border:1px solid var(--line);border-radius:8px;padding:12px 15px;margin-bottom:8px;background:#fff}
+summary{font-weight:800;cursor:pointer;font-size:15.5px}
+details p{margin:9px 0 0;color:var(--sub);font-size:14.5px}
+
+.closing{background:var(--soft)}
+.panel{background:#fff;border:2px solid var(--deep);border-radius:12px;padding:26px}
+
+.formnote{background:#FFF1F1;border:1px solid #E7B9B9;color:var(--warn);border-radius:8px;
+  padding:11px 13px;font-size:13px;font-weight:700;margin-bottom:18px;line-height:1.6}
+.apply label{display:block;font-weight:800;font-size:14px;margin-bottom:14px}
+.apply .req{background:var(--warn);color:#fff;font-size:10.5px;border-radius:3px;padding:2px 6px;margin-left:7px;vertical-align:2px}
+.apply .opt{background:#8A93A3;color:#fff;font-size:10.5px;border-radius:3px;padding:2px 6px;margin-left:7px;vertical-align:2px}
+.apply input,.apply select{display:block;width:100%;margin-top:6px;border:1px solid #C7D0CB;border-radius:6px;
+  padding:12px;font-size:16px;font-family:inherit;background:#fff;color:var(--ink)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+footer{background:#0A2A20;color:#8FA69C;font-size:12.5px;padding:26px 0 92px}
+.sticky{position:fixed;left:0;right:0;bottom:0;background:rgba(255,255,255,.97);border-top:1px solid var(--line);padding:9px 16px;z-index:50}
+.sticky a{display:block;max-width:520px;margin:0 auto;text-align:center;background:var(--accent);
+  color:#fff;font-weight:900;text-decoration:none;padding:13px;border-radius:7px;font-size:16px}
+
+@media(max-width:760px){
+  .flowsteps{grid-template-columns:1fr}
+  .tl{grid-template-columns:1fr 1fr}
+  .reasons{grid-template-columns:1fr}
+}
+@media(max-width:520px){
+  .fv h1{font-size:24px}
+  .ladder .val{font-size:27px}
+  .ladder .v-fin{font-size:33px}
+  .card .bd{grid-template-columns:1fr}
+  .card .cell{border-right:0;border-bottom:1px solid var(--line)}
+  .card .cell:last-child{border-bottom:0}
+  .two{grid-template-columns:1fr}
+  .tl{grid-template-columns:1fr}
+}
+@media(min-width:761px){
+  .nums{grid-template-columns:repeat(4,1fr)}
+  .sticky{display:none}
+}
+
+/* ===================================================================
+   デザイン刷新レイヤー（2026-08-16）
+   文言は1文字も変えていない。見え方（影・余白・書体・動き）だけを更新。
+   色はこのLP固有のまま。3本を同じ見た目にしない方針のため。
+   =================================================================== */
+:root{
+  /* 影は2枚重ね。接地する薄い影＋浮きを作る広い影 */
+  --sh-1:0 1px 2px rgba(15,61,46,.06), 0 2px 8px rgba(15,61,46,.05);
+  --sh-2:0 1px 3px rgba(15,61,46,.08), 0 8px 24px rgba(15,61,46,.09);
+  --sh-3:0 2px 6px rgba(15,61,46,.10), 0 18px 44px rgba(15,61,46,.14);
+  --sh-acc:0 2px 6px rgba(196,72,25,.24), 0 12px 28px rgba(196,72,25,.28);
+  --ease:cubic-bezier(.22,1,.36,1);
+  --serif:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif;
+}
+body{font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",system-ui,sans-serif;
+  font-feature-settings:"palt";letter-spacing:.01em;line-height:1.78}
+
+/* 余白を広げる（44px → 64/80px） */
+section{padding:64px 0}
+.fv{padding:52px 0 56px}
+
+/* FVの写真（2026-08-16 追加）
+   数字パネルが主役なので、写真は「地」として薄く敷く。
+   右側に寄せ、左から白でぼかして、文字とパネルの可読性を落とさない。 */
+.fv{position:relative;overflow:hidden}
+.fv::before{content:"";position:absolute;inset:0;
+  background:url("lp-b-img/fv-minivan.jpg") 62% 72%/cover no-repeat;
+  opacity:.46}
+.fv::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(102deg,#fff 0%,rgba(255,255,255,.96) 26%,rgba(255,255,255,.62) 56%,rgba(255,255,255,.28) 100%)}
+.fv > .wrap{position:relative;z-index:2}
+/* 数字パネルは写真の上に乗るので、白を締めて浮かせる */
+.fv .ladder{background:rgba(255,255,255,.97);backdrop-filter:blur(2px)}
+/* スマホでは背景に敷いても数字パネルに隠れて見えないため、
+   CTAの下に実物の画像を1枚置く。折り返し（fold）より下なので、
+   パネルとCTAの位置を犠牲にしない。 */
+.fv .fvpic{margin:18px 0 0;position:relative}
+.fv .fvpic img{display:block;width:100%;height:150px;object-fit:cover;object-position:58% 74%;
+  border-radius:12px;box-shadow:var(--sh-2)}
+.fv .fvpic figcaption{position:absolute;right:8px;bottom:8px;background:rgba(20,26,23,.62);
+  color:#fff;font-size:10.5px;font-weight:700;padding:3px 8px;border-radius:5px;letter-spacing:.02em}
+@media(min-width:761px){ .fv .fvpic{display:none} }
+@media(max-width:760px){
+  /* スマホは1カラム。上半分で車が見えて、パネルの下は白へ抜ける形にする */
+  .fv::before{background-position:58% 78%;opacity:.55}
+  .fv::after{background:linear-gradient(180deg,rgba(255,255,255,.66) 0%,rgba(255,255,255,.86) 30%,rgba(255,255,255,.93) 58%,#fff 100%)}
+  .fv h1{text-shadow:0 1px 0 #fff,0 2px 10px rgba(255,255,255,.9)}
+  .fv .sub{text-shadow:0 1px 0 #fff}
+}
+
+/* 見出し — 明朝＋アクセントの下線 */
+h2{font-family:var(--serif);font-weight:700;font-size:26px;line-height:1.5;letter-spacing:.01em;
+  position:relative;padding-bottom:14px;margin:0 0 14px}
+h2::after{content:"";position:absolute;left:0;bottom:0;width:52px;height:4px;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:2px}
+h2 .n{font-family:"Noto Sans JP",sans-serif;margin-bottom:6px}
+h3{font-family:var(--serif);font-weight:700;letter-spacing:.01em;font-size:18px;margin:30px 0 8px}
+.lead{font-family:var(--serif);font-size:15px;line-height:1.95;margin-bottom:26px}
+
+/* 数字は等幅にして桁を揃える */
+.ladder .val,.card .cell .v,.nums b,.tbl td,.vs .cap{font-variant-numeric:tabular-nums}
+
+/* 立体感 — 面に高さを与える */
+.wlist li,.reasons div,.flowsteps .st,.tl div,details,.nums div,.card,.vs > div{box-shadow:var(--sh-1)}
+.ladder,.panel,.tips,.honest{box-shadow:var(--sh-2)}
+.scroll{border-radius:10px;box-shadow:var(--sh-1)}
+.scroll .tbl{margin:0;border-collapse:separate;border-spacing:0;overflow:hidden}
+.scroll .tbl th,.scroll .tbl td{border:none;border-bottom:1px solid var(--line);border-right:1px solid var(--line)}
+.scroll .tbl td:last-child,.scroll .tbl th:last-child{border-right:none}
+.scroll .tbl tr:last-child th,.scroll .tbl tr:last-child td{border-bottom:none}
+.ladder{border-radius:14px;padding:24px}
+.card{border-radius:12px}
+.card .hd{background:linear-gradient(180deg,#F8FBF9,var(--soft))}
+.tips,.panel{border-radius:14px}
+.honest{border-radius:12px;background:linear-gradient(180deg,#FFFCF4,#FFF7E8)}
+
+/* マイクロインタラクション */
+.card,.nums div,.reasons div,.flowsteps .st,.tl div,details,.wlist li{
+  transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.card:hover,.nums div:hover,.reasons div:hover,.flowsteps .st:hover,.tl div:hover,
+details:hover,.wlist li:hover{transform:translateY(-3px);box-shadow:var(--sh-2)}
+details[open]{box-shadow:var(--sh-2)}
+
+/* CTA — 単色をグラデーションに変え、押せる見た目にする */
+.cta{background:linear-gradient(180deg,#FF7C4A 0%,var(--accent) 46%,var(--accent2) 100%);
+  border-radius:11px;padding:19px 20px;box-shadow:var(--sh-acc);
+  transition:transform .22s var(--ease),box-shadow .22s var(--ease),filter .22s var(--ease)}
+.cta:hover{background:linear-gradient(180deg,#FF7C4A 0%,var(--accent) 46%,var(--accent2) 100%);
+  transform:translateY(-3px);filter:saturate(1.06);
+  box-shadow:0 4px 10px rgba(196,72,25,.28),0 20px 40px rgba(196,72,25,.34)}
+.cta:active{transform:translateY(0);box-shadow:var(--sh-1)}
+.cta:focus-visible{outline:3px solid var(--deep);outline-offset:3px}
+
+/* 体験談と開示は明朝。読み物として読ませる */
+.q .txt{font-family:var(--serif);font-size:17px;line-height:2}
+.q .who{font-family:var(--serif)}
+.honest li{font-family:var(--serif);line-height:1.95}
+
+/* 追従CTA — ホームバーの下に隠れないようにする */
+.sticky{padding:10px 16px calc(10px + env(safe-area-inset-bottom));
+  background:rgba(255,255,255,.94);backdrop-filter:blur(10px);box-shadow:0 -6px 22px rgba(15,61,46,.12)}
+.sticky a{background:linear-gradient(180deg,#FF7C4A,var(--accent2));border-radius:10px;padding:15px;
+  box-shadow:0 3px 12px rgba(196,72,25,.30)}
+
+/* スクロールで出現（JSが .reveal を付けたときだけ効く） */
+.reveal{opacity:0;transform:translateY(18px)}
+.reveal.in{opacity:1;transform:none;transition:opacity .7s var(--ease),transform .7s var(--ease)}
+@media(prefers-reduced-motion:reduce){
+  .reveal,.reveal.in{opacity:1;transform:none;transition:none}
+  html{scroll-behavior:auto}
+}
+
+@media(min-width:761px){
+  section{padding:80px 0}
+  .fv{padding:64px 0 68px}
+  h2{font-size:29px}
+}
+@media(max-width:520px){
+  /* スマホでは明朝が細く見えるので、字間を詰めすぎない */
+  h2{font-size:23px;letter-spacing:0}
+  .q .txt{font-size:16px;line-height:1.95}
+}
+</style>
+</head>
+<body>
+
+<div class="sample-bar">
+  【ポートフォリオ用サンプル】架空サービス「クルマ査定ラボ」の想定で制作。実在の企業・サービスとは関係ありません。記載の数値はすべてサンプル用の仮値です。
+</div>
+
+<!-- FV -->
+<header class="fv">
+  <div class="wrap">
+    <span class="tag">クルマ査定ラボ｜中古車一括査定</span>
+    <h1>Web査定額から、平均<span class="dn">7.2万円下がります</span>。<br>それでも下取りより<span class="up">11.4万円高い</span>。</h1>
+    <p class="sub">下がる理由と、下がり幅を先に書きます。</p>
+
+    <div class="ladder">
+      <div class="row">
+        <div class="lbl">① Web査定額（申込直後に表示）</div>
+        <div class="val v-web">68万円</div>
+      </div>
+      <div class="row">
+        <div class="lbl">② 実車を見たあとの最終額</div>
+        <div class="val v-fin">60万円</div>
+        <div class="chip minus">−8万円</div>
+      </div>
+      <div class="row">
+        <div class="lbl">③ ディーラー下取り額</div>
+        <div class="val v-dl">42万円</div>
+        <div class="chip plus">②は+18万円</div>
+      </div>
+    </div>
+    <p class="tiny">※サンプル用の仮の事例です。</p>
+
+    <div class="chips">
+      <span>入力は45秒</span><span>キャンセル無料</span><span>下がり幅の実例を公開</span>
+    </div>
+    <a class="cta" href="#diff">下がった実例を3件見る<span class="s">下がり幅が大きかった例も載せています</span></a>
+    <figure class="fvpic">
+      <img src="lp-b-img/fv-minivan.jpg" alt="売却を検討している家族用ミニバン（イメージ・AI生成画像）" loading="eager">
+      <figcaption>イメージ（AI生成画像）</figcaption>
+    </figure>
+  </div>
+</header>
+
+<!-- 結果（先行） -->
+<section id="diff">
+  <div class="wrap">
+    <h2><span class="n">RESULT</span>Web査定額から、実際いくら下がったか</h2>
+    <p class="lead">一括査定でいちばん多い不満が、この差です。<strong>下がり幅が大きかった例を3件目に入れています。</strong></p>
+
+    <div class="cards">
+      <div class="card">
+        <div class="hd">ミニバン<small>8年・走行9.5万km・修復歴なし</small></div>
+        <div class="bd">
+          <div class="cell web"><div class="k">WEB査定額</div><div class="v">68万円</div></div>
+          <div class="cell fin"><div class="k">実車後の最終額</div><div class="v">60万円</div><div class="d">−8万円</div></div>
+          <div class="cell dl"><div class="k">ディーラー下取り</div><div class="v">42万円</div><div class="d">+18万円 得</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="hd">軽自動車<small>5年・走行4.2万km・修復歴なし</small></div>
+        <div class="bd">
+          <div class="cell web"><div class="k">WEB査定額</div><div class="v">70万円</div></div>
+          <div class="cell fin"><div class="k">実車後の最終額</div><div class="v">67万円</div><div class="d">−3万円</div></div>
+          <div class="cell dl"><div class="k">ディーラー下取り</div><div class="v">58万円</div><div class="d">+9万円 得</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="hd">セダン<small>11年・走行14万km・<strong>修復歴あり（申込時に未申告）</strong></small></div>
+        <div class="bd">
+          <div class="cell web"><div class="k">WEB査定額</div><div class="v">26万円</div></div>
+          <div class="cell fin"><div class="k">実車後の最終額</div><div class="v">11万円</div><div class="d">−15万円</div></div>
+          <div class="cell dl"><div class="k">ディーラー下取り</div><div class="v">8万円</div><div class="d">+3万円 得</div></div>
+        </div>
+      </div>
+    </div>
+
+    <p class="lead" style="margin-top:14px">
+      3件目のように、<strong>修復歴を申込時に入力していないと、下がり幅が一気に大きくなります。</strong>
+      Web査定額は「申告された情報どおりだった場合の金額」なので、情報が違えば当然変わります。<br>
+      <span class="tiny">※上記はすべてサンプル用の仮値です。</span>
+    </p>
+  </div>
+</section>
+
+<!-- なぜ下がるのか（新・主役） -->
+<section class="worry">
+  <div class="wrap">
+    <h2><span class="n">WHY</span>なぜWeb査定額から下がるのか</h2>
+    <p class="lead">理由は4つです。どれも、写真と自己申告だけでは分からないものです。</p>
+    <div class="reasons">
+      <div><b>1. 傷・へこみ</b><small>バンパーの擦り、ドアのへこみ、ホイールのガリ傷。修理費用の分が引かれます。</small></div>
+      <div><b>2. 修復歴</b><small>フレームに及ぶ修理歴があると評価が大きく変わります。<strong>下がり幅が最も大きくなる項目です。</strong></small></div>
+      <div><b>3. 内装の状態</b><small>喫煙、ペットの臭い、シートの破れ。クリーニングで戻らない場合は減額されます。</small></div>
+      <div><b>4. 相場の変動</b><small>申込から査定までに時間が空くと、その間の相場変動が反映されます。</small></div>
+    </div>
+
+    <div class="tips" style="margin-top:20px">
+      <h3>下がり幅を小さくする方法</h3>
+      <ol>
+        <li><strong>修復歴は必ず申告する。</strong>隠しても実車で分かります。申告してあれば、その前提の金額が最初から出ます</li>
+        <li><strong>整備記録簿を用意する。</strong>定期点検を受けている車は、同じ走行距離でも評価が変わります</li>
+        <li><strong>洗車と車内清掃をしておく。</strong>査定額そのものより、状態を正しく見てもらうためです</li>
+        <li><strong>申込から査定までを空けない。</strong>相場変動の影響を受けにくくなります</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- 共感 -->
+<section>
+  <div class="wrap">
+    <h2><span class="n">CONCERN</span>「一括査定 やめたほうがいい」で検索した方へ</h2>
+    <p class="lead">ためらう理由は、だいたいこの5つです。順番に答えます。</p>
+    <ul class="wlist">
+      <li>高い金額を出しておいて、後から下げられるのでは
+        <small>いちばん多い不満です。上の「なぜ下がるのか」と「下がり幅を小さくする方法」が、その答えです。</small></li>
+      <li>申し込んだ瞬間に電話が鳴り続けるのが怖い
+        <small>連絡を差し上げるのは1社だけです。詳しくは下の「連絡の仕組み」に書いています。</small></li>
+      <li>その場で契約を迫られそう
+        <small>「今日決めてくれるならこの金額」と言われると断りにくい、という話です。</small></li>
+      <li>やっぱり売らない、が言えるのか
+        <small>キャンセルできるのか、費用がかかるのかが分からないまま申し込めません。</small></li>
+      <li>個人情報がどこまで渡るのか
+        <small>電話番号が何社に渡るのか。これが分からないのが不安の正体です。</small></li>
+    </ul>
+  </div>
+</section>
+
+<!-- フロー -->
+<section>
+  <div class="wrap">
+    <h2><span class="n">FLOW</span>申し込んだあと、何が起きるかを先に書きます</h2>
+    <p class="lead">ここが不透明なまま申し込ませるサービスが多いので、時系列で全部書きます。</p>
+
+    <div class="flowsteps">
+      <div class="st"><div class="no">STEP 1</div><b>入力（45秒）</b><small>車種・年式・走行距離・修復歴の有無・ご連絡先。</small></div>
+      <div class="st"><div class="no">STEP 2</div><b>Web査定額を表示</b><small>申告どおりだった場合の金額です。ここが上限だとお考えください。</small></div>
+      <div class="st"><div class="no">STEP 3</div><b>最大3社が結果を出す</b><small>電話は1社だけ。残り2社の金額はメールで届きます。</small></div>
+      <div class="st"><div class="no">STEP 4</div><b>実車の確認（30〜40分）</b><small>傷・修復歴・内装を見て最終額へ。<strong>下がる場合は理由をその場で説明します。</strong></small></div>
+      <div class="st"><div class="no">STEP 5</div><b>売却・入金</b><small>ご納得いただけた場合のみ。書類が揃って平均3営業日。</small></div>
+    </div>
+
+    <h3>連絡の仕組み</h3>
+    <p>提携店を絞ったうえで、<strong>連絡先をお渡しするのは最高額を出した1社のみ</strong>。他社は金額だけをこちらに戻します。</p>
+    <div class="vs">
+      <div class="bad">
+        <div class="ttl">一般的な一括査定</div>
+        <div class="dots">
+          <i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i>
+          <i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i>
+        </div>
+        <div class="cap">最大10社に<br>連絡先を共有</div>
+      </div>
+      <div class="good">
+        <div class="ttl">クルマ査定ラボ</div>
+        <div class="dots"><i class="dot"></i></div>
+        <div class="cap">連絡先を渡すのは<br>1社のみ</div>
+      </div>
+    </div>
+    <p class="tiny">※上位数社に絞る仕組みは他社にもあります。<strong>そのぶん査定に参加する会社の数は少なくなるため、社数の多さで競わせたい方には向きません。</strong></p>
+
+    <a class="cta" href="#apply" style="margin-top:18px">下がり幅を確認したうえで申し込む<span class="s">Web査定額は上限額です。ご納得のうえどうぞ</span></a>
+  </div>
+</section>
+
+<!-- 証拠 -->
+<section class="worry">
+  <div class="wrap">
+    <h2><span class="n">DATA</span>数字で見るクルマ査定ラボ</h2>
+    <p class="lead">※すべてサンプル用の仮値です（ポートフォリオ用のため）。</p>
+    <div class="nums">
+      <div><b>−7.2万円</b><small>Web査定額からの<br>平均下落幅</small></div>
+      <div><b>22%</b><small>下落が0円<br>だった方の割合</small></div>
+      <div><b>+11.4万円</b><small>最終額と下取り額の<br>平均差</small></div>
+      <div><b>1社</b><small>お電話を差し上げる<br>会社の数</small></div>
+    </div>
+    <p class="tiny" style="margin-top:12px">下落幅の平均を公開しているのは、<strong>期待値をこちらから下げておくためです。</strong>期待させて下げる方が、結果として売却をやめる方が増えます。</p>
+  </div>
+</section>
+
+<!-- 信頼 -->
+<section>
+  <div class="wrap">
+    <h2><span class="n">DISCLOSURE</span>先にお伝えしておくこと</h2>
+
+    <div class="honest">
+      <h3>こういう方には向きません</h3>
+      <ul>
+        <li><strong>Web査定額のまま売れると考えている方</strong>——実車確認で下がります。下がらない前提でお考えの場合、ご期待に沿えません。</li>
+        <li><strong>とにかく多くの会社に競わせて、1円でも高くしたい方</strong>——参加社数を絞っているため、社数の多い他社の方が向いています。</li>
+        <li><strong>今日中に現金化したい方</strong>——書類の確認があるため、最短でも数日かかります。</li>
+        <li><strong>ローンが残っていて、残債の処理を急いでいる方</strong>——手続きが1段階増えるため、通常より時間がかかります。</li>
+      </ul>
+    </div>
+
+    <h3>キャンセルと個人情報について</h3>
+    <div class="scroll">
+      <table class="tbl">
+        <tr><th>キャンセル料</th><td>かかりません。実車確認の後でも、売却しない判断をしていただけます</td></tr>
+        <tr><th>連絡先が渡る範囲</th><td>最高額を提示した1社のみ。他の提携店にお客様の電話番号・メールアドレスは渡りません</td></tr>
+        <tr><th>連絡が来る時間帯</th><td>申込フォームでご指定いただけます。指定外の時間には連絡しません</td></tr>
+        <tr><th>連絡を止めたいとき</th><td>フォームまたはお電話1本で停止します。理由をお尋ねすることはありません</td></tr>
+      </table>
+    </div>
+
+    <h3>利用者の声</h3>
+    <div class="q">
+      <div class="txt">「以前使った一括査定は、Webで表示された金額と実際が15万円違って腹が立ちました。今回は最初から『下がります』と書いてあって、実際8万円下がりましたが、理由の説明があったので納得しています。」</div>
+      <div class="who">42歳・男性・ミニバン売却 ※架空の事例です</div>
+    </div>
+    <div class="q">
+      <div class="txt">「修復歴を入力するか迷いましたが、書いた方がいいと説明があったので正直に入れました。結果、実車のときに金額が変わらなくて拍子抜けしました。」</div>
+      <div class="who">36歳・女性・軽自動車売却 ※架空の事例です</div>
+    </div>
+
+    <h3>会社概要</h3>
+    <div class="scroll">
+      <table class="tbl">
+        <tr><th>商号</th><td>株式会社クルマ査定ラボ</td></tr>
+        <tr><th>所在地</th><td>〇〇県〇〇市〇〇1-2-3</td></tr>
+        <tr><th>設立</th><td>2016年6月</td></tr>
+        <tr><th>代表者</th><td>代表取締役 〇〇 〇〇</td></tr>
+        <tr><th>資本金</th><td>2,000万円</td></tr>
+        <tr><th>事業内容</th><td>中古車査定の仲介サービスの運営</td></tr>
+        <tr><th>古物商許可</th><td>〇〇県公安委員会 第〇〇〇〇〇〇号</td></tr>
+        <tr><th>個人情報の取り扱い</th><td>査定および売却手続きの目的にのみ使用します。上記以外の第三者に提供しません</td></tr>
+      </table>
+    </div>
+    <p class="tiny"><strong>※上記はすべて架空の設定です。</strong>実案件では、実在の登記情報・古物商許可番号が入ります。</p>
+  </div>
+</section>
+
+<!-- ストーリー -->
+<section class="worry">
+  <div class="wrap">
+    <h2><span class="n">STORY</span>Web査定68万円が、60万円になるまで</h2>
+    <div class="tl">
+      <div><b>BEFORE</b><small>8年乗ったミニバン。ディーラーの下取りは42万円。納得できず一括査定を調べた。</small></div>
+      <div><b>迷い</b><small>「Webの金額から下げられた」という口コミばかり出てくる。それが怖くて申し込めなかった。</small></div>
+      <div><b>申込</b><small>下がり幅の平均が最初から書いてあったので申し込み。Web査定は68万円。修復歴なしを申告。</small></div>
+      <div><b>AFTER</b><small>実車確認でバンパーの擦り傷を指摘され8万円ダウン、60万円で売却。下取りより18万円高かった。</small></div>
+    </div>
+    <p class="tiny" style="margin-top:12px">※サンプル用の想定事例です。</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="wrap">
+    <h2><span class="n">FAQ</span>よくあるご質問</h2>
+    <details><summary>Web査定額より上がることはありますか</summary><p>ほとんどありません。Web査定額は「申告いただいた情報どおりだった場合」の金額なので、実質的に上限額とお考えください。同額のまま決まる方が22%です。</p></details>
+    <details><summary>下がり幅に納得できないときは断れますか</summary><p>断れます。キャンセル料はかかりません。理由をお尋ねすることもありません。</p></details>
+    <details><summary>走行10万kmを超えていても値段は付きますか</summary><p>付くことがほとんどです。年式・車種・整備の記録によって金額は変わりますが、値が付かないケースは多くありません。</p></details>
+    <details><summary>ローンが残っていても売れますか</summary><p>売れます。残債の処理が1段階増えるため、通常より日数がかかります。</p></details>
+    <details><summary>しつこく連絡が来ることはありませんか</summary><p>連絡先をお渡しするのは1社のみです。停止のご連絡をいただければ、その時点で終了します。</p></details>
+  </div>
+</section>
+
+<!-- クロージング -->
+<section class="closing">
+  <div class="wrap">
+    <div class="panel">
+      <h2>下がることを知ったうえで、決めてください</h2>
+      <p class="lead">Web査定額は上限額です。そこから平均7.2万円下がります。<br>
+        それを踏まえても下取りより高くなるかどうか——<strong>金額を見てから決めていただければ十分です。キャンセル料はかかりません。</strong></p>
+      <div class="scroll">
+        <table class="tbl">
+          <tr><th>入力項目</th><td>5つ（車種・年式・走行距離・修復歴の有無・ご連絡先）</td></tr>
+          <tr><th>入力にかかる時間</th><td>約45秒</td></tr>
+          <tr><th>Web査定額の位置づけ</th><td>申告どおりだった場合の上限額。実車確認で下がる場合があります</td></tr>
+          <tr><th>キャンセル</th><td>いつでも無料</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- フォーム -->
+<section id="apply">
+  <div class="wrap">
+    <h2><span class="n">ENTRY</span>無料査定の申し込み</h2>
+    <p class="lead">入力は5項目です。<strong>修復歴は正直にご入力ください。</strong>そのほうが、後で下がりません。</p>
+
+    <div class="formnote">【サンプル】このフォームは動作しません。ポートフォリオ用の表示サンプルです。入力された内容はどこにも送信・保存されません。</div>
+
+    <form class="apply" onsubmit="return false;">
+      <div class="two">
+        <label>メーカー・車種<span class="req">必須</span>
+          <input type="text" placeholder="例：トヨタ ヴォクシー" autocomplete="off"></label>
+        <label>年式<span class="req">必須</span>
+          <input type="text" placeholder="例：2018年" autocomplete="off"></label>
+      </div>
+      <div class="two">
+        <label>走行距離<span class="req">必須</span>
+          <input type="text" placeholder="例：95,000km" autocomplete="off"></label>
+        <label>修復歴<span class="req">必須</span>
+          <select>
+            <option>なし</option>
+            <option>あり</option>
+            <option>わからない</option>
+          </select></label>
+      </div>
+      <label>ご連絡先（携帯番号 または メールアドレス）<span class="req">必須</span>
+        <input type="text" placeholder="090-0000-0000" autocomplete="off"></label>
+      <label>電話を受けられる時間帯<span class="opt">任意</span>
+        <select>
+          <option>指定なし</option>
+          <option>午前中（9:00〜12:00）</option>
+          <option>午後（12:00〜17:00）</option>
+          <option>夕方以降（17:00〜20:00）</option>
+          <option>メールのみ希望</option>
+        </select></label>
+      <button type="button" class="cta" style="width:100%;border:0;cursor:not-allowed;opacity:.6">
+        Web査定額を出す（キャンセル無料）<span class="s">サンプルのため送信されません</span>
+      </button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><strong>【ポートフォリオ用サンプル】</strong><br>
+      架空サービス「クルマ査定ラボ」を想定して制作したLPサンプルです。実在の企業・サービス・人物とは一切関係ありません。<br>
+      査定額・下落幅・比率などの数値はすべてサンプル用の仮値であり、実データではありません。<br>
+      実案件では、この位置に出典を明示した実数が入ります。<br>
+      <strong>掲載写真はAI生成画像です（fal.ai / FLUX）。</strong>実在の車両・場所ではありません。</p>
+    <p>制作: 日野高志 ／ 2026年8月</p>
+  </div>
+</footer>
+
+<div class="sticky"><a href="#apply">Web査定額を見てみる</a></div>
+
+<script>
+/* スクロールで要素を出現させる。
+   対応していないブラウザ・動きを減らす設定では何もしない（内容は常に表示される） */
+(function(){
+  if (!('IntersectionObserver' in window)) return;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var t = document.querySelectorAll('section .wrap > *, .card, .nums div, .wlist li, .reasons div, .flowsteps .st, .tl div, details');
+  t.forEach(function(el){ el.classList.add('reveal'); });
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {rootMargin:'0px 0px -8% 0px', threshold:0.06});
+  t.forEach(function(el){ io.observe(el); });
+})();
+</script>
+</body>
+</html>

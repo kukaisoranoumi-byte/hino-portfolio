@@ -339,12 +339,45 @@ img { max-width: 100%; height: auto; display: block; }
   .process-step img { height: 200px; }
 }
 
+/* LP サムネイル（クリックで各 LP ページへ遷移） */
+.lp-thumb-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 1.1rem 1.2rem; margin-top: 1.5rem;
+}
+.lp-thumb {
+  display: block; overflow: hidden;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); box-shadow: var(--shadow);
+  transition: box-shadow .2s, transform .15s, border-color .18s;
+}
+.lp-thumb:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); border-color: var(--secondary); }
+.lp-thumb img {
+  width: 100%; height: 190px; display: block;
+  object-fit: cover; object-position: top center;
+  transition: transform .35s;
+}
+.lp-thumb:hover img { transform: scale(1.05); }
+.lp-thumb-body { display: flex; flex-direction: column; gap: .3rem; padding: .9rem 1.1rem 1rem; }
+.lp-thumb-title { font-size: .92rem; font-weight: 700; color: var(--primary); }
+.lp-thumb-tag { font-size: .78rem; color: var(--muted); }
+@media (max-width: 560px) {
+  .lp-thumb-grid { grid-template-columns: 1fr; }
+  .lp-thumb img { height: 210px; }
+}
+
 /* 注記（本文と同等の視認性） */
 .work-note {
   color: var(--text); font-size: .92rem; line-height: 1.75;
   border-left: 3px solid var(--accent, #2563eb); padding-left: .9rem;
   font-weight: 600;
 }
+
+/* 成果物カードの箇条書き内リンク（全体の a はリンク色を持たないため、ここだけ明示する） */
+.work-body .list a {
+  color: var(--secondary); text-decoration: underline;
+  text-underline-offset: 2px; font-weight: 700;
+}
+.work-body .list a:hover { color: #1d4ed8; }
 
 /* 作品リンク（CTAボタン風） */
 .work-link {
@@ -446,6 +479,10 @@ img { max-width: 100%; height: auto; display: block; }
   margin: 1rem 0;
 }
 .quote-highlight strong { color: var(--primary); }
+
+/* 赤の強調（要点を1か所だけ立てる用。多用しない） */
+.em-red { color: #d92d20; font-weight: 800; }
+.quote-highlight strong.em-red { color: #d92d20; }
 .quote-box cite {
   display: block; font-size: .83rem; color: var(--muted);
   font-style: normal; font-weight: 700; margin-top: 1.2rem;
