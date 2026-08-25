@@ -367,6 +367,63 @@ footer .co{
   body{padding-bottom:0}
   .sticky{display:none}
 }
+
+/* ================================================================
+   2026-08-25 デザイン刷新
+   `lp-builder/knowledge/デザインの立体感を出す型.md` を適用。
+   嗜好品のLPなので、影は「置いてある」程度に留める。強くすると安く見える。
+   影の色は黒ではなく、このLPの一番濃い色（--deep）を薄めたもの。
+   ================================================================ */
+:root{
+  --sh-1:0 1px 2px rgba(23,16,12,.05), 0 2px 8px rgba(23,16,12,.045);
+  --sh-2:0 1px 3px rgba(23,16,12,.07), 0 8px 22px rgba(23,16,12,.075);
+  --sh-3:0 2px 6px rgba(23,16,12,.09), 0 16px 40px rgba(23,16,12,.12);
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+
+/* 1. 影を2枚重ねる */
+.day,.voice,.offer,.step,blockquote,.tablewrap{box-shadow:var(--sh-1)}
+.offer,blockquote{box-shadow:var(--sh-2)}
+.cta{box-shadow:0 2px 5px rgba(161,98,43,.20), 0 10px 26px rgba(161,98,43,.30)}
+
+/* 3. 見出しに装飾を1つ（金の細い罫。明朝なので控えめに） */
+h2.sec{position:relative;padding-bottom:16px}
+h2.sec::after{
+  content:"";position:absolute;left:0;bottom:0;width:46px;height:2px;
+  background:linear-gradient(90deg,var(--gold),rgba(185,144,73,.15));
+}
+.fv h1::after{content:none}
+
+/* 4. マイクロインタラクション */
+.day,.voice,.offer,.step{
+  transition:transform .3s var(--ease), box-shadow .3s var(--ease);
+}
+.day:hover,.voice:hover,.offer:hover{transform:translateY(-3px);box-shadow:var(--sh-2)}
+.step:hover{transform:translateY(-2px);box-shadow:var(--sh-2)}
+.cta{transition:transform .24s var(--ease), box-shadow .24s var(--ease), filter .24s var(--ease)}
+.cta:hover{transform:translateY(-3px);filter:saturate(1.05);
+  box-shadow:0 4px 9px rgba(161,98,43,.26), 0 18px 38px rgba(161,98,43,.34)}
+.cta:active{transform:translateY(0)}
+.cta:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.badge{transition:background .3s var(--ease), border-color .3s var(--ease)}
+.badge:hover{background:rgba(185,144,73,.18);border-color:rgba(185,144,73,.85)}
+
+/* 7. ベタ塗りをグラデーションに */
+thead th{background:linear-gradient(180deg,#453026,var(--brown))}
+thead th:first-child{background:linear-gradient(180deg,#332219,#2a1c15)}
+blockquote{background:linear-gradient(158deg,#453026 0%,var(--brown) 100%)}
+.sticky{background:linear-gradient(180deg,rgba(36,26,19,.97),rgba(23,16,12,.98))}
+
+/* 5. スクロールで出現（JSが .reveal を付けたときだけ効く） */
+.reveal{opacity:0;transform:translateY(16px)}
+.reveal.in{opacity:1;transform:none;
+  transition:opacity .8s var(--ease), transform .8s var(--ease)}
+@media(prefers-reduced-motion:reduce){
+  .reveal,.reveal.in{opacity:1;transform:none;transition:none}
+  html{scroll-behavior:auto}
+  .day,.voice,.offer,.step,.cta{transition:none}
+}
+
 </style>
 </head>
 <body>
@@ -822,5 +879,24 @@ footer .co{
   <a href="#offer3">初回お試しセットを見る<span class="sub">40%OFF・送料無料</span></a>
 </div>
 
+
+<script>
+/* スクロールで要素を出現させる（2026-08-25 追加）
+   対応していないブラウザ・動きを減らす設定では何もしない＝内容は常に表示される */
+(function(){
+  if (!('IntersectionObserver' in window)) return;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var t = document.querySelectorAll(
+    'section .inner > *, .day, .voice, .offer, .step, blockquote, .badge'
+  );
+  t.forEach(function(el){ el.classList.add('reveal'); });
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {rootMargin:'0px 0px -8% 0px', threshold:0.06});
+  t.forEach(function(el){ io.observe(el); });
+})();
+</script>
 </body>
 </html>
