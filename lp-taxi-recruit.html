@@ -231,6 +231,101 @@ h3{font-family:var(--serif);font-weight:700;letter-spacing:.01em}
 .fv h1{font-family:"Noto Sans JP",sans-serif;font-weight:900}
 .nums b,.calc,.tbl,.cta,.sticky a,.apply,summary{font-family:"Noto Sans JP",sans-serif}
 .worry li{font-family:"Noto Sans JP",sans-serif}
+
+/* ===== 2026-08-25 増強：図版セクション ===== */
+
+/* タイムライン（1日の流れ） */
+.tl{position:relative;margin:18px 0 8px;padding-left:6px}
+.tl::before{content:"";position:absolute;left:64px;top:8px;bottom:8px;width:2px;
+  background:linear-gradient(180deg,var(--gold),rgba(255,183,3,.25))}
+.tl .ev{position:relative;display:grid;grid-template-columns:56px 1fr;gap:22px;
+  align-items:start;margin-bottom:18px}
+.tl .ev::before{content:"";position:absolute;left:58px;top:7px;width:13px;height:13px;border-radius:50%;
+  background:#fff;border:3px solid var(--gold);box-shadow:0 0 0 3px rgba(255,183,3,.18);z-index:1}
+.tl .tm{font-size:13.5px;font-weight:900;color:var(--navy);text-align:right;
+  font-variant-numeric:tabular-nums;padding-top:2px;letter-spacing:-.02em}
+.tl .bd{background:#fff;border:1px solid var(--line);border-radius:10px;padding:13px 16px;
+  box-shadow:var(--sh-1);transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.tl .bd:hover{transform:translateY(-2px);box-shadow:var(--sh-2)}
+.tl .bd b{display:block;font-size:15.5px;font-weight:800;margin-bottom:2px}
+.tl .bd small{color:var(--sub);font-size:13.5px;line-height:1.75;display:block}
+.tl .bd.peak{border-color:var(--gold);background:linear-gradient(180deg,#FFFBF0,#FFF7E6)}
+.tl-2{display:grid;gap:26px}
+@media(min-width:721px){.tl-2{grid-template-columns:1fr 1fr;gap:34px}}
+.tl-2 h4{font-size:15px;font-weight:900;margin:0 0 6px;color:var(--navy);
+  font-family:"Noto Sans JP",sans-serif;letter-spacing:0}
+.tl-2 h4 span{display:inline-block;background:var(--navy);color:#fff;border-radius:6px;
+  font-size:11.5px;padding:3px 9px;margin-right:9px;vertical-align:2px;letter-spacing:.04em}
+
+/* 営収→給与 の棒グラフ */
+.pay-g{margin:20px 0 6px}
+.pay-g .r{display:grid;grid-template-columns:5.6em 1fr 5.6em;gap:10px;align-items:center;
+  margin-bottom:10px;font-size:14px;font-variant-numeric:tabular-nums}
+.pay-g .r .s{font-weight:800;color:var(--sub);text-align:right;font-size:13.5px}
+.pay-g .r .t{display:block;background:#E9EDF3;border-radius:999px;height:26px;overflow:hidden;
+  box-shadow:inset 0 1px 3px rgba(18,35,63,.10)}
+.pay-g .r .f{display:block;height:100%;border-radius:999px;min-width:6px;
+  background:linear-gradient(90deg,#2B4C7E,var(--navy));
+  transition:width .8s var(--ease)}
+.pay-g .r.hl .f{background:linear-gradient(90deg,var(--gold),var(--gold2))}
+.pay-g .r .v{font-weight:900;text-align:right;color:var(--navy);letter-spacing:-.02em}
+.pay-g .r.hl .v{color:var(--gold2)}
+.pay-g .cap{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:12px;font-size:12.5px;color:var(--sub)}
+.pay-g .cap i{display:inline-block;width:13px;height:13px;border-radius:3px;margin-right:6px;
+  vertical-align:-2px}
+
+/* 横スクロールの案内（スマホのみ） */
+.hint{display:none;font-size:12.5px;color:var(--sub);margin:8px 0 0;
+  font-family:"Noto Sans JP",sans-serif}
+@media(max-width:720px){.hint{display:block}}
+
+/* 比較表 */
+.cmp{width:100%;border-collapse:separate;border-spacing:0;font-size:14.5px;background:#fff;
+  border-radius:12px;overflow:hidden;min-width:520px}
+.cmp th,.cmp td{border-bottom:1px solid var(--line);padding:13px 14px;text-align:left;vertical-align:top}
+.cmp thead th{background:linear-gradient(180deg,#F8FAFD,var(--soft));font-weight:800;font-size:13.5px;
+  white-space:nowrap;font-family:"Noto Sans JP",sans-serif}
+.cmp thead th.me{background:linear-gradient(180deg,var(--navy),var(--navy2));color:#fff}
+.cmp tbody th{font-weight:800;width:30%;background:#FCFDFE}
+.cmp td.me{background:#FFFBF0;font-weight:800}
+.cmp tr:last-child th,.cmp tr:last-child td{border-bottom:none}
+.cmp .o{color:var(--gold2);font-weight:900}
+.cmp .x{color:#98A0AE}
+
+/* ステップ（入社後90日・応募フロー） */
+.steps{counter-reset:st;display:grid;gap:14px;margin:18px 0 6px}
+@media(min-width:721px){.steps{grid-template-columns:repeat(auto-fit,minmax(228px,1fr))}}
+.steps .st{position:relative;background:#fff;border:1px solid var(--line);border-radius:12px;
+  padding:20px 18px 18px;box-shadow:var(--sh-1);
+  transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.steps .st:hover{transform:translateY(-3px);box-shadow:var(--sh-2)}
+.steps .st::before{counter-increment:st;content:counter(st);
+  position:absolute;top:-13px;left:18px;width:28px;height:28px;border-radius:8px;
+  background:linear-gradient(180deg,var(--navy),var(--navy2));color:#fff;
+  font-weight:900;font-size:14px;display:flex;align-items:center;justify-content:center;
+  box-shadow:var(--sh-2);font-family:"Noto Sans JP",sans-serif}
+.steps .st b{display:block;font-size:16px;font-weight:800;margin:6px 0 5px}
+.steps .st .d{font-size:11.5px;font-weight:900;color:var(--gold2);letter-spacing:.06em;
+  font-family:"Noto Sans JP",sans-serif}
+.steps .st small{display:block;color:var(--sub);font-size:13.5px;line-height:1.8}
+
+/* 声（写真なしカード） */
+.voice.plain{gap:0;display:block;padding:24px 26px}
+.voice.plain .txt{font-size:17px}
+.vgrid{display:grid;gap:16px}
+@media(min-width:721px){.vgrid{grid-template-columns:1fr 1fr}}
+.vgrid .voice{margin-bottom:0}
+
+/* 不安 → 答えの対応 */
+.ans{display:grid;gap:12px;margin:18px 0 6px}
+.ans .a{background:#fff;border:1px solid var(--line);border-left:4px solid var(--gold);
+  border-radius:10px;padding:15px 18px;box-shadow:var(--sh-1);
+  transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.ans .a:hover{transform:translateY(-2px);box-shadow:var(--sh-2)}
+.ans .a b{display:block;font-size:15px;font-weight:800;margin-bottom:4px}
+.ans .a small{display:block;color:var(--sub);font-size:13.5px;line-height:1.8}
+.ans .a a{color:var(--navy);font-weight:800}
+
 @media(max-width:560px){
   /* スマホでは明朝が細く見えるので、見出しの太さを保つ */
   h2{font-weight:700;letter-spacing:0}
@@ -291,6 +386,21 @@ h3{font-family:var(--serif);font-weight:700;letter-spacing:.01em}
       <li>この年齢から始めて、遅くないか
         <small>周りは何歳くらいなのか。未経験は自分だけではないのか。</small></li>
     </ul>
+
+    <h3>この5つに、どこで答えているか</h3>
+    <p class="lead">読み飛ばしたい方のために、答えの場所を先に置いておきます。</p>
+    <div class="ans">
+      <div class="a"><b>① 生活できるだけ稼げるのか</b>
+        <small>歩合率と最低保障を出したうえで、<strong>営業収入がいくらならいくらになるか</strong>を早見表にしています → <a href="#pay">給与のところ</a></small></div>
+      <div class="a"><b>② 二種免許は本当に取れるのか</b>
+        <small>費用・期間・取得中の給与・落ちたときの扱い・<strong>辞めたときの返還規定</strong>まで表にしています → <a href="#license">二種免許のところ</a></small></div>
+      <div class="a"><b>③ 夜勤で身体を壊さないか</b>
+        <small>出庫から退社までを時刻で並べました。<strong>隔日勤務との比較</strong>も置いています → <a href="#day">1日の流れ</a></small></div>
+      <div class="a"><b>④ 事故を起こしたらどうなるのか</b>
+        <small>加入保険と、重大な過失があった場合の扱いを書いています → <a href="#faq">よくあるご質問</a></small></div>
+      <div class="a"><b>⑤ この年齢から始めて遅くないか</b>
+        <small>乗務員の平均年齢と未経験の割合、<strong>27歳から53歳まで4名の声</strong>を載せています → <a href="#voice">先輩の声</a></small></div>
+    </div>
   </div>
 </section>
 
@@ -301,33 +411,92 @@ h3{font-family:var(--serif);font-weight:700;letter-spacing:.01em}
     <p class="lead">good月・悪い月の両方を出します。良い月だけ載せても、入ってから話が違うとなるだけなので。</p>
 
     <div class="calc">
-      <div class="row"><span>基本給（固定）</span><span>180,000円</span></div>
-      <div class="row"><span>歩合（営業収入 × 55%）</span><span>変動</span></div>
-      <div class="row"><span>深夜手当</span><span>変動</span></div>
-      <div class="row"><span>1年目・平均的な月の総支給</span><span>約 310,000円</span></div>
+      <div class="row"><span>営業収入（1か月・1年目の平均）</span><span>約 560,000円</span></div>
+      <div class="row"><span>歩合率</span><span>× 55%</span></div>
+      <div class="row"><span>最低保障（歩合がこれを下回った月はこちら）</span><span>180,000円</span></div>
+      <div class="row"><span>1年目・平均的な月の総支給</span><span>約 308,000円</span></div>
     </div>
+    <p class="lead" style="margin-top:-4px">
+      <strong>給与は「営業収入 × 55%」の一本です。</strong>これが月180,000円を下回った月は、最低保障の180,000円をお支払いします。
+      深夜割増は法定のため、これとは別に加算されます。
+    </p>
+
+    <h3>営業収入がいくらなら、いくらになるか</h3>
+    <p class="lead">求人票の「月収40万円可能」が何を意味するか、ご自身で確かめられる形にしました。</p>
+    <div class="pay-g">
+      <div class="r"><span class="s">月 40万円</span><span class="t"><span class="f" style="width:47%"></span></span><span class="v">22.0万円</span></div>
+      <div class="r"><span class="s">月 48万円</span><span class="t"><span class="f" style="width:57%"></span></span><span class="v">26.4万円</span></div>
+      <div class="r hl"><span class="s">月 56万円</span><span class="t"><span class="f" style="width:66%"></span></span><span class="v">30.8万円</span></div>
+      <div class="r"><span class="s">月 65万円</span><span class="t"><span class="f" style="width:77%"></span></span><span class="v">35.8万円</span></div>
+      <div class="r"><span class="s">月 75万円</span><span class="t"><span class="f" style="width:88%"></span></span><span class="v">41.3万円</span></div>
+      <div class="cap">
+        <span><i style="background:linear-gradient(90deg,var(--gold),var(--gold2))"></i>1年目の平均的な月</span>
+        <span><i style="background:linear-gradient(90deg,#2B4C7E,var(--navy))"></i>それ以外</span>
+        <span>※ 総支給。ここから社会保険料・税金が引かれます</span>
+      </div>
+    </div>
+    <p class="lead">
+      <strong>「月収40万円」は、営業収入で月75万円を上げた月の話です。</strong>
+      1年目でここに届く方はいますが、毎月ではありません。だから上と下の両方を出しています。
+    </p>
 
     <div class="scroll">
       <table class="tbl">
         <tr><th>調子の良い月（総支給）</th><td>約 360,000円</td></tr>
         <tr><th>平均的な月（総支給）</th><td>約 310,000円</td></tr>
-        <tr><th><strong>落ち込んだ月（総支給）</strong></th><td><strong>約 265,000円</strong>（基本給があるため、ここが下限に近い水準です）</td></tr>
+        <tr><th><strong>落ち込んだ月（総支給）</strong></th><td><strong>約 265,000円</strong>（営業収入 約48万円の月。ここを下回り続けた場合は、最低保障の 180,000円が下限になります）</td></tr>
         <tr><th>手取りの目安</th><td>総支給の約 78〜82%（扶養・控除により変わります）</td></tr>
       </table>
     </div>
     <p class="lead">歩合の率と基本給を先に出しているのは、<strong>ご自身で計算できる状態にするため</strong>です。「月収40万円可能」だけでは、何をどれだけ売ればそうなるのか分かりません。</p>
 
-    <h3>1日の流れ（夜勤専属の場合）</h3>
-    <div class="scroll">
-      <table class="tbl">
-        <tr><th>19:00</th><td>出庫前点呼・アルコールチェック・車両点検</td></tr>
-        <tr><th>19:30</th><td>出庫。駅・繁華街を中心に営業</td></tr>
-        <tr><th>23:00〜翌2:00</th><td>もっとも売上が立つ時間帯</td></tr>
-        <tr><th>随時</th><td>休憩（時間・場所は自分で決めます。合計3時間程度）</td></tr>
-        <tr><th>翌4:30</th><td>帰庫・洗車・売上金の精算・点呼</td></tr>
-        <tr><th>翌5:30</th><td>退社</td></tr>
+  </div>
+</section>
+
+<!-- ============ 1日の流れ（タイムライン） ============ -->
+<section id="day">
+  <div class="wrap">
+    <h2>出庫から退社まで、時刻で並べます</h2>
+    <p class="lead">「夜勤」と言われても、何時から何時まで働いて、いつ寝るのかが分からないままでは応募できません。2つの勤務形態を並べます。</p>
+
+    <div class="tl-2">
+      <div>
+        <h4><span>夜勤専属</span>月13〜14乗務</h4>
+        <div class="tl">
+          <div class="ev"><div class="tm">19:00</div><div class="bd"><b>出庫前点呼</b><small>アルコールチェック・車両点検。ここは全員が同じ手順です</small></div></div>
+          <div class="ev"><div class="tm">19:30</div><div class="bd"><b>出庫</b><small>駅・繁華街を中心に営業。最初の2時間は流しが中心になります</small></div></div>
+          <div class="ev"><div class="tm">23:00<br>▼<br>翌2:00</div><div class="bd peak"><b>もっとも売上が立つ時間帯</b><small>ここで1乗務の売上の半分前後が決まります。休憩をどこに置くかが、そのまま収入に響きます</small></div></div>
+          <div class="ev"><div class="tm">随時</div><div class="bd"><b>休憩（合計3時間程度）</b><small>時間も場所も自分で決めます。指定はありません</small></div></div>
+          <div class="ev"><div class="tm">翌4:30</div><div class="bd"><b>帰庫</b><small>洗車・売上金の精算・点呼。ここに約1時間かかります</small></div></div>
+          <div class="ev"><div class="tm">翌5:30</div><div class="bd"><b>退社</b><small>日中がまるごと空きます。寝る時間は各自の組み立て次第です</small></div></div>
+        </div>
+      </div>
+      <div>
+        <h4><span>隔日勤務</span>月11〜12乗務</h4>
+        <div class="tl">
+          <div class="ev"><div class="tm">8:00</div><div class="bd"><b>出庫前点呼・出庫</b><small>朝の通勤需要から入ります</small></div></div>
+          <div class="ev"><div class="tm">12:00<br>▼<br>15:00</div><div class="bd"><b>日中</b><small>売上が落ちる時間帯。ここで長めの休憩を取る方が多いです</small></div></div>
+          <div class="ev"><div class="tm">18:00<br>▼<br>23:00</div><div class="bd peak"><b>夕方〜深夜が山</b><small>1乗務が長いぶん、山を2回取れるのが隔日勤務の利点です</small></div></div>
+          <div class="ev"><div class="tm">翌2:00</div><div class="bd"><b>帰庫・精算</b><small>拘束は約18時間（うち休憩3時間）</small></div></div>
+          <div class="ev"><div class="tm">明け</div><div class="bd"><b>明番（休み）</b><small>乗務の翌日は明番。<strong>公休と合わせると月の半分以上が休み</strong>になります</small></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll" style="margin-top:22px">
+      <table class="cmp">
+        <thead><tr><th>比べるところ</th><th class="me">夜勤専属</th><th>隔日勤務</th></tr></thead>
+        <tbody>
+          <tr><th>1乗務の長さ</th><td class="me">約10時間30分</td><td>約18時間（休憩3時間含む）</td></tr>
+          <tr><th>月の乗務回数</th><td class="me">13〜14回</td><td>11〜12回</td></tr>
+          <tr><th>日中の使い方</th><td class="me"><span class="o">毎日まるごと空く</span></td><td>明番の日のみ</td></tr>
+          <tr><th>身体の慣れ</th><td class="me">昼夜が固定されるので、リズムは作りやすい</td><td>乗務日と明番で生活が2日周期になる</td></tr>
+          <tr><th>向いている方</th><td class="me">日中に用事がある方（育児・介護・通院・副業）</td><td>まとまった休みが欲しい方</td></tr>
+        </tbody>
       </table>
     </div>
+    <p class="hint">→ 表は横にスクロールできます</p>
+    <p class="lead">どちらが良いかではなく、<strong>生活のどこを空けたいかで選ぶもの</strong>です。入社後に変更した方もいます。</p>
   </div>
 </section>
 
@@ -344,7 +513,7 @@ h3{font-family:var(--serif);font-weight:700;letter-spacing:.01em}
       </table>
     </div>
 
-    <h3>二種免許は会社が費用を負担します。ただし条件があります</h3>
+    <h3 id="license">二種免許は会社が費用を負担します。ただし条件があります</h3>
     <div class="scroll">
       <table class="tbl">
         <tr><th>費用</th><td>全額会社負担（教習所費用・試験料）</td></tr>
@@ -354,6 +523,24 @@ h3{font-family:var(--serif);font-weight:700;letter-spacing:.01em}
         <tr><th>不合格だった場合</th><td>再受験の費用も会社が負担します。回数の上限は設けていません</td></tr>
       </table>
     </div>
+
+    <h3>求人票を見るとき、この6項目だけ確認してください</h3>
+    <p class="lead">他社と比べていただいて構いません。<strong>この6つは、どこの会社でも必ず条件が決まっているのに、求人票にはあまり書かれていない項目</strong>です。当社の回答を先に埋めておきます。</p>
+    <div class="scroll">
+      <table class="cmp">
+        <thead><tr><th>確認する項目</th><th class="me">ひなた交通の場合</th><th>なぜ見るのか</th></tr></thead>
+        <tbody>
+          <tr><th>① 給与の計算式</th><td class="me">営業収入 × 55%（最低保障 180,000円）</td><td>「月収◯万円可能」だけでは、何をいくら売ればそうなるか分からない</td></tr>
+          <tr><th>② 保障の期間</th><td class="me"><span class="o">期間の定めなし</span>（毎月適用）</td><td><strong>保障が3か月だけ</strong>の会社もある。切れた月に何が起きるかが変わる</td></tr>
+          <tr><th>③ 二種免許の費用</th><td class="me">全額会社負担。<span class="o">再受験の回数に上限なし</span></td><td>「会社負担」でも、再受験は自己負担というケースがある</td></tr>
+          <tr><th>④ 取得中の給与</th><td class="me">研修手当 日額 8,000円</td><td>教習期間は乗務できない。ここが無給だと、その月の生活が変わる</td></tr>
+          <tr><th>⑤ 退職時の返還規定</th><td class="me">取得後<strong>1年未満</strong>の自己都合退職で返還</td><td><strong>いちばん揉めるところ。</strong>年数と金額の両方を確認する</td></tr>
+          <tr><th>⑥ 勤務形態を選べるか</th><td class="me">夜勤専属／隔日勤務から選択。<span class="o">入社後の変更も可</span></td><td>入社後に生活が合わなかったとき、変更できるかどうか</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="hint">→ 表は横にスクロールできます</p>
+    <p class="lead">※ 他社の条件は、その会社の求人票と就業規則でご確認ください。ここに他社名を書くようなことはしません。</p>
 
     <a class="cta" href="#apply" style="margin-top:22px">二種免許の条件について聞いてみる<span class="s">返還規定の詳細は、この後の入力フォームからご質問いただけます</span></a>
   </div>
@@ -369,6 +556,21 @@ h3{font-family:var(--serif);font-weight:700;letter-spacing:.01em}
       <div><b>88%</b><small>入社1年後の<br>在籍率</small></div>
       <div><b>44歳</b><small>乗務員の<br>平均年齢</small></div>
       <div><b>18日</b><small>二種免許取得までの<br>平均日数</small></div>
+    </div>
+
+    <h3>入社してから90日、何をしているか</h3>
+    <p class="lead">未経験の方がいちばん想像しにくいのは、免許を取ってから独り立ちするまでの間です。</p>
+    <div class="steps">
+      <div class="st"><span class="d">DAY 1-3</span><b>入社手続きと適性検査</b>
+        <small>書類・健康診断・運転適性検査。ここでいきなり乗ることはありません</small></div>
+      <div class="st"><span class="d">DAY 4-21</span><b>二種免許の教習（平均18日）</b>
+        <small>費用は全額会社負担。この期間も<strong>研修手当 日額8,000円</strong>が出るので、収入がゼロになる月はありません</small></div>
+      <div class="st"><span class="d">DAY 22-35</span><b>同乗研修（2週間）</b>
+        <small>先輩の車に同乗し、そのあと自分が運転して横で見てもらいます。接客・精算・無線の扱いはここで覚えます</small></div>
+      <div class="st"><span class="d">DAY 36-60</span><b>単独乗務の開始</b>
+        <small><strong>ここが一番きつい時期です。</strong>売上が読めず、先輩との差も見えます。最低保障があるのはこの時期のためです</small></div>
+      <div class="st"><span class="d">DAY 61-90</span><b>自分の型ができる</b>
+        <small>どの時間にどこにいるかが決まってきます。3か月目で平均に近づく方が多い、というのが実感です</small></div>
     </div>
   </div>
 </section>
@@ -388,7 +590,8 @@ h3{font-family:var(--serif);font-weight:700;letter-spacing:.01em}
       </ul>
     </div>
 
-    <h3>先輩の声</h3>
+    <h3 id="voice">先輩の声（4名）</h3>
+    <p class="lead">年代を散らしています。27歳から53歳まで、入り口はそれぞれ違いました。</p>
     <div class="voice">
       <div class="ph"><img src="lp-a-img/voice-k.jpg" alt="乗務員Kさん（架空・AI生成画像）"><small>AI生成画像</small></div>
       <div class="txt">
@@ -403,8 +606,24 @@ h3{font-family:var(--serif);font-weight:700;letter-spacing:.01em}
         <div class="who">乗務員 Tさん（36歳・前職 倉庫内作業・入社2年目）※架空の人物です</div>
       </div>
     </div>
+
+    <div class="vgrid">
+      <div class="voice plain">
+        <div class="txt">
+          「27歳で入ったので、周りは全員年上だと思っていました。実際は20代が5人いて、しかも全員未経験でした。<strong>年齢より、続けられるかどうかの話</strong>だと今は思います。」
+          <div class="who">乗務員 Sさん（27歳・前職 コンビニ店員・入社1年目）※架空の人物です</div>
+        </div>
+      </div>
+      <div class="voice plain">
+        <div class="txt">
+          「長距離をやっていたので運転は苦になりませんでした。心配だったのは体力です。<strong>拘束時間は長距離より短くなりました。</strong>ただ、接客がある分、疲れの種類は違います。」
+          <div class="who">乗務員 Mさん（53歳・前職 長距離ドライバー・入社4年目）※架空の人物です</div>
+        </div>
+      </div>
+    </div>
+
     <p class="lead" style="margin-top:14px;font-size:13.5px">
-      ※上記2名は架空の人物で、顔写真はAIで生成した画像です。実在の人物ではありません。<br>
+      ※上記4名はすべて架空の人物です。うち2名の顔写真はAIで生成した画像で、実在の人物ではありません。<br>
       実案件では、掲載許諾を得た実在のお客様・従業員の写真のみを使用します。
     </p>
 
@@ -437,11 +656,26 @@ h3{font-family:var(--serif);font-weight:700;letter-spacing:.01em}
     <div class="step"><b>転機</b>求人サイトを1か月見たが、どこも同じ文言で判断できず。最後は現役ドライバーのブログを読んで、1日の流れと収入の実際を知って応募。</div>
     <div class="step"><b>研修</b>入社後18日で二種免許を取得。その後2週間、先輩の同乗研修。道は覚えなくてよい（ナビがある）と言われて拍子抜けした。</div>
     <div class="step"><b>AFTER</b>1年後、総支給は月平均31万円前後。日中が空くので、子どもの行事にはほぼ出られるようになった。夜勤に慣れるまでは4か月かかった。</div>
+
+    <h3>応募してから入社までの流れ</h3>
+    <p class="lead">どこで断っても構いません。<strong>止まれる場所を先に示しておきます。</strong></p>
+    <div class="steps f5">
+      <div class="st"><span class="d">STEP 1</span><b>フォーム送信</b>
+        <small>約1分。<strong>履歴書は不要</strong>です</small></div>
+      <div class="st"><span class="d">STEP 2</span><b>2営業日以内に連絡</b>
+        <small>ご希望の時間帯に電話またはメールで。<strong>この時点で断って構いません</strong></small></div>
+      <div class="st"><span class="d">STEP 3</span><b>面談（60分程度）</b>
+        <small>在職中の方がほとんどです。日中・夜間どちらでも調整します</small></div>
+      <div class="st"><span class="d">STEP 4</span><b>営業所と車両の見学</b>
+        <small>点呼の様子と休憩室を見ていただきます。<strong>ここで辞退される方もいます</strong></small></div>
+      <div class="st"><span class="d">STEP 5</span><b>内定・入社日の調整</b>
+        <small>現職の引き継ぎに合わせます。入社日を3か月先にした方もいます</small></div>
+    </div>
   </div>
 </section>
 
 <!-- ============ FAQ ============ -->
-<section>
+<section id="faq">
   <div class="wrap">
     <h2>よくあるご質問</h2>
     <details><summary>道を覚えていなくても大丈夫ですか</summary><p>問題ありません。ナビと配車アプリを使います。実際、入社時に地理に自信がある方はほとんどいません。</p></details>
@@ -449,6 +683,11 @@ h3{font-family:var(--serif);font-weight:700;letter-spacing:.01em}
     <details><summary>応募したら必ず面接になりますか</summary><p>なりません。まず話を聞くだけ、という方も多くいらっしゃいます。その場でお断りいただいて構いません。</p></details>
     <details><summary>今の仕事を続けながら話を聞けますか</summary><p>可能です。日中・夜間どちらでも調整します。在職中の方がほとんどです。</p></details>
     <details><summary>何歳まで応募できますか</summary><p>年齢の上限は設けていません。乗務員の平均年齢は44歳です。</p></details>
+    <details><summary>ノルマはありますか</summary><p>ノルマはありません。ただし歩合制のため、営業収入がそのまま給与に反映されます。「ノルマが無い＝売上を気にしなくていい」ではない、という意味では正直にお伝えしておきます。</p></details>
+    <details><summary>過去に交通違反があっても応募できますか</summary><p>内容によります。二種免許の受験資格に関わるため、面談時に免許証をご持参のうえ、点数と失効歴をご確認させてください。ここで判断が変わることがあります。</p></details>
+    <details><summary>収入が安定するまで、どれくらいかかりますか</summary><p>3か月目で平均に近づく方が多い、というのが実感です。ただし個人差があります。だからこそ最低保障 180,000円を毎月適用しています。</p></details>
+    <details><summary>前職の経験は活きますか</summary><p>接客業の経験は活きます。運転経験そのものより、<strong>人と話すことが負担にならないか</strong>のほうが続くかどうかに効いています。</p></details>
+    <details><summary>入社後に勤務形態を変えられますか</summary><p>変更できます。夜勤専属で入社して、生活が合わずに隔日勤務へ移った方も、その逆もいます。</p></details>
   </div>
 </section>
 
