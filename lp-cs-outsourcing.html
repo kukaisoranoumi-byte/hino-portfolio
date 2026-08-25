@@ -225,6 +225,43 @@ h3{font-family:var(--serif);font-weight:700;letter-spacing:.01em;font-size:17.5p
 .honest{border-radius:11px;background:linear-gradient(180deg,#FFFCF4,#FFF7E8)}
 .gnav{box-shadow:0 1px 0 var(--line),0 4px 16px rgba(18,58,107,.06)}
 
+
+/* 分析レポートのサンプル（2026-08-25 追加） */
+.rep{background:#fff;border:1px solid var(--line);border-radius:11px;padding:20px 22px;
+  box-shadow:var(--sh-2);margin:16px 0 6px}
+.rep .cap{font-size:11.5px;font-weight:900;letter-spacing:.06em;color:var(--acc);
+  margin-bottom:2px}
+.rep .ttl{font-size:16px;font-weight:900;margin-bottom:14px;line-height:1.45}
+.rep .r{display:grid;grid-template-columns:8.4em 1fr 4.2em;gap:9px;align-items:center;
+  margin-bottom:9px;font-size:13.5px;font-variant-numeric:tabular-nums}
+.rep .r .l{font-weight:800;line-height:1.4}
+.rep .r .t{display:block;background:#EBF0F5;border-radius:999px;height:22px;overflow:hidden;
+  box-shadow:inset 0 1px 3px rgba(18,58,107,.10)}
+.rep .r .f{display:block;height:100%;border-radius:999px;min-width:5px;
+  background:linear-gradient(90deg,#2A8FE0,var(--navy))}
+.rep .r.top .f{background:linear-gradient(90deg,#F0A020,#D97706)}
+.rep .r .v{text-align:right;font-weight:900;color:var(--navy)}
+.rep .r.top .v{color:#B45309}
+.rep .note{margin-top:14px;padding-top:14px;border-top:1px dashed var(--line);
+  font-size:13.5px;line-height:1.85;color:var(--sub)}
+.rep .note b{color:var(--ink)}
+@media(max-width:560px){.rep .r{grid-template-columns:7em 1fr 3.6em;font-size:12.5px}}
+
+
+/* 2列の比較表はスマホでも横スクロールなしで収める（2026-08-25） */
+.price.narrow{min-width:0;font-size:13.5px}
+.price.narrow th,.price.narrow td{padding:10px 9px}
+.price.narrow tbody th{width:30%}
+.price.narrow .amt{font-size:18px}
+@media(max-width:420px){
+  .price.narrow{font-size:12.5px}
+  .price.narrow th,.price.narrow td{padding:9px 7px}
+  .price.narrow .amt{font-size:16px}
+}
+/* 横スクロールの案内 */
+.hint{display:none;font-size:12.5px;color:var(--sub);margin:8px 0 0}
+@media(max-width:720px){.hint{display:block}}
+
 /* マイクロインタラクション */
 .issue div,.solve > div,.sch > div,.tl div,.nums div,details,.failbox{
   transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
@@ -370,6 +407,41 @@ details[open]{box-shadow:var(--sh-2)}
     </div>
     <p class="tiny" style="margin-top:14px">※3点とも、解約後もそのままお使いいただけます。返却・削除の義務はありません。</p>
     <a class="cta ghost" href="#doc" style="margin-top:16px">納品物のサンプルを見る<span class="s">資料に3点の実物サンプルを同梱しています</span></a>
+
+    <h3 style="margin-top:38px">分析レポートには、こう書きます</h3>
+    <p class="lead">3点の納品物のうち、いちばん分かりにくいのが分析レポートです。<strong>実際にお渡ししている形を、そのまま載せます。</strong></p>
+
+    <div class="rep">
+      <div class="cap">MONTHLY REPORT ／ 2026年7月分（サンプル）</div>
+      <div class="ttl">問い合わせの種類 上位5（全210件）</div>
+      <div class="r top"><span class="l">返品・交換の条件</span><span class="t"><span class="f" style="width:100%"></span></span><span class="v">58件</span></div>
+      <div class="r"><span class="l">配送状況の確認</span><span class="t"><span class="f" style="width:81%"></span></span><span class="v">47件</span></div>
+      <div class="r"><span class="l">サイズ・仕様</span><span class="t"><span class="f" style="width:67%"></span></span><span class="v">39件</span></div>
+      <div class="r"><span class="l">支払い方法</span><span class="t"><span class="f" style="width:53%"></span></span><span class="v">31件</span></div>
+      <div class="r"><span class="l">その他</span><span class="t"><span class="f" style="width:60%"></span></span><span class="v">35件</span></div>
+      <div class="note">
+        <b>［改善提案］返品・交換が全体の28%を占めています。</b>内容を読むと「返送料はどちらが持つのか」が分からず問い合わせている方が大半でした。
+        <b>商品ページの返品欄に「返送料は当社負担」の1行を追加することを提案します。</b>この種類が消えれば、月間の問い合わせは約2割減ります。<br>
+        <span style="font-size:12.5px">※ 減った場合、当社の請求も下がります。それでも書いているのは、ここが分析レポートの目的だからです。</span>
+      </div>
+    </div>
+    <p class="tiny">※ サンプル用の仮のデータです。実際は御社の問い合わせ内容をもとに作成します。</p>
+
+    <h3 style="margin-top:38px">自社で続ける／一般的な代行／当社</h3>
+    <p class="lead">どれが正解かではなく、<strong>何を優先するかで変わります。</strong>当社が向かない場合は、そう書いています。</p>
+    <div class="scroll">
+      <table class="price">
+        <thead><tr><th style="background:var(--soft);color:var(--ink)"></th><th>自社で続ける</th><th>一般的な代行</th><th class="mid">サポートブリッジ</th></tr></thead>
+        <tbody>
+          <tr><th>ナレッジ</th><td>残る</td><td>残らない</td><td class="mid">残る（毎月納品）</td></tr>
+          <tr><th>立ち上げ</th><td>採用2〜3か月</td><td>1〜2週間</td><td class="mid">3週間</td></tr>
+          <tr><th>料金の見え方</th><td>人件費として見える</td><td>オプションで増えやすい</td><td class="mid">定額＋超過単価を明記</td></tr>
+          <tr><th>内製に戻すとき</th><td>—</td><td>引き継ぎ資料を新たに作る</td><td class="mid">そのまま戻せる</td></tr>
+          <tr><th>向く件数</th><td>月50件以下</td><td>件数だけが多い場合</td><td class="mid">月100〜600件</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tiny">→ 表は横にスクロールできます。他社名は書きません。実際に検討される場合は、各社の見積書と契約書でご確認ください。</p>
   </div>
 </section>
 
@@ -398,7 +470,42 @@ details[open]{box-shadow:var(--sh-2)}
         </tbody>
       </table>
     </div>
+    <p class="hint">→ 表は横にスクロールできます</p>
     <p class="tiny">上記以外の費用はかかりません。オプションによる追加課金はありません。</p>
+
+    <h3 style="margin-top:38px">自社でパート1名を採用した場合と比べる</h3>
+    <p class="lead">月300件・スタンダードプランで比較します。<strong>金額はほぼ同じです。</strong>違うのは、残るものと、立ち上がるまでの時間です。</p>
+    <div class="scroll">
+      <table class="price narrow">
+        <thead><tr><th style="background:var(--soft);color:var(--ink)"></th><th>自社でパート1名</th><th class="mid">当社スタンダード</th></tr></thead>
+        <tbody>
+          <tr><th>月の費用</th>
+            <td><span class="amt">96,000<small>円</small></span><small>時給1,200円 × 月80時間</small></td>
+            <td class="mid"><span class="amt">80,000<small>円</small></span><small>納品物3点を含む</small></td></tr>
+          <tr><th>立ち上がるまで</th><td>求人2か月＋教育1か月</td><td class="mid">3週間</td></tr>
+          <tr><th>欠員・退職のとき</th><td>業務が止まる</td><td class="mid">代替担当が入る</td></tr>
+          <tr><th>対応時間</th><td>シフト次第</td><td class="mid">平日 9:00〜19:00</td></tr>
+          <tr><th>残るもの</th><td>本人の頭の中</td><td class="mid">FAQ・マニュアル・分析レポート（御社の所有物）</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3 style="margin-top:38px">件数によって、起きていることが違います</h3>
+    <p class="lead">プランの違いは対応件数だけではありません。<strong>その件数のとき、社内で何が起きているか</strong>で選んでください。</p>
+    <div class="scroll">
+      <table class="price">
+        <thead><tr><th style="background:var(--soft);color:var(--ink)"></th><th>月100件<br><small style="font-weight:700">ライト</small></th><th class="mid">月300件<br><small style="font-weight:700">スタンダード</small></th><th>月600件<br><small style="font-weight:700">フル</small></th></tr></thead>
+        <tbody>
+          <tr><th>社内で使っている時間</th><td>月 32時間前後</td><td class="mid">月 95時間前後</td><td>月 190時間前後</td></tr>
+          <tr><th>いま起きていること</th><td>片手間で回るが、FAQを作る時間がない</td><td class="mid">専任が要るが、1名を採るには中途半端</td><td>1名では回らない。品質が人によって割れる</td></tr>
+          <tr><th>当社の体制</th><td>主担当 1名</td><td class="mid">主担当＋副担当</td><td>専任チーム 3名</td></tr>
+          <tr><th>この段階の目的</th><td>まず記録を残したい</td><td class="mid">属人化を止めたい</td><td>品質を揃えたい</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="hint">→ 表は横にスクロールできます</p>
+    <p class="tiny">※ 時間は「月210件で68時間」の実績から件数比で概算したものです。問い合わせの種類によって前後します。<br>※ <strong>月50件以下の場合は、当社をお勧めしません。</strong>最低プランでも割高になります。</p>
+
+    <p class="tiny" style="margin-top:26px">※ 削減時間の平均は月68時間です。時給1,200円で換算すると <strong>81,600円相当</strong>。<strong>金額で見ると差はほとんどありません。</strong>それでもお勧めするのは、納品物3点が残るからです。<br>※ 金額はすべてサンプル用の仮値です。</p>
   </div>
 </section>
 
@@ -414,6 +521,23 @@ details[open]{box-shadow:var(--sh-2)}
       <div><b>7社</b><small>納品物をもとに<br>内製へ戻された社数</small></div>
     </div>
     <p class="tiny" style="margin-top:12px">最後の数字を出しているのは、<strong>内製に戻ることを想定した設計だからです。</strong>戻れない状態にして契約を続けさせる方法は取っていません。</p>
+
+    <h3 style="margin-top:38px">導入前と、3か月後</h3>
+    <p class="lead">月210件のEC事業者の例です。<strong>減ったのは問い合わせ件数ではなく、社内が使っていた時間です。</strong></p>
+    <div class="scroll">
+      <table class="price narrow">
+        <thead><tr><th style="background:var(--soft);color:var(--ink)"></th><th>導入前</th><th class="mid">導入 3か月後</th></tr></thead>
+        <tbody>
+          <tr><th>初回応答まで</th><td>平均 2日</td><td class="mid"><span class="amt">1.5<small>時間</small></span></td></tr>
+          <tr><th>社内の対応工数</th><td>月 68時間</td><td class="mid"><span class="amt">月 4<small>時間</small></span><small>エスカレーション分のみ</small></td></tr>
+          <tr><th>対応する人</th><td>責任者＋担当2名が片手間</td><td class="mid">専任チームが全件</td></tr>
+          <tr><th>FAQ</th><td>無し（毎回ゼロから回答）</td><td class="mid">毎月更新・月42件追記</td></tr>
+          <tr><th>月間の問い合わせ件数</th><td>210件</td><td class="mid">168件<small>FAQ掲載で2割減</small></td></tr>
+          <tr><th>残っている資産</th><td>個人の記憶</td><td class="mid">FAQ・マニュアル・分析レポート</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tiny">※ サンプル用の想定事例です。<strong>問い合わせ件数が減ると当社の売上も下がりますが、それを含めて設計しています。</strong></p>
   </div>
 </section>
 
@@ -427,6 +551,16 @@ details[open]{box-shadow:var(--sh-2)}
       <div><b>WEEK 2</b><div class="t">ご確認・修正</div><small>回答の言い回しとエスカレーション条件を御社にご確認いただきます。</small></div>
       <div><b>WEEK 3</b><div class="t">運用開始</div><small>最初の2週間は全件を共有し、ズレがあればその都度修正します。</small></div>
     </div>
+
+    <h3 style="margin-top:38px">問い合わせが来てから、返るまで</h3>
+    <p class="lead">「外に出した後、中で何が起きているのか」が見えないと、任せる判断はできません。運用開始後の1件の流れです。</p>
+    <div class="sch">
+      <div><b>STEP 01 ／ 0分</b><div class="t">受信</div><small>御社の窓口に届いた問い合わせが、そのまま当社の共有画面に入ります。転送設定のみで、ツールの入れ替えは不要です。</small></div>
+      <div><b>STEP 02 ／ 〜30分</b><div class="t">一次判定</div><small>マニュアルの回答基準に当たるかを確認します。<strong>基準外はここで止めます。</strong></small></div>
+      <div><b>STEP 03 ／ 平均1.5時間</b><div class="t">回答／エスカレーション</div><small>基準内は当社が回答。基準外は回答せず、経緯を要約して御社にお渡しします。</small></div>
+      <div><b>STEP 04 ／ 当日中</b><div class="t">記録</div><small>FAQ追記の候補としてタグ付け。月末にまとめて分析レポートになります。</small></div>
+    </div>
+    <p class="tiny">※ 御社の社名で対応します。当社名は出しません。対応履歴はいつでもご覧いただけます。</p>
   </div>
 </section>
 
@@ -464,6 +598,14 @@ details[open]{box-shadow:var(--sh-2)}
     <div class="q">
       <div class="txt">「FAQを渡してもらえるので、そのままサイトに載せました。その結果、問い合わせ自体が2割減っています。減ると当社の売上も下がるはずですが、そこを提案してくるのが意外でした。」</div>
       <div class="who">SaaS／従業員40名／カスタマーサクセス責任者 ※架空の事例です</div>
+    </div>
+    <div class="q">
+      <div class="txt">「稟議で止まると思っていました。<strong>体制図と契約書のひな形が資料に入っていたので、そのまま回覧できた</strong>のが大きいです。決裁まで2週間かかりませんでした。」</div>
+      <div class="who">製造業／従業員120名／情報システム部 ※架空の事例です</div>
+    </div>
+    <div class="q">
+      <div class="txt">「正直、最初は安いところを探していました。3社に見積もりを取って、<strong>超過分の単価が最初から書いてあったのはここだけ</strong>でした。結果として一番高くありませんでした。」</div>
+      <div class="who">通販（食品）／従業員18名／代表 ※架空の事例です</div>
     </div>
 
     <h3>会社概要</h3>
@@ -504,6 +646,24 @@ details[open]{box-shadow:var(--sh-2)}
     <details><summary>途中で内製に戻せますか</summary><p>戻せます。マニュアルとFAQは御社の所有物として毎月お渡ししているため、引き継ぎ資料を別途作る必要がありません。解約は1か月単位です（最低契約期間3か月経過後）。</p></details>
     <details><summary>件数が月によって大きく変動します</summary><p>超過分は1件単位の課金です。プランの変更は月単位で可能です。</p></details>
     <details><summary>まず相談だけでも可能ですか</summary><p>可能です。資料請求いただいた方には、現在の件数と体制をお伺いする40分程度のオンライン面談をご案内しています。ご相談のみで終了して構いません。</p></details>
+    <details><summary>対応時間外に来た問い合わせはどうなりますか</summary><p>翌営業日の開始時に順次対応します。緊急度の高い種類については、時間外の一次返信テンプレートを事前に決めておくことも可能です。</p></details>
+    <details><summary>電話は誰が出るのですか。社名はどうなりますか</summary><p><strong>御社の社名で対応します。</strong>当社名は出しません。担当者名は御社と相談のうえ決めます。</p></details>
+    <details><summary>いま使っているツールをそのまま使えますか</summary><p>使えます。御社の窓口から当社の共有画面へ転送する設定のみで、ツールの入れ替えは不要です。既存の対応履歴もそのまま残ります。</p></details>
+    <details><summary>繁忙期だけ件数を増やせますか</summary><p>可能です。超過分は1件単位の課金なので、プラン変更をせずにそのまま吸収できます。あらかじめ見込みを共有いただければ、体制を厚くします。</p></details>
+    <details><summary>担当者は固定されますか</summary><p>主担当は固定します。ただし<strong>1名だけに依存させません。</strong>マニュアルを共有した副担当を必ず置き、欠員時も対応が止まらない体制にしています。</p></details>
+  </div>
+</section>
+
+<!-- 稟議の想定質問 -->
+<section>
+  <div class="wrap">
+    <h2>稟議で必ず聞かれる5つと、その答え</h2>
+    <p class="lead">検討する方が止まるのは、たいてい<strong>社内で説明できないとき</strong>です。想定される質問に、先に答えておきます。</p>
+    <details><summary>Q. 今の担当がやれば済む話では？</summary><p>月210件の例では、社内が使っていた時間は<strong>月68時間</strong>でした。時給1,200円で換算して81,600円分です。「担当がやる」は、その時間を本来の業務から引いている、という意味になります。</p></details>
+    <details><summary>Q. 対応だけなら、もっと安い会社があるのでは？</summary><p>あります。当社の月額には<strong>FAQ・対応マニュアル・分析レポートの作成工数が含まれています。</strong>対応のみの他社と比べる場合は、比較する項目が違うことをご確認ください。</p></details>
+    <details><summary>Q. 情報漏洩のリスクは？</summary><p>契約時にNDAを締結し、<strong>担当者個別にも誓約書</strong>を取得しています。御社のデータは担当者以外閲覧できず、操作ログを保管しています。解約時は当社側のデータを30日以内に削除します。</p></details>
+    <details><summary>Q. 品質はどう担保するのか？</summary><p>運用開始後の<strong>最初の2週間は全件を共有</strong>し、ズレがあればその都度修正します。回答基準は文書として御社にお渡ししているので、判断が属人化しません。</p></details>
+    <details><summary>Q. 合わなかったら、やめられるのか？</summary><p>最低契約期間は3か月です。<strong>以降は1か月単位で解約でき、解約金はありません。</strong>納品物3点は御社の所有物なので、そのまま自社運用に移せます。<strong>引き継ぎ資料を新たに作る必要がありません。</strong></p></details>
   </div>
 </section>
 
