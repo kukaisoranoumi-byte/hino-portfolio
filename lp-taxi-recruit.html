@@ -175,6 +175,10 @@ section.closing:nth-of-type(even){background:linear-gradient(160deg,var(--navy) 
 .closing h2{color:#fff}
 .closing h2::after{background:linear-gradient(90deg,var(--gold),var(--gold2))}
 .closing .lead{color:#CBD6E6}
+/* 紺背景の上では --sh-gold（アンバー）だけだと沈み込む影にならず光暈にしかならない。
+   その面の一番濃い色（navy）を薄めた影を重ねて、浮いて見えるようにする */
+.closing .cta{box-shadow:0 2px 6px rgba(6,12,24,.45),0 18px 40px rgba(6,12,24,.50),0 0 22px rgba(255,183,3,.22)}
+.closing .cta:hover{box-shadow:0 3px 8px rgba(6,12,24,.5),0 24px 48px rgba(6,12,24,.55),0 0 26px rgba(255,183,3,.3)}
 
 footer{background:#0C1728;color:#8894A8;font-size:13px;padding:36px 0 104px}
 footer a{color:#8894A8}
@@ -710,7 +714,7 @@ h3{font-family:var(--serif);font-weight:700;letter-spacing:.01em}
         <tr><th>ご連絡</th><td>2営業日以内。ご希望の時間帯にご連絡します</td></tr>
       </table>
     </div>
-    <a class="cta" href="#apply" style="margin-top:20px">1分で応募する（履歴書は後日でOK）<span class="s">まずは話を聞くだけでも構いません</span></a>
+    <a class="cta" href="#apply" style="margin-top:20px">まずは1分で連絡する<span class="s">履歴書は後日でOK・応募＝面接確約ではありません</span></a>
   </div>
 </section>
 
