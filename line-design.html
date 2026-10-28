@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="ja">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>名刺QRのLINE設計図</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=BIZ+UDPGothic:wght@400;700&display=swap">
+<style>
+/* 設計図の型：ホワイトボード（方眼）の上に、届くもの＝白い箱、きっかけ＝緑の箱、アクション＝付箋。図は横にスクロールできる箱に入れて全幅で見せる */
+:root{
+  --bg:#f1f4f3; --board:#fbfcfc; --grid:#dfe7e4; --paper:#ffffff; --ink:#17302b; --sub:#4f6661; --line:#b8c9c3;
+  --accent:#1a8a62; --accent-soft:#e2f2eb; --sticky:#fff1a8; --sticky-line:#e3cf5a;
+  --body:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans-serif;
+  --util:"BIZ UDPGothic","Hiragino Kaku Gothic ProN",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0f1816; --board:#13201d; --grid:#1f2e2a; --paper:#1a2925; --ink:#e3eeea; --sub:#a3b8b2; --line:#3a514b;
+  --accent:#4cc895; --accent-soft:#173a2d; --sticky:#4a4320; --sticky-line:#7d6f2c; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1816; --board:#13201d; --grid:#1f2e2a; --paper:#1a2925; --ink:#e3eeea; --sub:#a3b8b2; --line:#3a514b;
+  --accent:#4cc895; --accent-soft:#173a2d; --sticky:#4a4320; --sticky-line:#7d6f2c; color-scheme:dark}
+html{font-size:21px}
+@media (max-width:640px){html{font-size:17px}}
+@media print{html{font-size:15px}}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1rem;line-height:1.85;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:1.6rem 3rem}
+.wrap{max-width:64rem;margin:0 auto;display:flex;flex-direction:column;gap:2.2rem}
+.prose{max-width:44em}
+h1{font-weight:900;font-size:clamp(1.6rem,4.2vw,2.3rem);line-height:1.35;margin:0;text-wrap:balance}
+h2{font-weight:700;font-size:clamp(1.35rem,3.3vw,2rem);line-height:1.4;margin:0;text-wrap:balance}
+p{margin:.35rem 0}
+.eyebrow{font-family:var(--util);font-size:.78rem;letter-spacing:.08em;color:var(--accent);font-weight:700}
+.lead{color:var(--sub)}
+section{display:flex;flex-direction:column;gap:.6rem}
+.legend{display:flex;flex-wrap:wrap;gap:.5rem 1.2rem;font-size:.85rem;color:var(--sub)}
+.legend span{display:inline-flex;align-items:center;gap:.4rem}
+.sw{display:inline-block;width:1.4rem;height:.9rem;border-radius:.2rem;border:1.5px solid var(--line);background:var(--paper)}
+.sw.trig{background:var(--accent-soft);border-color:var(--accent)}
+.sw.note{background:var(--sticky);border-color:var(--sticky-line);border-radius:1px}
+.boardwrap{overflow-x:auto;border:1px solid var(--line);border-radius:.6rem;
+  background-color:var(--board);background-image:radial-gradient(var(--grid) 1.2px,transparent 1.3px);background-size:22px 22px}
+.boardwrap svg{display:block;max-width:none;height:auto}
+figure{margin:0;display:flex;flex-direction:column;gap:.4rem}
+figcaption{font-size:.88rem;color:var(--sub);max-width:44em}
+/* SVGの中の部品 */
+.bx{stroke-width:1.5}
+.bx.msg{fill:var(--paper);stroke:var(--line)}
+.bx.trig{fill:var(--accent-soft);stroke:var(--accent)}
+.bx.note{fill:var(--sticky);stroke:var(--sticky-line)}
+.bx.plain{fill:none;stroke:none}
+svg text{font-family:var(--body);fill:var(--ink)}
+.ttl{font-size:16px;font-weight:700}
+.ln{font-size:16px}
+.kind{font-family:var(--util);font-size:12px;fill:var(--accent);font-weight:700}
+.lbl{font-size:14px;fill:var(--sub);font-weight:700}
+.ar{fill:none;stroke:var(--sub);stroke-width:1.6}
+.ar.dash{stroke-dasharray:5 4}
+.ahp{fill:var(--sub)}
+/* 表 */
+.tw{overflow-x:auto;background:var(--paper);border:1px solid var(--line);border-radius:.5rem}
+.tw table{border-collapse:collapse;width:100%;min-width:31rem;font-size:.9rem}
+th,td{text-align:left;padding:.5rem .75rem;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--util);font-size:.78rem;color:var(--sub);font-weight:700;background:var(--accent-soft)}
+tr:last-child td{border-bottom:none}
+.cards{display:grid;gap:.8rem;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr))}
+.pf{background:var(--paper);border:1px solid var(--line);border-radius:.6rem;overflow:hidden;min-width:0}
+.pf b{display:block;padding:.7rem 1rem .1rem;font-size:1.05rem}
+.pf small{display:block;padding:0 1rem .5rem;color:var(--sub);font-family:var(--util);font-size:.72rem}
+.pf div{border-top:1px solid var(--line);padding:.45rem 1rem;font-size:.86rem;line-height:1.6}
+.pf div em{font-style:normal;color:var(--accent);font-weight:700;display:block}
+.note{background:var(--sticky);border:1px solid var(--sticky-line);padding:.6rem .9rem;border-radius:.2rem;max-width:44em;font-size:.92rem}
+footer{color:var(--sub);font-size:.82rem;max-width:44em}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+
+<div class="wrap">
+
+<header class="prose" style="display:flex;flex-direction:column;gap:.4rem">
+  <div class="eyebrow">LINE構築の設計図 ／ 2026年10月</div>
+  <h1>名刺のQRから相談まで、押すと何が起きるか</h1>
+  <p class="lead">このLINEで友だちがボタンを押したとき、何が届き、裏で何が記録されるかを、箱と矢印で描いた設計図です。Lステップのフリープラン（シナリオ1つ・タグ10個・月200通）の中で組んでいます。</p>
+  <div class="legend">
+    <span><i class="sw trig"></i>きっかけ（友だちの操作）</span>
+    <span><i class="sw"></i>届くもの（右上の小さい字はテンプレート名）</span>
+    <span><i class="sw note"></i>付箋＝裏で動くこと（タグ・友だち情報）</span>
+    <span>点線の矢印＝補足</span>
+  </div>
+</header>
+
+<section>
+  <div class="eyebrow">図1</div>
+  <h2>全体の流れ</h2>
+  <figure>
+    <div class="boardwrap"><svg viewBox="0 0 1180 640" role="img" aria-label="名刺のQRから友だち追加、あいさつ、リッチメニューの6つのボタン、行き先、相談までの流れ" style="width:1180px"><defs><marker id="ah-all" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="ahp" d="M0,0 L10,5 L0,10 z"/></marker></defs><rect class="bx trig" x="40" y="50" width="200" height="76" rx="10"/><text class="kind" x="228" y="44" text-anchor="end">入口</text><text class="ttl" x="52" y="78">名刺の裏のQR</text><text class="ln" x="52" y="106">オフライン会で名刺交換</text><rect class="bx trig" x="320" y="50" width="250" height="76" rx="10"/><text class="kind" x="558" y="44" text-anchor="end">きっかけ</text><text class="ttl" x="332" y="78">友だち追加</text><text class="ln" x="332" y="106">友だち追加時設定が動く</text><rect class="bx msg" x="650" y="50" width="330" height="100" rx="10"/><text class="kind" x="968" y="44" text-anchor="end">届くもの</text><text class="ttl" x="662" y="78">あいさつ（パック）</text><text class="ln" x="662" y="106">テキスト：あいさつ</text><text class="ln" x="662" y="130">カード：まずはこちらから</text><path class="ar" d="M240,88 L320,88" marker-end="url(#ah-all)"/><text class="lbl" x="280" y="80" text-anchor="middle">読み取る</text><path class="ar" d="M570,88 L650,100" marker-end="url(#ah-all)"/><text class="lbl" x="610" y="86" text-anchor="middle">すぐ送る</text><rect class="bx note" x="650" y="175" width="330" height="100" rx="2"/><text class="ttl" x="662" y="203">カードのボタン</text><text class="ln" x="662" y="231">実績を見る／集客診断をやってみる</text><text class="ln" x="662" y="255">／自己紹介を読む（メニューと同じ先）</text><path class="ar dash" d="M815,150 L815,175" marker-end="url(#ah-all)"/><rect class="bx trig" x="40" y="290" width="220" height="196" rx="10"/><text class="kind" x="248" y="284" text-anchor="end">いつでも押せる</text><text class="ttl" x="52" y="318">リッチメニュー</text><text class="ln" x="52" y="346">自己紹介</text><text class="ln" x="52" y="370">自己PR</text><text class="ln" x="52" y="394">実績を見る</text><text class="ln" x="52" y="418">集客診断</text><text class="ln" x="52" y="442">設計書</text><text class="ln" x="52" y="466">相談する</text><rect class="bx msg" x="420" y="290" width="330" height="48" rx="10"/><text class="ttl" x="432" y="318">自己紹介　テキスト＋カード</text><rect class="bx msg" x="420" y="345" width="330" height="48" rx="10"/><text class="ttl" x="432" y="373">自己PR　テキスト＋カード</text><rect class="bx msg" x="420" y="400" width="330" height="48" rx="10"/><text class="ttl" x="432" y="428">実績　カルーセル3枚</text><rect class="bx msg" x="420" y="455" width="330" height="48" rx="10"/><text class="ttl" x="432" y="483">集客診断　入口→Q1〜Q3→結果</text><rect class="bx msg" x="420" y="510" width="330" height="48" rx="10"/><text class="ttl" x="432" y="538">設計書　このページへのリンク</text><rect class="bx msg" x="420" y="565" width="330" height="48" rx="10"/><text class="ttl" x="432" y="593">相談　予約／フォームを選ぶ</text><path class="ar" d="M260,341 L340,341 L340,314 L420,314" marker-end="url(#ah-all)"/><path class="ar" d="M260,365 L340,365 L340,369 L420,369" marker-end="url(#ah-all)"/><path class="ar" d="M260,389 L340,389 L340,424 L420,424" marker-end="url(#ah-all)"/><path class="ar" d="M260,413 L340,413 L340,479 L420,479" marker-end="url(#ah-all)"/><path class="ar" d="M260,437 L340,437 L340,534 L420,534" marker-end="url(#ah-all)"/><path class="ar" d="M260,461 L340,461 L340,589 L420,589" marker-end="url(#ah-all)"/><rect class="bx plain" x="285" y="255" width="120" height="48" rx="10"/><text class="ttl" x="297" y="283">押すと届く</text><path class="ar" d="M750,424 L800,424 L800,589 L750,589" marker-end="url(#ah-all)"/><path class="ar" d="M750,479 L780,479 L780,589 L750,589" marker-end="url(#ah-all)"/><rect class="bx note" x="820" y="400" width="320" height="100" rx="2"/><text class="ttl" x="832" y="428">実績と診断の結果から</text><text class="ln" x="832" y="456">相談へつながる道を用意する</text><text class="ln" x="832" y="480">（どこから来ても最後は相談）</text></svg></div>
+    <figcaption>友だち追加の直後にあいさつが届き、そのあとはリッチメニューの6つのボタンから、見たいものを選ぶ形です。実績と診断の結果からは、相談へ進めるようにしています。追いかけの配信はありません。</figcaption>
+  </figure>
+</section>
+
+<section>
+  <div class="eyebrow">図2</div>
+  <h2>友だち追加の直後</h2>
+  <div class="tw"><table>
+    <tr><th>どこで設定するか</th><th>動くこと</th><th>理由</th></tr>
+    <tr><td>友だち追加時設定</td><td>友だち情報「友だち登録日」←アクションの実行日</td><td>いつ友だちになったかを残す</td></tr>
+    <tr><td>友だち追加時設定</td><td>テンプレート送信「友だち追加時)あいさつ（パック）」</td><td>友だち追加の直後に届く返事は、通数に入らない</td></tr>
+    <tr><td>シナリオ</td><td>使わない</td><td>フリープランで1つしか作れないので、空けておく。あいさつは友だち追加時設定だけで送れる</td></tr>
+  </table></div>
+</section>
+
+<section>
+  <div class="eyebrow">図3</div>
+  <h2>リッチメニューのボタンと、その先</h2>
+  <p class="prose">リッチメニューはLINE公式アカウント側で作ります。ボタンを押すと、ボタン名の文字が送られ、Lステップの自動応答がそれを受けて返事を送ります。返事は「すぐに送信する」なので、通数に入りません。</p>
+  <div class="tw"><table>
+    <tr><th>ボタン</th><th>送られる文字</th><th>自動応答で届くもの</th><th>付箋（裏で動くこと）</th></tr>
+    <tr><td>自己紹介</td><td>自己紹介</td><td>メニュー)自己紹介（テキスト＋カード）</td><td>タグ「自己紹介_見た」／最終反応日／反応スコア＋1</td></tr>
+    <tr><td>自己PR</td><td>自己PR</td><td>メニュー)自己PR（テキスト＋カード）</td><td>最終反応日／反応スコア＋1</td></tr>
+    <tr><td>実績を見る</td><td>実績を見る</td><td>メニュー)実績（カルーセル3枚）</td><td>最終反応日／反応スコア＋1</td></tr>
+    <tr><td>集客診断</td><td>集客診断</td><td>診断)入口</td><td>最終反応日／反応スコア＋1</td></tr>
+    <tr><td>設計書</td><td>設計書</td><td>メニュー)設計書（このページへのリンク）</td><td>タグ「実績_LINE_見た」／最終反応日／反応スコア＋1</td></tr>
+    <tr><td>相談する</td><td>相談する</td><td>相談)入口（カード）</td><td>最終反応日／反応スコア＋1</td></tr>
+  </table></div>
+</section>
+
+<section>
+  <div class="eyebrow">図4</div>
+  <h2>実績のカルーセル3枚</h2>
+  <div class="cards">
+    <div class="pf"><b>広告運用</b><small>メニュー)実績 1枚目 ／ 診断の結果Aと同じ先</small>
+      <div><em>配信の記録を見る</em>Notion（Meta広告）を開く</div>
+      <div><em>バナーを見る</em>お日様珈琲15点のギャラリーを開く</div>
+      <div><em>この分野で相談する</em>相談)入口を送る</div></div>
+    <div class="pf"><b>LP制作</b><small>メニュー)実績 2枚目 ／ 診断の結果Bと同じ先</small>
+      <div><em>LPを1本見てみる</em>お日様珈琲のLPを開く</div>
+      <div><em>LP制作の記録を見る</em>Notion（LP制作）を開く</div>
+      <div><em>この分野で相談する</em>相談)入口を送る</div></div>
+    <div class="pf"><b>LINE構築</b><small>メニュー)実績 3枚目 ／ 診断の結果Cと同じ先</small>
+      <div><em>設計書を見る</em>このページを開く</div>
+      <div><em>診断を試す</em>診断)入口を送る</div>
+      <div><em>この分野で相談する</em>相談)入口を送る</div></div>
+  </div>
+  <p class="prose">URLを開くボタンには、押したときの動き（タグなど）を付けられません。フリープランではURLのクリック数も測れないため、URLのボタンは押した人がすぐページを開ける形を優先しました。どの実績に興味を持ったかは、相談のときに伺います。</p>
+</section>
+
+<section>
+  <div class="eyebrow">図5</div>
+  <h2>集客診断</h2>
+  <figure>
+    <div class="boardwrap"><svg viewBox="0 0 1180 900" role="img" aria-label="集客診断：入口からQ1〜Q3を順に聞き、最初に「ない」と答えた段で結果AからCへ、全部あれば結果Dへ進む" style="width:1180px"><defs><marker id="ah-quiz" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="ahp" d="M0,0 L10,5 L0,10 z"/></marker></defs><rect class="bx msg" x="40" y="40" width="400" height="100" rx="10"/><text class="kind" x="428" y="34" text-anchor="end">診断)入口</text><text class="ttl" x="52" y="68">入口（カルーセル）</text><text class="ln" x="52" y="96">集客、どこから手をつける？</text><text class="ln" x="52" y="120">［診断をはじめる］</text><rect class="bx msg" x="40" y="200" width="400" height="100" rx="10"/><text class="kind" x="428" y="194" text-anchor="end">診断)Q1</text><text class="ttl" x="52" y="228">Q1 新しいお客さんが来る仕組みは？</text><text class="ln" x="52" y="256">［ある］［ない］</text><text class="ln" x="52" y="280">例：広告やSNS</text><rect class="bx msg" x="40" y="380" width="400" height="100" rx="10"/><text class="kind" x="428" y="374" text-anchor="end">診断)Q2</text><text class="ttl" x="52" y="408">Q2 その場で申し込めるページは？</text><text class="ln" x="52" y="436">［ある］［ない］</text><text class="ln" x="52" y="460">例：LPやホームページ</text><rect class="bx msg" x="40" y="560" width="400" height="100" rx="10"/><text class="kind" x="428" y="554" text-anchor="end">診断)Q3</text><text class="ttl" x="52" y="588">Q3 こちらから連絡できる仕組みは？</text><text class="ln" x="52" y="616">［ある］［ない］</text><text class="ln" x="52" y="640">例：LINEなど</text><path class="ar" d="M240,140 L240,200" marker-end="url(#ah-quiz)"/><text class="lbl" x="250" y="180" text-anchor="start">診断をはじめる</text><path class="ar" d="M240,300 L240,380" marker-end="url(#ah-quiz)"/><text class="lbl" x="250" y="360" text-anchor="start">ある：診断_Q1←ある</text><path class="ar" d="M240,480 L240,560" marker-end="url(#ah-quiz)"/><text class="lbl" x="250" y="540" text-anchor="start">ある：診断_Q2←ある</text><rect class="bx msg" x="640" y="200" width="500" height="100" rx="10"/><text class="kind" x="1128" y="194" text-anchor="end">診断)結果A（パック）</text><text class="ttl" x="652" y="228">結果A　まずは「人を集める」から</text><text class="ln" x="652" y="256">明日から出来る一手（テキスト）</text><text class="ln" x="652" y="280">［実績：広告運用］［この内容で相談してみる］</text><rect class="bx msg" x="640" y="380" width="500" height="100" rx="10"/><text class="kind" x="1128" y="374" text-anchor="end">診断)結果B（パック）</text><text class="ttl" x="652" y="408">結果B　「申し込みの受け皿」を整える</text><text class="ln" x="652" y="436">明日から出来る一手（テキスト）</text><text class="ln" x="652" y="460">［実績：LP制作］［この内容で相談してみる］</text><rect class="bx msg" x="640" y="560" width="500" height="100" rx="10"/><text class="kind" x="1128" y="554" text-anchor="end">診断)結果C（パック）</text><text class="ttl" x="652" y="588">結果C　「また来てもらう仕組み」をつくる</text><text class="ln" x="652" y="616">明日から出来る一手（テキスト）</text><text class="ln" x="652" y="640">［実績：LINE構築］［この内容で相談してみる］</text><rect class="bx msg" x="640" y="740" width="500" height="100" rx="10"/><text class="kind" x="1128" y="734" text-anchor="end">診断)結果D（パック）</text><text class="ttl" x="652" y="768">結果D　次は数字の改善</text><text class="ln" x="652" y="796">明日から出来る一手（テキスト）</text><text class="ln" x="652" y="820">［実績：広告の改善記録］［この内容で相談してみる］</text><path class="ar" d="M440,250 L640,250" marker-end="url(#ah-quiz)"/><text class="lbl" x="540" y="240" text-anchor="middle">ない：診断_Q1←ない</text><path class="ar" d="M440,430 L640,430" marker-end="url(#ah-quiz)"/><text class="lbl" x="540" y="420" text-anchor="middle">ない：診断_Q2←ない</text><path class="ar" d="M440,610 L640,610" marker-end="url(#ah-quiz)"/><text class="lbl" x="540" y="600" text-anchor="middle">ない：診断_Q3←ない</text><path class="ar" d="M240,660 L240,790 L640,790" marker-end="url(#ah-quiz)"/><text class="lbl" x="260" y="780" text-anchor="start">ある：診断_Q3←ある</text><rect class="bx note" x="40" y="820" width="1100" height="48" rx="2"/><text class="ttl" x="52" y="848">どのボタンでも：最終反応日←実行日／反応スコア＋1。結果を送るときに：診断_結果←A〜D、タグ「診断_完了」を付ける</text><rect class="bx note" x="480" y="40" width="660" height="148" rx="2"/><text class="ttl" x="492" y="68">2度押し対策</text><text class="ln" x="492" y="96">Q1〜Q3は1回だけ押せる。2回目は既定の返信をせず、</text><text class="ln" x="492" y="120">診断)入口_やり直し用 を送る</text><text class="ln" x="492" y="144">入口を押すと、Q1〜Q3・結果を「未回答」に戻し、</text><text class="ln" x="492" y="168">タグ「診断_完了」を外してからQ1を送る</text></svg></div>
+    <figcaption>上から順に聞いて、最初に「ない」と答えた段が結果になります。答えと結果は友だち情報欄に入れるので、タグは「診断_完了」の1つしか使いません。</figcaption>
+  </figure>
+</section>
+
+<section>
+  <div class="eyebrow">図6</div>
+  <h2>相談</h2>
+  <figure>
+    <div class="boardwrap"><svg viewBox="0 0 1180 560" role="img" aria-label="相談：相談ボタンからカードが届き、予約かフォームを選ぶ。どちらも相談_送信済みのタグが付く" style="width:1180px"><defs><marker id="ah-talk" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="ahp" d="M0,0 L10,5 L0,10 z"/></marker></defs><rect class="bx trig" x="40" y="150" width="260" height="100" rx="10"/><text class="kind" x="288" y="144" text-anchor="end">入口は3か所</text><text class="ttl" x="52" y="178">相談するボタン</text><text class="ln" x="52" y="206">リッチメニュー／実績／診断</text><text class="ln" x="52" y="230">の結果から</text><rect class="bx msg" x="370" y="150" width="300" height="100" rx="10"/><text class="kind" x="658" y="144" text-anchor="end">届くもの</text><text class="ttl" x="382" y="178">相談)入口（カード）</text><text class="ln" x="382" y="206">［日時を選んで予約する］</text><text class="ln" x="382" y="230">［内容をフォームで送る］</text><path class="ar" d="M300,200 L370,200" marker-end="url(#ah-talk)"/><text class="lbl" x="335" y="192" text-anchor="middle">すぐ送る</text><rect class="bx msg" x="760" y="40" width="380" height="100" rx="10"/><text class="kind" x="1128" y="34" text-anchor="end">予約したい人</text><text class="ttl" x="772" y="68">カレンダー予約</text><text class="ln" x="772" y="96">毎日15:00〜19:00・30分・前日まで</text><text class="ln" x="772" y="120">Google Meet（いつも同じURL）</text><rect class="bx msg" x="760" y="330" width="380" height="100" rx="10"/><text class="kind" x="1128" y="324" text-anchor="end">内容だけ送りたい人</text><text class="ttl" x="772" y="358">相談)ご相談フォーム</text><text class="ln" x="772" y="386">お名前／会社・お店の名前（任意）</text><text class="ln" x="772" y="410">分野（4択）／ご相談の内容</text><path class="ar" d="M670,200 L715,200 L715,90 L760,90" marker-end="url(#ah-talk)"/><path class="ar" d="M670,200 L715,200 L715,380 L760,380" marker-end="url(#ah-talk)"/><rect class="bx note" x="760" y="165" width="380" height="124" rx="2"/><text class="ttl" x="772" y="193">予約の自動メッセージ</text><text class="ln" x="772" y="221">完了：日時とMeetのURL＋タグ追加</text><text class="ln" x="772" y="245">1時間前：リマインド</text><text class="ln" x="772" y="269">キャンセル：タグ「相談_送信済み」を外す</text><rect class="bx note" x="330" y="300" width="360" height="172" rx="2"/><text class="ttl" x="342" y="328">送信後</text><text class="ln" x="342" y="356">タグ「相談_送信済み」</text><text class="ln" x="342" y="380">サンクスページ＝友だち追加URL</text><text class="ln" x="342" y="404">お礼のメッセージ（すぐ届く）</text><text class="ln" x="342" y="428">返事は日野が12時間以内に</text><text class="ln" x="342" y="452">個別トークで送る</text><path class="ar dash" d="M760,380 L690,386" marker-end="url(#ah-talk)"/></svg></div>
+    <figcaption>相談のボタンは、リッチメニュー・実績のカルーセル・診断の結果の3か所にあり、どれも同じカードが届きます。予約かフォームを選べます。</figcaption>
+  </figure>
+  <p class="note">カレンダー予約からは、Google MeetのURLを自動では作れません。いつも同じMeetのURLを1つ用意して、予約完了とリマインドのメッセージに入れています。</p>
+</section>
+
+<section>
+  <div class="eyebrow">図7</div>
+  <h2>部品の一覧</h2>
+  <div class="tw"><table>
+    <tr><th>種類</th><th>名前</th><th>入れ物（フォルダ）</th></tr>
+    <tr><td>タグ（4／10）</td><td>自己紹介_見た／実績_LINE_見た（設計書ボタン）／診断_完了／相談_送信済み</td><td>└自己紹介／└実績／■診断■／└相談</td></tr>
+    <tr><td>友だち情報欄</td><td>最終反応日／反応スコア／友だち登録日</td><td>■全体管理■</td></tr>
+    <tr><td>友だち情報欄</td><td>診断_Q1／診断_Q2／診断_Q3／診断_結果</td><td>■診断■</td></tr>
+    <tr><td>テンプレート</td><td>友だち追加時)あいさつ（パック）＝文＋友だち追加時)あいさつ_カード</td><td>■友だち追加時あいさつ■</td></tr>
+    <tr><td>テンプレート</td><td>メニュー)自己紹介・メニュー)自己PR（各パック＝文＋カード）／メニュー)実績（カルーセル3枚）／メニュー)設計書</td><td>└自己紹介／└自己PR／└実績</td></tr>
+    <tr><td>テンプレート</td><td>診断)入口／診断)入口_やり直し用／診断)Q1〜Q3／診断)結果A〜D（パック）／診断)結果A〜D_カード</td><td>└集客診断</td></tr>
+    <tr><td>テンプレート</td><td>相談)入口</td><td>└相談</td></tr>
+    <tr><td>自動応答</td><td>自己紹介／自己PR／実績を見る／集客診断／設計書／相談する（6つ・完全一致・何度でも）</td><td>—</td></tr>
+    <tr><td>回答フォーム</td><td>相談)ご相談フォーム（お名前・会社名・分野・内容）</td><td>—</td></tr>
+    <tr><td>予約</td><td>カレンダー予約「ご相談（オンライン30分）」</td><td>—</td></tr>
+  </table></div>
+  <p class="prose">決まり：1つのボタンで送るのは、パックかテンプレートを1つだけ。送信のタイミングは「すぐに送信する」。こうすると、ボタンの返事は月200通に数えられません。</p>
+</section>
+
+<footer>
+  <p>このLINEは、広告運用・LP制作・LINE構築を行う日野高志が、設計から構築まで行ったものです。ご相談は、LINEのメニューの「相談する」からどうぞ。</p>
+</footer>
+
+</div>
+
+</html>
