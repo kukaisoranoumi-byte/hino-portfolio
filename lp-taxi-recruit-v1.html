@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;800;900&family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
+<title>ひなた交通｜タクシードライバー募集（LPサンプル）</title>
+<style>
+:root{
+  --navy:#12233F; --navy2:#1B3157; --gold:#FFB703; --gold2:#F59E00;
+  --ink:#1B1B1E; --sub:#5C6270; --line:#DDE2EA; --bg:#FFFFFF; --soft:#F5F7FA;
+  --warn:#B23B3B;
+  --max:760px;
+  /* 影は2枚重ね。接地する薄い影＋浮きを作る広い影 */
+  --sh-1:0 1px 2px rgba(18,35,63,.06), 0 2px 8px rgba(18,35,63,.05);
+  --sh-2:0 1px 3px rgba(18,35,63,.08), 0 8px 24px rgba(18,35,63,.09);
+  --sh-3:0 2px 6px rgba(18,35,63,.10), 0 18px 44px rgba(18,35,63,.14);
+  --sh-gold:0 2px 6px rgba(180,120,0,.22), 0 12px 28px rgba(180,120,0,.28);
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",system-ui,sans-serif;
+  line-height:1.8;font-size:16px;-webkit-text-size-adjust:100%;
+  font-feature-settings:"palt";letter-spacing:.01em}
+img{max-width:100%}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+section{padding:72px 0}
+/* セクションの地色を交互に切り替えて、切れ目を作る */
+section:nth-of-type(even){background:var(--soft)}
+h2{font-size:27px;line-height:1.45;margin:0 0 14px;letter-spacing:-.02em;font-weight:900;
+  position:relative;padding-bottom:14px}
+h2::after{content:"";position:absolute;left:0;bottom:0;width:52px;height:4px;
+  background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:2px}
+h3{font-size:19px;margin:32px 0 8px;font-weight:800}
+p{margin:0 0 15px}
+.lead{color:var(--sub);font-size:15px;margin-bottom:30px}
+strong{font-weight:800}
+
+/* 出現アニメーション（JSが .reveal を付けたときだけ効く） */
+.reveal{opacity:0;transform:translateY(18px)}
+.reveal.in{opacity:1;transform:none;transition:opacity .7s var(--ease),transform .7s var(--ease)}
+@media(prefers-reduced-motion:reduce){
+  .reveal,.reveal.in{opacity:1;transform:none;transition:none}
+  html{scroll-behavior:auto}
+}
+
+.sample-bar{background:var(--warn);color:#fff;font-size:13px;padding:10px 20px;text-align:center;
+  font-weight:700;line-height:1.6;letter-spacing:.01em}
+
+/* FV */
+.fv{position:relative;background:var(--navy);color:#fff;padding:76px 0 68px;overflow:hidden}
+.fv::before{content:"";position:absolute;inset:0;
+  background:url("lp-a-img/fv-night-road.jpg") center 58%/cover no-repeat;
+  transform:scale(1.04);filter:saturate(1.12) contrast(1.06) brightness(1.04)}
+/* 覆いを薄くして夜景の輝きを残す。文字はtext-shadowで読ませる */
+.fv::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(170deg,rgba(9,18,34,.90) 0%,rgba(11,22,42,.62) 46%,rgba(9,18,34,.78) 74%,rgba(11,24,48,.94) 100%)}
+.fv .wrap{position:relative;z-index:2}
+.fv .tag{display:inline-block;border:1px solid rgba(255,255,255,.42);border-radius:999px;
+  background:rgba(9,18,34,.45);backdrop-filter:blur(4px);
+  font-size:12.5px;padding:6px 14px;margin-bottom:22px;letter-spacing:.03em;font-weight:700}
+.fv h1{font-size:34px;line-height:1.4;margin:0 0 18px;letter-spacing:-.03em;font-weight:900;
+  text-shadow:0 2px 6px rgba(0,0,0,.62),0 4px 28px rgba(0,0,0,.55)}
+/* 職種を3秒で伝える1行（2026-11-04 追加） */
+.fv .job{font-size:24px;line-height:1.45;margin:0 0 12px;font-weight:900;color:var(--gold);letter-spacing:-.01em;
+  text-shadow:0 2px 6px rgba(0,0,0,.62),0 4px 22px rgba(0,0,0,.5)}
+.fv h1 .mark{background:linear-gradient(transparent 60%,rgba(255,183,3,.92) 60%);padding:0 3px}
+.fv .sub{font-size:16px;color:#E3EAF4;margin-bottom:28px;line-height:1.85;
+  text-shadow:0 1px 3px rgba(0,0,0,.92),0 2px 14px rgba(0,0,0,.7)}
+.fv .facts{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px}
+.fv .facts span{background:rgba(10,20,38,.42);backdrop-filter:blur(3px);border:1px solid rgba(255,255,255,.26);
+  border-radius:8px;font-size:13.5px;padding:9px 14px;font-weight:700;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+
+/* CTA */
+.cta{display:block;text-align:center;
+  background:linear-gradient(180deg,#FFC533 0%,var(--gold) 46%,var(--gold2) 100%);
+  color:#241A00;font-weight:900;font-size:19px;text-decoration:none;padding:20px;
+  border-radius:12px;box-shadow:var(--sh-gold);letter-spacing:-.01em;
+  transition:transform .22s var(--ease),box-shadow .22s var(--ease),filter .22s var(--ease)}
+.cta:hover{transform:translateY(-3px);filter:saturate(1.06);
+  box-shadow:0 4px 10px rgba(180,120,0,.26),0 20px 40px rgba(180,120,0,.34)}
+.cta:active{transform:translateY(0);box-shadow:var(--sh-1)}
+.cta:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.cta .s{display:block;font-size:12.5px;font-weight:700;opacity:.76;margin-top:4px;letter-spacing:0}
+
+/* 共感 */
+.worry ul{list-style:none;padding:0;margin:0}
+.worry li{background:#fff;border:1px solid var(--line);border-left:4px solid var(--navy);
+  border-radius:10px;padding:18px 20px;margin-bottom:13px;font-weight:800;font-size:16.5px;
+  box-shadow:var(--sh-1);transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.worry li:hover{transform:translateY(-2px);box-shadow:var(--sh-2)}
+.worry li small{display:block;font-weight:400;color:var(--sub);font-size:14px;margin-top:6px;line-height:1.8}
+
+/* 表 */
+.scroll{overflow-x:auto;border-radius:12px;box-shadow:var(--sh-1);margin:16px 0 8px}
+.tbl{width:100%;border-collapse:separate;border-spacing:0;font-size:15px;margin:16px 0 8px;
+  background:#fff;border-radius:12px;overflow:hidden;box-shadow:var(--sh-1)}
+.scroll .tbl{margin:0;box-shadow:none}
+.tbl th,.tbl td{border-bottom:1px solid var(--line);padding:13px 15px;text-align:left;vertical-align:top}
+.tbl tr:last-child th,.tbl tr:last-child td{border-bottom:none}
+.tbl th{background:linear-gradient(180deg,#F8FAFD,var(--soft));width:38%;font-weight:800}
+.tbl td{font-variant-numeric:tabular-nums}
+.closing .tbl th,.closing .tbl td{color:var(--ink)}
+
+/* 計算式 */
+.calc{background:linear-gradient(158deg,var(--navy) 0%,var(--navy2) 100%);color:#fff;
+  border-radius:14px;padding:24px 26px;margin:20px 0;box-shadow:var(--sh-3)}
+.calc .row{display:flex;justify-content:space-between;gap:14px;padding:9px 0;font-size:15px;
+  border-bottom:1px dashed rgba(255,255,255,.22);font-variant-numeric:tabular-nums}
+.calc .row:last-child{border:none;font-weight:900;font-size:19px;padding-top:14px;color:var(--gold)}
+.calc .row span:last-child{white-space:nowrap}
+
+/* 数字 */
+.nums{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.nums div{position:relative;background:#fff;border:1px solid var(--line);border-radius:12px;
+  padding:22px 16px 18px;text-align:center;box-shadow:var(--sh-1);overflow:hidden;
+  transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.nums div::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--gold),var(--gold2))}
+.nums div:hover{transform:translateY(-3px);box-shadow:var(--sh-2)}
+.nums b{display:block;font-size:38px;color:var(--navy);line-height:1.15;font-weight:900;
+  letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.nums small{color:var(--sub);font-size:13px;display:block;margin-top:4px}
+
+/* 不都合の開示 */
+.honest{background:linear-gradient(180deg,#FFFBF0,#FFF6E2);border:2px solid var(--gold);
+  border-radius:14px;padding:26px;box-shadow:var(--sh-2)}
+.honest h3{margin-top:0}
+.honest ul{padding-left:22px;margin:0}
+.honest li{margin-bottom:10px}
+
+/* 声 */
+.voice{border:1px solid var(--line);border-radius:14px;padding:28px;margin-bottom:18px;
+  display:flex;gap:28px;align-items:flex-start;background:#fff;box-shadow:var(--sh-2)}
+.voice .ph{flex:0 0 168px}
+.voice .ph img{width:168px;height:168px;border-radius:50%;object-fit:cover;display:block;
+  box-shadow:0 6px 18px rgba(18,35,63,.18)}
+.voice .ph small{display:block;text-align:center;font-size:11px;color:#8A93A3;margin-top:9px;line-height:1.5}
+.voice .txt{flex:1;min-width:0;font-size:17.5px;line-height:1.95}
+.voice .result{font-weight:900;font-size:16.5px;color:var(--navy);letter-spacing:-.01em;
+  margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.voice .who{color:var(--sub);font-size:14px;margin-top:16px;line-height:1.6}
+@media(max-width:560px){
+  .voice{flex-direction:column;align-items:center;text-align:center;gap:18px;padding:24px}
+  .voice .ph{flex:none}
+  .voice .txt{text-align:left;font-size:16.5px}
+}
+
+/* story */
+.step{position:relative;border-left:3px solid var(--gold);padding:2px 0 2px 18px;margin-bottom:24px}
+.step::before{content:"";position:absolute;left:-8px;top:6px;width:13px;height:13px;
+  border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(255,183,3,.22)}
+.step b{display:block;font-size:13px;color:var(--gold2);letter-spacing:.08em;font-weight:800}
+
+/* FAQ */
+details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;
+  margin-bottom:12px;box-shadow:var(--sh-1);transition:box-shadow .25s var(--ease)}
+details:hover{box-shadow:var(--sh-2)}
+details[open]{box-shadow:var(--sh-2)}
+summary{font-weight:800;cursor:pointer;font-size:16px;list-style:none;
+  display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"";flex:0 0 10px;width:10px;height:10px;margin-top:7px;
+  border-right:2.5px solid var(--sub);border-bottom:2.5px solid var(--sub);
+  transform:rotate(45deg);transition:transform .28s var(--ease)}
+details[open] summary::after{transform:rotate(-135deg)}
+details p{margin:13px 0 0;color:var(--sub);font-size:15px}
+
+/* closing */
+.closing{background:linear-gradient(160deg,var(--navy) 0%,var(--navy2) 100%);color:#fff}
+section.closing:nth-of-type(even){background:linear-gradient(160deg,var(--navy) 0%,var(--navy2) 100%)}
+.closing h2{color:#fff}
+.closing h2::after{background:linear-gradient(90deg,var(--gold),var(--gold2))}
+.closing .lead{color:#CBD6E6}
+/* 紺背景（.fv ヒーロー／.closing）の上では --sh-gold（アンバー）だけだと
+   沈み込む影にならず光暈にしかならない。縁に単色の薄い「厚み」を足して
+   立体を出すが、このLP全体は煽らない編集調なので、厚みは強くしすぎない
+   （側面3px・控えめな影）。両方のセクションに同じルールを当て、表情を揃える */
+.fv .cta, .closing .cta{box-shadow:inset 0 1px 0 rgba(255,255,255,.4),
+  0 3px 0 #B87300,0 4px 10px rgba(2,6,14,.5),0 18px 36px rgba(2,6,14,.5),0 0 12px rgba(255,183,3,.12)}
+.fv .cta:hover, .closing .cta:hover{box-shadow:inset 0 1px 0 rgba(255,255,255,.45),
+  0 4px 0 #B87300,0 6px 12px rgba(2,6,14,.55),0 24px 44px rgba(2,6,14,.55),0 0 16px rgba(255,183,3,.16)}
+.fv .cta:active, .closing .cta:active{transform:translateY(3px);box-shadow:inset 0 1px 0 rgba(255,255,255,.4),
+  0 1px 0 #B87300,0 2px 5px rgba(2,6,14,.45)}
+
+footer{background:#0C1728;color:#8894A8;font-size:13px;padding:36px 0 104px}
+footer a{color:#8894A8}
+
+/* フォーム */
+.formnote{background:#FFF1F1;border:1px solid #E7B9B9;color:var(--warn);border-radius:10px;
+  padding:14px 16px;font-size:13.5px;font-weight:700;margin-bottom:22px;line-height:1.7;
+  box-shadow:var(--sh-1)}
+.apply label{display:block;font-weight:800;font-size:15px;margin-bottom:18px}
+.apply .req{background:var(--warn);color:#fff;font-size:11px;border-radius:4px;padding:3px 7px;margin-left:8px;vertical-align:2px}
+.apply .opt{background:#8A93A3;color:#fff;font-size:11px;border-radius:4px;padding:3px 7px;margin-left:8px;vertical-align:2px}
+.apply input,.apply select,.apply textarea{display:block;width:100%;margin-top:8px;
+  border:1px solid #C3CBD8;border-radius:9px;padding:14px 13px;font-size:16px;
+  font-family:inherit;background:#fff;color:var(--ink);
+  transition:border-color .2s,box-shadow .2s}
+.apply input:focus,.apply select:focus,.apply textarea:focus{outline:none;
+  border-color:var(--navy);box-shadow:0 0 0 3px rgba(18,35,63,.12)}
+.apply textarea{resize:vertical}
+
+/* 追従 */
+.sticky{position:fixed;left:0;right:0;bottom:0;background:rgba(18,35,63,.96);
+  padding:10px 16px calc(10px + env(safe-area-inset-bottom));z-index:50;
+  backdrop-filter:blur(10px);box-shadow:0 -6px 22px rgba(0,0,0,.20);
+  border-top:1px solid rgba(255,255,255,.10)}
+.sticky a{display:block;max-width:520px;margin:0 auto;text-align:center;
+  background:linear-gradient(180deg,#FFC533,var(--gold2));color:#241A00;font-weight:900;
+  text-decoration:none;padding:15px;border-radius:10px;font-size:17px;
+  box-shadow:0 3px 12px rgba(0,0,0,.28)}
+
+@media(min-width:721px){
+  .fv{padding:104px 0 92px}
+  .fv h1{font-size:44px}
+  .fv .job{font-size:32px;margin-bottom:14px}
+  h2{font-size:31px}
+  section{padding:88px 0}
+  .nums{grid-template-columns:repeat(4,1fr)}
+  .sticky{display:none}
+}
+
+/* ===== 明朝の使い分け =====
+   見出しと語りは明朝（誠実さ・読み物感）。
+   FV・数字・ボタンはゴシックのまま（インパクトと可読性を落とさない）。 */
+:root{ --serif:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif; }
+
+h2{font-family:var(--serif);font-weight:700;letter-spacing:.01em;line-height:1.5}
+h3{font-family:var(--serif);font-weight:700;letter-spacing:.01em}
+.lead{font-family:var(--serif);font-weight:400;font-size:16px;line-height:1.95}
+
+/* 体験談は明朝。手紙のように読ませる */
+.voice .txt{font-family:var(--serif);font-weight:400;font-size:18px;line-height:2.05;letter-spacing:.02em}
+.voice .who{font-family:var(--serif)}
+
+/* 不都合の開示も明朝。重みを持たせる */
+.honest li{font-family:var(--serif);font-weight:400;line-height:1.95}
+
+/* FV見出し・数字・ボタン・表・フォームはゴシック維持 */
+.fv h1{font-family:"Noto Sans JP",sans-serif;font-weight:900}
+.nums b,.calc,.tbl,.cta,.sticky a,.apply,summary{font-family:"Noto Sans JP",sans-serif}
+.worry li{font-family:"Noto Sans JP",sans-serif}
+
+/* ===== 2026-08-25 増強：図版セクション ===== */
+
+/* タイムライン（1日の流れ） */
+.tl{position:relative;margin:18px 0 8px;padding-left:6px}
+.tl::before{content:"";position:absolute;left:64px;top:8px;bottom:8px;width:2px;
+  background:linear-gradient(180deg,var(--gold),rgba(255,183,3,.25))}
+.tl .ev{position:relative;display:grid;grid-template-columns:56px 1fr;gap:22px;
+  align-items:start;margin-bottom:18px}
+.tl .ev::before{content:"";position:absolute;left:58px;top:7px;width:13px;height:13px;border-radius:50%;
+  background:#fff;border:3px solid var(--gold);box-shadow:0 0 0 3px rgba(255,183,3,.18);z-index:1}
+.tl .tm{font-size:13.5px;font-weight:900;color:var(--navy);text-align:right;
+  font-variant-numeric:tabular-nums;padding-top:2px;letter-spacing:-.02em}
+.tl .bd{background:#fff;border:1px solid var(--line);border-radius:10px;padding:13px 16px;
+  box-shadow:var(--sh-1);transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.tl .bd:hover{transform:translateY(-2px);box-shadow:var(--sh-2)}
+.tl .bd b{display:block;font-size:15.5px;font-weight:800;margin-bottom:2px}
+.tl .bd small{color:var(--sub);font-size:13.5px;line-height:1.75;display:block}
+.tl .bd.peak{border-color:var(--gold);background:linear-gradient(180deg,#FFFBF0,#FFF7E6)}
+.tl-2{display:grid;gap:26px}
+@media(min-width:721px){.tl-2{grid-template-columns:1fr 1fr;gap:34px}}
+.tl-2 h4{font-size:15px;font-weight:900;margin:0 0 6px;color:var(--navy);
+  font-family:"Noto Sans JP",sans-serif;letter-spacing:0}
+.tl-2 h4 span{display:inline-block;background:var(--navy);color:#fff;border-radius:6px;
+  font-size:11.5px;padding:3px 9px;margin-right:9px;vertical-align:2px;letter-spacing:.04em}
+
+/* 営収→給与 の棒グラフ */
+.pay-g{margin:20px 0 6px}
+.pay-g .r{display:grid;grid-template-columns:5.6em 1fr 5.6em;gap:10px;align-items:center;
+  margin-bottom:10px;font-size:14px;font-variant-numeric:tabular-nums}
+.pay-g .r .s{font-weight:800;color:var(--sub);text-align:right;font-size:13.5px}
+.pay-g .r .t{display:block;background:#E9EDF3;border-radius:999px;height:26px;overflow:hidden;
+  box-shadow:inset 0 1px 3px rgba(18,35,63,.10)}
+.pay-g .r .f{display:block;height:100%;border-radius:999px;min-width:6px;
+  background:linear-gradient(90deg,#2B4C7E,var(--navy));
+  transition:width .8s var(--ease)}
+.pay-g .r.hl .f{background:linear-gradient(90deg,var(--gold),var(--gold2))}
+.pay-g .r .v{font-weight:900;text-align:right;color:var(--navy);letter-spacing:-.02em}
+.pay-g .r.hl .v{color:var(--gold2)}
+.pay-g .cap{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:12px;font-size:12.5px;color:var(--sub)}
+.pay-g .cap i{display:inline-block;width:13px;height:13px;border-radius:3px;margin-right:6px;
+  vertical-align:-2px}
+
+/* 横スクロールの案内（スマホのみ） */
+.hint{display:none;font-size:12.5px;color:var(--sub);margin:8px 0 0;
+  font-family:"Noto Sans JP",sans-serif}
+@media(max-width:720px){.hint{display:block}}
+
+/* 比較表 */
+.cmp{width:100%;border-collapse:separate;border-spacing:0;font-size:14.5px;background:#fff;
+  border-radius:12px;overflow:hidden;min-width:520px}
+.cmp th,.cmp td{border-bottom:1px solid var(--line);padding:13px 14px;text-align:left;vertical-align:top}
+.cmp thead th{background:linear-gradient(180deg,#F8FAFD,var(--soft));font-weight:800;font-size:13.5px;
+  white-space:nowrap;font-family:"Noto Sans JP",sans-serif}
+.cmp thead th.me{background:linear-gradient(180deg,var(--navy),var(--navy2));color:#fff}
+.cmp tbody th{font-weight:800;width:30%;background:#FCFDFE}
+.cmp td.me{background:#FFFBF0;font-weight:800}
+.cmp tr:last-child th,.cmp tr:last-child td{border-bottom:none}
+.cmp .o{color:var(--gold2);font-weight:900}
+.cmp .x{color:#98A0AE}
+
+/* ステップ（入社後90日・応募フロー） */
+.steps{counter-reset:st;display:grid;gap:14px;margin:18px 0 6px}
+@media(min-width:721px){.steps{grid-template-columns:repeat(auto-fit,minmax(228px,1fr))}}
+.steps .st{position:relative;background:#fff;border:1px solid var(--line);border-radius:12px;
+  padding:20px 18px 18px;box-shadow:var(--sh-1);
+  transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.steps .st:hover{transform:translateY(-3px);box-shadow:var(--sh-2)}
+.steps .st::before{counter-increment:st;content:counter(st);
+  position:absolute;top:-13px;left:18px;width:28px;height:28px;border-radius:8px;
+  background:linear-gradient(180deg,var(--navy),var(--navy2));color:#fff;
+  font-weight:900;font-size:14px;display:flex;align-items:center;justify-content:center;
+  box-shadow:var(--sh-2);font-family:"Noto Sans JP",sans-serif}
+.steps .st b{display:block;font-size:16px;font-weight:800;margin:6px 0 5px}
+.steps .st .d{font-size:11.5px;font-weight:900;color:var(--gold2);letter-spacing:.06em;
+  font-family:"Noto Sans JP",sans-serif}
+.steps .st small{display:block;color:var(--sub);font-size:13.5px;line-height:1.8}
+
+/* 声（写真なしカード） */
+.voice.plain{gap:0;display:block;padding:24px 26px}
+.voice.plain .txt{font-size:17px}
+.vgrid{display:grid;gap:16px}
+@media(min-width:721px){.vgrid{grid-template-columns:1fr 1fr}}
+.vgrid .voice{margin-bottom:0}
+
+/* 不安 → 答えの対応 */
+.ans{display:grid;gap:12px;margin:18px 0 6px}
+.ans .a{background:#fff;border:1px solid var(--line);border-left:4px solid var(--gold);
+  border-radius:10px;padding:15px 18px;box-shadow:var(--sh-1);
+  transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.ans .a:hover{transform:translateY(-2px);box-shadow:var(--sh-2)}
+.ans .a b{display:block;font-size:15px;font-weight:800;margin-bottom:4px}
+.ans .a small{display:block;color:var(--sub);font-size:13.5px;line-height:1.8}
+.ans .a a{color:var(--navy);font-weight:800}
+
+@media(max-width:560px){
+  /* スマホでは明朝が細く見えるので、見出しの太さを保つ */
+  h2{font-weight:700;letter-spacing:0}
+  .voice .txt{font-size:17px;line-height:2}
+}
+/* 文節ごとに折る（スマホで単語の途中で改行させない） */
+.nb{display:inline-block}
+
+/* ===== 写真の帯（2026-11-04 案） ===== */
+section.has-band{padding-top:0}
+.band{position:relative;min-height:clamp(240px,56vw,460px);margin:0 0 56px;display:flex;color:#fff;
+  background-size:cover;background-position:center;overflow:hidden}
+.band::before{content:"";position:absolute;inset:0}
+.band .wrap{position:relative;display:flex;width:100%;padding-top:28px;padding-bottom:28px}
+.band h2{color:#fff;margin:0;text-shadow:0 2px 14px rgba(0,0,0,.45);max-width:15em}
+.band h2 span{display:inline-block}
+.band-pay{background-image:url("lp-a-img/band-pay.jpg");background-position:center 65%}
+.band-pay::before{background:linear-gradient(180deg,rgba(18,35,63,.78) 0%,rgba(18,35,63,.15) 60%,rgba(18,35,63,0) 100%)}
+.band-pay .wrap,.band-day .wrap{align-items:flex-start}
+.band-day{background-image:url("lp-a-img/band-day.jpg");background-position:center 70%}
+.band-day::before{background:linear-gradient(180deg,rgba(18,35,63,.7) 0%,rgba(18,35,63,.1) 55%,rgba(18,35,63,0) 100%)}
+.band-story{background-image:url("lp-a-img/band-story.jpg");background-position:62% 80%}
+.band-story::before{background:linear-gradient(170deg,rgba(18,35,63,.78) 0%,rgba(18,35,63,.25) 45%,rgba(18,35,63,0) 70%)}
+.band-story .wrap{align-items:flex-start}
+.band small.cap{position:absolute;right:10px;bottom:8px;font-size:11px;color:rgba(255,255,255,.75)}
+</style>
+</head>
+<body>
+
+<div class="sample-bar">
+  【ポートフォリオ用サンプル】架空企業「ひなた交通株式会社」の想定で制作。実在の企業・団体とは関係ありません。記載の数値はすべてサンプル用の仮値です。
+</div>
+
+<!-- ============ FV ============ -->
+<header class="fv">
+  <div class="wrap">
+    <span class="tag">ひなた交通株式会社｜タクシードライバー募集</span>
+    <p class="job"><span class="nb">40代・未経験から、</span><span class="nb">タクシードライバーに。</span></p>
+    <h1><span class="nb">求人票に</span><span class="nb">書いてない話を、</span><br><span class="mark">先に全部します。</span></h1>
+    <p class="sub">応募の前に、読むだけ読んでいってください。<br>向いていない人のことも書いてあります。</p>
+    <div class="facts">
+      <span>未経験からの入社が中心</span>
+      <span>二種免許の費用は会社負担</span>
+      <span>夜勤専属／隔日勤務を選べます</span>
+    </div>
+    <a class="cta" href="#pay">まず、給与の実際を見る<span class="s">歩合の計算式まで載せています</span></a>
+  </div>
+</header>
+
+<!-- ============ 呼びかけ ============ -->
+<section>
+  <div class="wrap">
+    <h2><span class="nb">この募集は、</span><span class="nb">こういう方に</span><span class="nb">向いています</span></h2>
+    <p class="lead">当てはまらない方は、ここで読むのをやめていただいて構いません。</p>
+    <p><strong>向いている方</strong><br>
+      未経験からの転職を考えていて、求人票の「月収40万円可能」をそのまま信じきれない方。
+      収入の高さより、<strong>何年か続けられるかどうか</strong>で仕事を選びたい方。</p>
+    <p><strong>向いていない方</strong><br>
+      短期間だけ集中して稼ぎたい方。毎週決まった曜日に必ず休みたい方。
+      人と話すことが強い負担になる方。<br>
+      この3つに当てはまる場合、入社しても続かないことが多いため、おすすめしません。</p>
+  </div>
+</section>
+
+<!-- ============ 共感 ============ -->
+<section class="worry">
+  <div class="wrap">
+    <h2><span class="nb">未経験の方が、</span><span class="nb">だいたいこの5つで</span><span class="nb">止まります</span></h2>
+    <p class="lead">面接で実際に聞かれることを、そのまま並べました。それぞれ下で答えます。</p>
+    <ul>
+      <li>歩合制で、生活できるだけ稼げるのか
+        <small>売上が読めない仕事に、家族がいる状態で移れるのか。ここが一番大きい不安です。</small></li>
+      <li>二種免許を持っていないが、本当に取れるのか
+        <small>費用は誰が払うのか。落ちたらどうなるのか。辞めたら返すのか。</small></li>
+      <li>夜勤で身体を壊さないか
+        <small>何時から何時まで働いて、いつ寝るのか。イメージがつかないまま応募はできません。</small></li>
+      <li>事故を起こしたらどうなるのか
+        <small>自己負担があるのか。加入している保険はどうなっているのか。</small></li>
+      <li>この年齢から始めて、遅くないか
+        <small>周りは何歳くらいなのか。未経験は自分だけではないのか。</small></li>
+    </ul>
+
+    <h3><span class="nb">この5つに、</span><span class="nb">どこで答えているか</span></h3>
+    <p class="lead">読み飛ばしたい方のために、答えの場所を先に置いておきます。</p>
+    <div class="ans">
+      <div class="a"><b>① 生活できるだけ稼げるのか</b>
+        <small>歩合率と最低保障を出したうえで、<strong>営業収入がいくらならいくらになるか</strong>を早見表にしています → <a href="#pay">給与のところ</a></small></div>
+      <div class="a"><b>② 二種免許は本当に取れるのか</b>
+        <small>費用・期間・取得中の給与・落ちたときの扱い・<strong>辞めたときの返還規定</strong>まで表にしています → <a href="#license">二種免許のところ</a></small></div>
+      <div class="a"><b>③ 夜勤で身体を壊さないか</b>
+        <small>出庫から退社までを時刻で並べました。<strong>隔日勤務との比較</strong>も置いています → <a href="#day">1日の流れ</a></small></div>
+      <div class="a"><b>④ 事故を起こしたらどうなるのか</b>
+        <small>加入保険と、重大な過失があった場合の扱いを書いています → <a href="#faq">よくあるご質問</a></small></div>
+      <div class="a"><b>⑤ この年齢から始めて遅くないか</b>
+        <small>乗務員の平均年齢と未経験の割合、<strong>27歳から53歳まで4名の声</strong>を載せています → <a href="#voice">先輩の声</a></small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 結果 ============ -->
+<section id="pay" class="has-band">
+  <div class="band band-pay" role="img" aria-label="夜の車内から見た並木道（イメージ）"><div class="wrap"><h2><span>未経験の1年目が、</span><span>いくら持ち帰っているか</span></h2></div><small class="cap">イメージ（AI生成）</small></div>
+  <div class="wrap">
+    <p class="lead">良い月・悪い月の両方を出します。良い月だけ載せても、入ってから話が違うとなるだけなので。</p>
+
+    <div class="calc">
+      <div class="row"><span>営業収入（1か月・1年目の平均）</span><span>約 560,000円</span></div>
+      <div class="row"><span>歩合率</span><span>× 55%</span></div>
+      <div class="row"><span>最低保障（歩合がこれを下回った月はこちら）</span><span>180,000円</span></div>
+      <div class="row"><span>1年目・平均的な月の総支給</span><span>約 308,000円</span></div>
+    </div>
+    <p class="lead" style="margin-top:-4px">
+      <strong>給与は「営業収入 × 55%」の一本です。</strong>これが月180,000円を下回った月は、最低保障の180,000円をお支払いします。
+      深夜割増は法定のため、これとは別に加算されます。
+    </p>
+
+    <h3><span class="nb">営業収入がいくらなら、</span><span class="nb">いくらになるか</span></h3>
+    <p class="lead">求人票の「月収40万円可能」が何を意味するか、ご自身で確かめられる形にしました。</p>
+    <div class="pay-g">
+      <div class="r"><span class="s">月 40万円</span><span class="t"><span class="f" style="width:47%"></span></span><span class="v">22.0万円</span></div>
+      <div class="r"><span class="s">月 48万円</span><span class="t"><span class="f" style="width:57%"></span></span><span class="v">26.4万円</span></div>
+      <div class="r hl"><span class="s">月 56万円</span><span class="t"><span class="f" style="width:66%"></span></span><span class="v">30.8万円</span></div>
+      <div class="r"><span class="s">月 65万円</span><span class="t"><span class="f" style="width:77%"></span></span><span class="v">35.8万円</span></div>
+      <div class="r"><span class="s">月 75万円</span><span class="t"><span class="f" style="width:88%"></span></span><span class="v">41.3万円</span></div>
+      <div class="cap">
+        <span><i style="background:linear-gradient(90deg,var(--gold),var(--gold2))"></i>1年目の平均的な月</span>
+        <span><i style="background:linear-gradient(90deg,#2B4C7E,var(--navy))"></i>それ以外</span>
+        <span>※ 総支給。ここから社会保険料・税金が引かれます</span>
+      </div>
+    </div>
+    <p class="lead">
+      <strong>「月収40万円」は、営業収入で月75万円を上げた月の話です。</strong>
+      1年目でここに届く方はいますが、毎月ではありません。だから上と下の両方を出しています。
+    </p>
+
+    <div class="scroll">
+      <table class="tbl">
+        <tr><th>調子の良い月（総支給）</th><td>約 360,000円</td></tr>
+        <tr><th>平均的な月（総支給）</th><td>約 310,000円</td></tr>
+        <tr><th><strong>落ち込んだ月（総支給）</strong></th><td><strong>約 265,000円</strong>（営業収入 約48万円の月。ここを下回り続けた場合は、最低保障の 180,000円が下限になります）</td></tr>
+        <tr><th>手取りの目安</th><td>総支給の約 78〜82%（扶養・控除により変わります）</td></tr>
+      </table>
+    </div>
+    <p class="lead">歩合の率と基本給を先に出しているのは、<strong><span class="nb">ご自身で</span><span class="nb">計算できる</span><span class="nb">状態にするため</span></strong>です。「月収40万円可能」だけでは、何をどれだけ売ればそうなるのか分かりません。</p>
+
+  </div>
+</section>
+
+<!-- ============ 1日の流れ（タイムライン） ============ -->
+<section id="day" class="has-band">
+  <div class="band band-day" role="img" aria-label="夜明け前の営業所と洗車（イメージ）"><div class="wrap"><h2><span>出庫から退社まで、</span><span>時刻で並べます</span></h2></div><small class="cap">イメージ（AI生成）</small></div>
+  <div class="wrap">
+    <p class="lead">「夜勤」と言われても、何時から何時まで働いて、いつ寝るのかが分からないままでは応募できません。2つの勤務形態を並べます。</p>
+
+    <div class="tl-2">
+      <div>
+        <h4><span>夜勤専属</span>月13〜14乗務</h4>
+        <div class="tl">
+          <div class="ev"><div class="tm">19:00</div><div class="bd"><b>出庫前点呼</b><small>アルコールチェック・車両点検。ここは全員が同じ手順です</small></div></div>
+          <div class="ev"><div class="tm">19:30</div><div class="bd"><b>出庫</b><small>駅・繁華街を中心に営業。最初の2時間は流しが中心になります</small></div></div>
+          <div class="ev"><div class="tm">23:00<br>▼<br>翌2:00</div><div class="bd peak"><b>もっとも売上が立つ時間帯</b><small>ここで1乗務の売上の半分前後が決まります。休憩をどこに置くかが、そのまま収入に響きます</small></div></div>
+          <div class="ev"><div class="tm">随時</div><div class="bd"><b>休憩（合計3時間程度）</b><small>時間も場所も自分で決めます。指定はありません</small></div></div>
+          <div class="ev"><div class="tm">翌4:30</div><div class="bd"><b>帰庫</b><small>洗車・売上金の精算・点呼。ここに約1時間かかります</small></div></div>
+          <div class="ev"><div class="tm">翌5:30</div><div class="bd"><b>退社</b><small>日中がまるごと空きます。寝る時間は各自の組み立て次第です</small></div></div>
+        </div>
+      </div>
+      <div>
+        <h4><span>隔日勤務</span>月11〜12乗務</h4>
+        <div class="tl">
+          <div class="ev"><div class="tm">8:00</div><div class="bd"><b>出庫前点呼・出庫</b><small>朝の通勤需要から入ります</small></div></div>
+          <div class="ev"><div class="tm">12:00<br>▼<br>15:00</div><div class="bd"><b>日中</b><small>売上が落ちる時間帯。ここで長めの休憩を取る方が多いです</small></div></div>
+          <div class="ev"><div class="tm">18:00<br>▼<br>23:00</div><div class="bd peak"><b>夕方〜深夜が山</b><small>1乗務が長いぶん、山を2回取れるのが隔日勤務の利点です</small></div></div>
+          <div class="ev"><div class="tm">翌2:00</div><div class="bd"><b>帰庫・精算</b><small>拘束は約18時間（うち休憩3時間）</small></div></div>
+          <div class="ev"><div class="tm">明け</div><div class="bd"><b>明番（休み）</b><small>乗務の翌日は明番。<strong>公休と合わせると月の半分以上が休み</strong>になります</small></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll" style="margin-top:22px">
+      <table class="cmp">
+        <thead><tr><th>比べるところ</th><th class="me">夜勤専属</th><th>隔日勤務</th></tr></thead>
+        <tbody>
+          <tr><th>1乗務の長さ</th><td class="me">約10時間30分</td><td>約18時間（休憩3時間含む）</td></tr>
+          <tr><th>月の乗務回数</th><td class="me">13〜14回</td><td>11〜12回</td></tr>
+          <tr><th>日中の使い方</th><td class="me"><span class="o">毎日まるごと空く</span></td><td>明番の日のみ</td></tr>
+          <tr><th>身体の慣れ</th><td class="me">昼夜が固定されるので、リズムは作りやすい</td><td>乗務日と明番で生活が2日周期になる</td></tr>
+          <tr><th>向いている方</th><td class="me">日中に用事がある方（育児・介護・通院・副業）</td><td>まとまった休みが欲しい方</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="hint">→ 表は横にスクロールできます</p>
+    <p class="lead">どちらが良いかではなく、<strong>生活のどこを空けたいかで選ぶもの</strong>です。入社後に変更した方もいます。</p>
+  </div>
+</section>
+
+<!-- ============ 紹介 ============ -->
+<section style="background:var(--soft)">
+  <div class="wrap">
+    <h2><span class="nb">勤務形態と、</span><span class="nb">二種免許のこと</span></h2>
+
+    <h3><span class="nb">勤務形態は</span><span class="nb">2つから選べます</span></h3>
+    <div class="scroll">
+      <table class="tbl">
+        <tr><th>夜勤専属</th><td>19:00〜翌5:30。月13〜14乗務。日中がまるごと空くため、家庭の事情や副業と両立しやすい形です</td></tr>
+        <tr><th>隔日勤務</th><td>8:00〜翌2:00（休憩3時間含む）。月11〜12乗務。1回が長いかわりに、明けと公休で休みが多くなります</td></tr>
+      </table>
+    </div>
+
+    <h3 id="license"><span class="nb">二種免許は</span><span class="nb">会社が費用を</span><span class="nb">負担します。</span><span class="nb">ただし</span><span class="nb">条件があります</span></h3>
+    <div class="scroll">
+      <table class="tbl">
+        <tr><th>費用</th><td>全額会社負担（教習所費用・試験料）</td></tr>
+        <tr><th><span class="nb">取得までの</span><span class="nb">期間</span></th><td>入社から平均 18日前後</td></tr>
+        <tr><th>取得中の給与</th><td>研修手当として日額 8,000円を支給</td></tr>
+        <tr><th><strong>条件</strong></th><td><strong>取得後1年未満で自己都合退職された場合、費用の返還をお願いしています。</strong>他社でも同様の規定があることが多い部分ですが、先にお伝えしておきます</td></tr>
+        <tr><th><span class="nb">不合格だった</span><span class="nb">場合</span></th><td>再受験の費用も会社が負担します。回数の上限は設けていません</td></tr>
+      </table>
+    </div>
+
+    <h3><span class="nb">求人票を見るとき、</span><span class="nb">この6項目だけ</span><span class="nb">確認してください</span></h3>
+    <p class="lead">他社と比べていただいて構いません。<strong>この6つは、どこの会社でも必ず条件が決まっているのに、求人票にはあまり書かれていない項目</strong>です。当社の回答を先に埋めておきます。</p>
+    <div class="scroll">
+      <table class="cmp">
+        <thead><tr><th>確認する項目</th><th class="me">ひなた交通の場合</th><th>なぜ見るのか</th></tr></thead>
+        <tbody>
+          <tr><th>① 給与の計算式</th><td class="me">営業収入 × 55%（最低保障 180,000円）</td><td>「月収◯万円可能」だけでは、何をいくら売ればそうなるか分からない</td></tr>
+          <tr><th>② 保障の期間</th><td class="me"><span class="o">期間の定めなし</span>（毎月適用）</td><td><strong>保障が3か月だけ</strong>の会社もある。切れた月に何が起きるかが変わる</td></tr>
+          <tr><th>③ 二種免許の費用</th><td class="me">全額会社負担。<span class="o">再受験の回数に上限なし</span></td><td>「会社負担」でも、再受験は自己負担というケースがある</td></tr>
+          <tr><th>④ 取得中の給与</th><td class="me">研修手当 日額 8,000円</td><td>教習期間は乗務できない。ここが無給だと、その月の生活が変わる</td></tr>
+          <tr><th><span class="nb">⑤ 退職時の</span><span class="nb">返還規定</span></th><td class="me">取得後<strong>1年未満</strong>の自己都合退職で返還</td><td><strong>いちばん揉めるところ。</strong>年数と金額の両方を確認する</td></tr>
+          <tr><th><span class="nb">⑥ 勤務形態を</span><span class="nb">選べるか</span></th><td class="me">夜勤専属／隔日勤務から選択。<span class="o">入社後の変更も可</span></td><td>入社後に生活が合わなかったとき、変更できるかどうか</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="hint">→ 表は横にスクロールできます</p>
+    <p class="lead">※ 他社の条件は、その会社の求人票と就業規則でご確認ください。ここに他社名を書くようなことはしません。</p>
+
+    <a class="cta" href="#apply" style="margin-top:22px">二種免許の条件について聞いてみる<span class="s">返還規定の詳細は、この後の入力フォームからご質問いただけます</span></a>
+  </div>
+</section>
+
+<!-- ============ 証拠 ============ -->
+<section>
+  <div class="wrap">
+    <h2>数字で見るひなた交通</h2>
+    <p class="lead">※すべてサンプル用の仮値です（ポートフォリオ用のため）。</p>
+    <div class="nums">
+      <div><b>82%</b><small>入社者に占める<br>業界未経験の割合</small></div>
+      <div><b>88%</b><small>入社1年後の<br>在籍率</small></div>
+      <div><b>44歳</b><small>乗務員の<br>平均年齢</small></div>
+      <div><b>18日</b><small>二種免許取得までの<br>平均日数</small></div>
+    </div>
+
+    <h3><span class="nb">入社してから90日、</span><span class="nb">何をしているか</span></h3>
+    <p class="lead">未経験の方がいちばん想像しにくいのは、免許を取ってから独り立ちするまでの間です。</p>
+    <div class="steps">
+      <div class="st"><span class="d">DAY 1-3</span><b>入社手続きと適性検査</b>
+        <small>書類・健康診断・運転適性検査。ここでいきなり乗ることはありません</small></div>
+      <div class="st"><span class="d">DAY 4-21</span><b>二種免許の教習（平均18日）</b>
+        <small>費用は全額会社負担。この期間も<strong>研修手当 日額8,000円</strong>が出るので、収入がゼロになる月はありません</small></div>
+      <div class="st"><span class="d">DAY 22-35</span><b>同乗研修（2週間）</b>
+        <small>先輩の車に同乗し、そのあと自分が運転して横で見てもらいます。接客・精算・無線の扱いはここで覚えます</small></div>
+      <div class="st"><span class="d">DAY 36-60</span><b>単独乗務の開始</b>
+        <small><strong>ここが一番きつい時期です。</strong>売上が読めず、先輩との差も見えます。最低保障があるのはこの時期のためです</small></div>
+      <div class="st"><span class="d">DAY 61-90</span><b>自分の型ができる</b>
+        <small>どの時間にどこにいるかが決まってきます。3か月目で平均に近づく方が多い、というのが実感です</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 信頼：不都合の開示 ============ -->
+<section>
+  <div class="wrap">
+    <h2><span class="nb">辞めた方の理由も、</span><span class="nb">書いておきます</span></h2>
+    <p class="lead">ここを隠すと、入社後に「聞いていた話と違う」となります。直近で退職された方の理由です。</p>
+    <div class="honest">
+      <h3>実際にあった退職理由</h3>
+      <ul>
+        <li><strong>生活リズムが合わなかった</strong>——夜勤に身体が慣れる方と、半年経っても慣れない方がいます。こればかりは入ってみないと分かりません。</li>
+        <li><strong>売上の波が精神的にきつかった</strong>——基本給はありますが、歩合が伸びない月が続くと落ち込む方はいます。</li>
+        <li><strong>接客が想像より負担だった</strong>——大半のお客様は普通ですが、そうでない日もあります。</li>
+        <li><strong>他業種の日勤に戻った</strong>——家庭の事情で、土日固定休が必要になった方です。</li>
+      </ul>
+    </div>
+
+    <h3 id="voice">先輩の声（4名）</h3>
+    <p class="lead">年代を散らしています。27歳から53歳まで、入り口はそれぞれ違いました。</p>
+    <div class="voice">
+      <div class="ph"><img src="lp-a-img/voice-k-v2.jpg" alt="運転席に座る乗務員の後ろ姿（イメージ・AI生成）"><small>AI生成画像</small></div>
+      <div class="txt">
+        <div class="result"><span class="nb">自分が求人選びで</span><span class="nb">迷った経験から、</span><span class="nb">良いことも悪いことも</span><span class="nb">先に話す面接に変えた</span></div>
+        「求人を見て回っていたとき、どこも同じことしか書いていなくて、結局は個人のブログを読んで決めました。だから今は、面接に来た方に良いことも悪いことも先に話すようにしています。」
+        <div class="who">乗務員 Kさん（41歳・前職 飲食店店長・入社3年目）※架空の人物です</div>
+      </div>
+    </div>
+    <div class="voice">
+      <div class="ph"><img src="lp-a-img/voice-t-v2.jpg" alt="白手袋でハンドルを握る手（イメージ・AI生成）"><small>AI生成画像</small></div>
+      <div class="txt">
+        <div class="result"><span class="nb">不安定だった</span><span class="nb">最初の3ヶ月を、</span><span class="nb">最低保障の基本給で</span><span class="nb">乗り切った</span></div>
+        「最初の3か月は売上が読めなくて不安でした。基本給があったので、そこで持ちこたえられた感じです。」
+        <div class="who">乗務員 Tさん（36歳・前職 倉庫内作業・入社2年目）※架空の人物です</div>
+      </div>
+    </div>
+
+    <div class="vgrid">
+      <div class="voice plain">
+        <div class="txt">
+          <div class="result"><span class="nb">年上ばかりだと</span><span class="nb">思っていたが、</span><span class="nb">同期の20代未経験者が</span><span class="nb">5人いた</span></div>
+          「27歳で入ったので、周りは全員年上だと思っていました。実際は20代が5人いて、しかも全員未経験でした。<strong>年齢より、続けられるかどうかの話</strong>だと今は思います。」
+          <div class="who">乗務員 Sさん（27歳・前職 コンビニ店員・入社1年目）※架空の人物です</div>
+        </div>
+      </div>
+      <div class="voice plain">
+        <div class="txt">
+          <div class="result"><span class="nb">長距離ドライバー時代より、</span><span class="nb">拘束時間が短くなった</span></div>
+          「長距離をやっていたので運転は苦になりませんでした。心配だったのは体力です。<strong>拘束時間は長距離より短くなりました。</strong>ただ、接客がある分、疲れの種類は違います。」
+          <div class="who">乗務員 Mさん（53歳・前職 長距離ドライバー・入社4年目）※架空の人物です</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="lead" style="margin-top:14px;font-size:13.5px">
+      ※上記4名はすべて架空の人物です。うち2名の写真（後ろ姿・手元）はAIで生成したイメージ画像で、実在の人物ではありません。<br>
+      実案件では、掲載許諾を得た実在のお客様・従業員の写真のみを使用します。
+    </p>
+
+    <h3>会社概要</h3>
+    <p class="lead">お名前と連絡先をお預けいただく先です。先に開示しておきます。</p>
+    <div class="scroll">
+      <table class="tbl">
+        <tr><th>商号</th><td>ひなた交通株式会社</td></tr>
+        <tr><th>所在地</th><td>〇〇県〇〇市〇〇町1-2-3（本社営業所）</td></tr>
+        <tr><th>設立</th><td>1987年4月</td></tr>
+        <tr><th>代表者</th><td>代表取締役 〇〇 〇〇</td></tr>
+        <tr><th>資本金</th><td>3,000万円</td></tr>
+        <tr><th>事業内容</th><td>一般乗用旅客自動車運送事業</td></tr>
+        <tr><th>許可番号</th><td>〇〇運輸局長 許可 第〇〇〇号</td></tr>
+        <tr><th>車両台数</th><td>48台</td></tr>
+        <tr><th>従業員数</th><td>96名（うち乗務員 82名）</td></tr>
+        <tr><th>加入保険</th><td>対人・対物無制限の任意保険に全車加入。社会保険完備</td></tr>
+        <tr><th><span class="nb">個人情報の</span><span class="nb">取り扱い</span></th><td>ご入力いただいた情報は採用選考の目的にのみ使用し、それ以外の用途では利用しません</td></tr>
+      </table>
+    </div>
+    <p class="lead"><strong>※上記はすべて架空の設定です。</strong>実案件では、実在の登記情報・許可番号・保険の加入状況が入ります。</p>
+  </div>
+</section>
+
+<!-- ============ ストーリー ============ -->
+<section class="story has-band">
+  <div class="band band-story" role="img" aria-label="昼の運動会を見る父親の後ろ姿と乗務員の帽子（イメージ）"><div class="wrap"><h2><span>40代未経験、</span><span>ここから始めた人の話</span></h2></div><small class="cap">イメージ（AI生成）</small></div>
+  <div class="wrap">
+    <div class="step"><b>BEFORE</b>小売店の店長代理。休みは月6日、残業は月50時間。年収380万円。体力より、終わりが見えないことがきつかった。</div>
+    <div class="step"><b>転機</b>求人サイトを1か月見たが、どこも同じ文言で判断できず。最後は現役ドライバーのブログを読んで、1日の流れと収入の実際を知って応募。</div>
+    <div class="step"><b>研修</b>入社後18日で二種免許を取得。その後2週間、先輩の同乗研修。道は覚えなくてよい（ナビがある）と言われて拍子抜けした。</div>
+    <div class="step"><b>AFTER</b>1年後、総支給は月平均31万円前後。日中が空くので、子どもの行事にはほぼ出られるようになった。夜勤に慣れるまでは4か月かかった。</div>
+
+    <h3><span class="nb">応募してから</span><span class="nb">入社までの流れ</span></h3>
+    <p class="lead">どこで断っても構いません。<strong>止まれる場所を先に示しておきます。</strong></p>
+    <div class="steps f5">
+      <div class="st"><span class="d">STEP 1</span><b>フォーム送信</b>
+        <small>約1分。<strong>履歴書は不要</strong>です</small></div>
+      <div class="st"><span class="d">STEP 2</span><b>2営業日以内に連絡</b>
+        <small>ご希望の時間帯に電話またはメールで。<strong>この時点で断って構いません</strong></small></div>
+      <div class="st"><span class="d">STEP 3</span><b>面談（60分程度）</b>
+        <small>在職中の方がほとんどです。日中・夜間どちらでも調整します</small></div>
+      <div class="st"><span class="d">STEP 4</span><b>営業所と車両の見学</b>
+        <small>点呼の様子と休憩室を見ていただきます。<strong>ここで辞退される方もいます</strong></small></div>
+      <div class="st"><span class="d">STEP 5</span><b>内定・入社日の調整</b>
+        <small>現職の引き継ぎに合わせます。入社日を3か月先にした方もいます</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq">
+  <div class="wrap">
+    <h2>よくあるご質問</h2>
+    <details><summary>道を覚えていなくても大丈夫ですか</summary><p>問題ありません。ナビと配車アプリを使います。実際、入社時に地理に自信がある方はほとんどいません。</p></details>
+    <details><summary><span><span class="nb">事故を起こした場合、</span><span class="nb">自己負担はありますか</span></span></summary><p>会社の任意保険で対応します。ただし重大な過失があった場合の取り扱いは就業規則に定めがあり、面接時に書面でご説明します。</p></details>
+    <details><summary><span><span class="nb">応募したら</span><span class="nb">必ず面接になりますか</span></span></summary><p>なりません。まず話を聞くだけ、という方も多くいらっしゃいます。その場でお断りいただいて構いません。</p></details>
+    <details><summary><span><span class="nb">今の仕事を</span><span class="nb">続けながら</span><span class="nb">話を聞けますか</span></span></summary><p>可能です。日中・夜間どちらでも調整します。在職中の方がほとんどです。</p></details>
+    <details><summary>何歳まで応募できますか</summary><p>年齢の上限は設けていません。乗務員の平均年齢は44歳です。</p></details>
+    <details><summary>ノルマはありますか</summary><p>ノルマはありません。ただし歩合制のため、営業収入がそのまま給与に反映されます。「ノルマが無い＝売上を気にしなくていい」ではない、という意味では正直にお伝えしておきます。</p></details>
+    <details><summary><span><span class="nb">過去に交通違反があっても</span><span class="nb">応募できますか</span></span></summary><p>内容によります。二種免許の受験資格に関わるため、面談時に免許証をご持参のうえ、点数と失効歴をご確認させてください。ここで判断が変わることがあります。</p></details>
+    <details><summary><span><span class="nb">収入が安定するまで、</span><span class="nb">どれくらいかかりますか</span></span></summary><p>3か月目で平均に近づく方が多い、というのが実感です。ただし個人差があります。だからこそ最低保障 180,000円を毎月適用しています。</p></details>
+    <details><summary>前職の経験は活きますか</summary><p>接客業の経験は活きます。運転経験そのものより、<strong>人と話すことが負担にならないか</strong>のほうが続くかどうかに効いています。</p></details>
+    <details><summary>入社後に勤務形態を変えられますか</summary><p>変更できます。夜勤専属で入社して、生活が合わずに隔日勤務へ移った方も、その逆もいます。</p></details>
+  </div>
+</section>
+
+<!-- ============ クロージング ============ -->
+<section class="closing" id="closing">
+  <div class="wrap">
+    <h2><span class="nb">まだ応募しなくて</span><span class="nb">構いません</span></h2>
+    <p class="lead">ここまで読んで「思っていたのと違う」と感じたなら、それが分かっただけで十分です。<br>
+      もう少し知りたいと思われたら、話を聞くところから始めてください。<strong><span class="nb">応募＝面接確約</span><span class="nb">ではありません。</span></strong></p>
+    <div class="scroll">
+      <table class="tbl" style="background:#fff">
+        <tr><th><span class="nb">入力にかかる</span><span class="nb">時間</span></th><td>約1分（お名前・連絡先・希望の勤務形態のみ）</td></tr>
+        <tr><th>履歴書</th><td>この時点では不要です</td></tr>
+        <tr><th>ご連絡</th><td>2営業日以内。ご希望の時間帯にご連絡します</td></tr>
+      </table>
+    </div>
+    <a class="cta" href="#apply" style="margin-top:20px">まずは1分で連絡する<span class="s">履歴書は後日でOK・応募＝面接確約ではありません</span></a>
+  </div>
+</section>
+
+<!-- ============ 応募フォーム（EFO） ============ -->
+<section id="apply" style="background:var(--soft)">
+  <div class="wrap">
+    <h2>応募フォーム</h2>
+    <p class="lead">入力は3項目だけです。この時点では履歴書も職務経歴書も必要ありません。</p>
+
+    <div class="formnote">【サンプル】このフォームは動作しません。ポートフォリオ用の表示サンプルです。入力された内容はどこにも送信・保存されません。</div>
+
+    <form class="apply" onsubmit="return false;">
+      <label>お名前<span class="req">必須</span>
+        <input type="text" name="name" placeholder="日野 太郎" autocomplete="off">
+      </label>
+      <label>連絡先（携帯番号 または メールアドレス）<span class="req">必須</span>
+        <input type="text" name="contact" placeholder="090-0000-0000" autocomplete="off">
+      </label>
+      <label>希望の勤務形態<span class="opt">任意</span>
+        <select name="shift">
+          <option>まだ決めていない／相談したい</option>
+          <option>夜勤専属</option>
+          <option>隔日勤務</option>
+        </select>
+      </label>
+      <label>ご質問があればどうぞ<span class="opt">任意</span>
+        <textarea name="q" rows="3" placeholder="例：二種免許の返還規定について詳しく知りたい"></textarea>
+      </label>
+      <button type="button" class="cta" style="width:100%;border:0;cursor:not-allowed;opacity:.6">
+        送信する<span class="s">サンプルのため送信されません</span>
+      </button>
+    </form>
+
+    <p class="lead" style="margin-top:18px">
+      ご連絡は2営業日以内に差し上げます。ご希望の時間帯があれば、質問欄にご記入ください。<br>
+      <strong><span class="nb">応募＝面接確約</span><span class="nb">ではありません。</span></strong>話を聞いたうえでお断りいただいて構いません。
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><strong>【ポートフォリオ用サンプル】</strong><br>
+      架空企業「ひなた交通株式会社」を想定して制作したLPサンプルです。実在の企業・団体・人物とは一切関係ありません。<br>
+      給与・比率・日数などの数値はすべてサンプル用の仮値であり、実データではありません。<br>
+      実案件では、この位置に出典を明示した実数が入ります。<br>
+      <strong>FVの夜景は撮影写真、それ以外の掲載写真はAI生成画像です（fal.ai / GPT Image）。</strong>AI生成画像は実在の人物・車両・場所ではありません。</p>
+    <p>制作: 日野高志 ／ 2026年8月</p>
+  </div>
+</footer>
+
+<div class="sticky"><a href="#apply">話を聞いてみる</a></div>
+
+
+<script>
+/* スクロールで要素を出現させる。
+   対応していないブラウザ・動きを減らす設定では何もしない（内容は常に表示される） */
+(function(){
+  if (!('IntersectionObserver' in window)) return;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var t = document.querySelectorAll('section .wrap > *, .voice, .nums div, .worry li, details');
+  t.forEach(function(el){ el.classList.add('reveal'); });
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {rootMargin:'0px 0px -8% 0px', threshold:0.06});
+  t.forEach(function(el){ io.observe(el); });
+})();
+</script>
+</body>
+</html>
