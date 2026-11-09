@@ -41,3 +41,10 @@ getComputedStyle(el).fontSize                          // 実際の要素で確�
 3. PC幅・スマホ幅（640px以下）それぞれで `getComputedStyle` を使い、主要な要素（本文・見出し・補助テキスト）の実測値を確認する
 4. ヘッドレスブラウザでスクリーンショットを撮り、レイアウト崩れ（はみ出し・重なり）がないか確認する
 5. 修正後、必ずビフォー/アフターの実測px値を報告する（「大きくしました」ではなく「16px→18pxにしました」と数値で示す）
+
+## 応募用（index.html）と名刺用（meishi.html）
+
+`index.html` はクラウドワークス・ランサーズの応募にも貼るため、メールと LINE の友だち追加を**ソースにも書かない**。名刺の QR は `meishi.html` に向いていて、そちらにだけ LINE とメールを出す（2026-11-09）。
+
+- `meishi.html` は直接編集しない。`index.html` を直したら必ず `python3 build_meishi.py` を実行して作り直す
+- 切り替える場所は `index.html` の `<!--apply:start-->…<!--apply:end-->`（応募用だけ）と `<!--card:N-->`（名刺用の中身は `build_meishi.py` の `CARD`）
