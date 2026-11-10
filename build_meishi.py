@@ -23,7 +23,7 @@ CARD = {
     # LINE構築の欄のボタン
     2: f"""          <a href="{LINE_ADD}" target="_blank" rel="noopener" class="work-link">友だち追加して操作してみる →</a>
           <a href="line-design.html" target="_blank" rel="noopener" class="work-link">設計図を見る →</a>
-          <p>※ パソコンで開いた場合は QR コードが表示されます。スマホの LINE で読み取ってください。</p>
+          <p>※ スマホの方は、このボタンからそのまま友だち追加できます。パソコンで開いた場合は QR コードが出るので、スマホの LINE で読み取ってください。</p>
 """,
     # 実配信の記録：Notion の詳しい記録（✉️版＝メールあり。応募用は index 側で 💬版）
     4: """          <a href="https://app.notion.com/p/Meta-402c9f561e808166b178ec2d25994beb" target="_blank" rel="noopener" class="work-link">Meta 広告の詳しい記録を見る →</a>
