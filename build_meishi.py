@@ -30,12 +30,14 @@ CARD = {
           <a href="https://app.notion.com/p/Google-412c9f561e80813d8253f4c0fbc0a5f2" target="_blank" rel="noopener" class="work-link">Google 検索広告の詳しい記録を見る →</a>
 """,
     # お問い合わせ欄
-    3: f"""    <a href="{LINE_ADD}" class="btn btn-accent" target="_blank" rel="noopener">
-      LINE で相談する<small>予約とフォーム、どちらでも</small>
-    </a>
-    <a href="mailto:{MAIL}" class="btn btn-accent">
-      メールでお問い合わせ<small>メールアプリが開きます</small>
-    </a>
+    3: f"""    <div class="contact-actions">
+      <a href="{LINE_ADD}" class="btn btn-accent" target="_blank" rel="noopener">
+        LINE で相談する<small>友だち追加後、メニューの「相談する」から</small>
+      </a>
+      <a href="mailto:{MAIL}" class="btn btn-accent">
+        メールでお問い合わせ<small>メールアプリが開きます</small>
+      </a>
+    </div>
 """,
 }
 
