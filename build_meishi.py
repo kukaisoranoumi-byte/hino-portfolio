@@ -34,7 +34,7 @@ CARD = {
       LINE で相談する<small>予約とフォーム、どちらでも</small>
     </a>
     <a href="mailto:{MAIL}" class="btn btn-accent">
-      メールでお問い合わせ<small>{MAIL}</small>
+      メールでお問い合わせ<small>メールアプリが開きます</small>
     </a>
 """,
 }
