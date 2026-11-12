@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>お日様珈琲 初回お試しセット</title>
+<meta name="description" content="小さな焙煎所の、珈琲豆の通販。ご注文を受けてから焙煎し、その日に出荷します。初回お試しセット（オリジナルブレンド200g＋お好きな銘柄100g）1,375円・送料無料（架空ブランドのポートフォリオ用サンプル）。">
+<meta property="og:title" content="お日様珈琲 初回お試しセット（LPサンプル）">
+<meta property="og:description" content="このひととき、自分だけの空間。ご注文を受けてから焙煎し、その日に出荷します。">
+<meta property="og:type" content="website">
+<meta property="og:image" content="lp-d3/images/ogp.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231E1A17'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%23C2502E'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sumi:#1E1A17; --sumi2:#2A2420; --kinari:#F4EFE7; --shu:#C2502E; --shu-deep:#A9432A;
+  --paper:#FAF8F5; --ink:#2B2522; --sub:#5A504A; --line:#DDD5CD; --wash:#F1ECE5;
+  --mincho:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --gothic:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic",sans-serif;
+}
+html{font-size:21px;scroll-behavior:smooth}
+@media (max-width:640px){ html{font-size:17px} }
+@media print{ html{font-size:15px} }
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--gothic);font-weight:300;
+  font-size:1rem;line-height:1.95;letter-spacing:.03em;-webkit-text-size-adjust:100%}
+img{display:block;max-width:100%;height:auto}
+h1,h2,h3{font-family:var(--mincho);font-weight:400;word-break:keep-all;overflow-wrap:anywhere;line-break:strict;letter-spacing:.06em}
+p{margin:0 0 1.1em}
+strong{font-weight:600}
+.nb{display:inline-block}
+
+.notice{margin:0;padding:.45rem 1rem;background:#000;color:#E8E1D8;font-size:.72rem;line-height:1.6;text-align:center;letter-spacing:.02em}
+
+/* ---------- FV ---------- */
+.fv{position:relative;background:var(--sumi);color:var(--kinari);overflow:hidden}
+.fv-photo{display:block;position:relative}
+.fv-photo::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 6% 10%,rgba(30,26,23,.42),rgba(30,26,23,0) 26%),linear-gradient(to left,rgba(30,26,23,.55),rgba(30,26,23,0) 48%),linear-gradient(to top,rgba(30,26,23,.7),rgba(30,26,23,0) 34%)}
+.fv-photo img{width:100%;height:min(100svh,66.66vw);min-height:34rem;object-fit:cover;object-position:left center}
+.fv-logo{position:absolute;left:21%;top:1.6rem;margin:0;display:flex;align-items:center;gap:.6rem}
+.fv-logo b{font-family:var(--mincho);font-weight:500;font-size:1.25rem;letter-spacing:.2em}
+.fv-logo small{display:block;font-size:.72rem;letter-spacing:.12em;opacity:.85}
+.sun{display:inline-block;width:.7em;height:.7em;border-radius:50%;background:var(--shu);flex:none}
+.fv-logo .sun{width:1rem;height:1rem}
+.fv h1{position:absolute;right:5%;top:9%;margin:0;writing-mode:vertical-rl;font-size:clamp(2.1rem,3.6vw,3.3rem);
+  line-height:1.6;letter-spacing:.18em;font-weight:400;text-shadow:0 .05em .8em rgba(30,26,23,.55)}
+.fv h1 .s{font-size:.62em}
+.fv h1 .l2{display:block;margin-top:1.4em}
+.fv-body{position:absolute;right:calc(5% + 12.5rem);bottom:2.4rem;width:min(40%,26rem)}
+.fv-sub{font-size:1rem;margin:0 0 .8rem}
+.chips{display:flex;flex-wrap:wrap;gap:.3rem 1.1rem;margin:0 0 1.2rem;padding:0;list-style:none}
+.chips li{position:relative;font-size:.86rem;letter-spacing:.06em;padding-left:.75rem;line-height:1.5;white-space:nowrap}
+.chips li::before{content:"";position:absolute;left:0;top:.62em;width:.32rem;height:.32rem;border-radius:50%;background:rgba(244,239,231,.6)}
+.fv-note{font-size:.72rem;opacity:.75;margin:.7rem 0 0}
+
+/* ---------- ボタン（mato-button-depth：光は上から、影は墨と朱を濃くした色） ---------- */
+.btn{--shadow-rgb:90,32,16;display:flex;align-items:center;justify-content:center;gap:.8em;
+  width:100%;max-width:30rem;min-height:3.4rem;padding:.75rem 1.6rem;border-radius:9999px;
+  color:#fff;text-decoration:none;font-weight:600;font-size:1.02rem;letter-spacing:.08em;line-height:1.45;text-align:center;
+  background:linear-gradient(to bottom,rgba(255,255,255,.18),rgba(255,255,255,0) 33%),linear-gradient(100deg,#C9583A,var(--shu-deep));
+  box-shadow:inset 0 1.5px 0 rgba(255,255,255,.55),inset -2px -4px 8px rgba(255,255,255,.12),
+    0 .1rem .2rem rgba(var(--shadow-rgb),.16),0 .45rem 1rem rgba(var(--shadow-rgb),.16);
+  position:relative;transition:transform .15s ease,box-shadow .15s ease}
+.btn::after{content:"";position:absolute;inset:.2rem;border-radius:inherit;border:1px solid rgba(255,240,228,.38);pointer-events:none}
+.btn:hover{transform:translateY(-1px);box-shadow:inset 0 1.5px 0 rgba(255,255,255,.55),inset -2px -4px 8px rgba(255,255,255,.12),
+    0 .15rem .3rem rgba(var(--shadow-rgb),.2),0 .6rem 1.3rem rgba(var(--shadow-rgb),.22)}
+.btn:focus-visible{outline:3px solid var(--kinari);outline-offset:3px}
+.btn .arrow{font-weight:400}
+.btn[aria-disabled="true"]{opacity:.6;pointer-events:none}
+.cta-wrap{display:flex;flex-direction:column;align-items:center;margin:2.4rem auto 0;text-align:center}
+.cta-wrap .lead-in{font-family:var(--mincho);font-size:1.02rem;margin:0 0 .9rem}
+
+/* ---------- 本文の区切り ---------- */
+.sec{padding:5.2rem 1.2rem}
+.sec.wash{background:var(--wash)}
+.sec.dark{background:var(--sumi);color:var(--kinari)}
+.col{max-width:34em;margin:0 auto}
+.wide{max-width:62rem;margin:0 auto}
+.label{display:flex;align-items:center;gap:.55rem;margin:0 0 1rem;font-size:.86rem;letter-spacing:.2em;color:var(--shu-deep);font-weight:500}
+.dark .label{color:#E38C6E}
+h2{font-size:clamp(1.55rem,3.6vw,2.3rem);line-height:1.6;margin:0 0 1.8rem}
+h3{font-size:clamp(1.2rem,2.4vw,1.45rem);line-height:1.65;margin:2.6rem 0 1rem}
+.lead{font-size:1.04rem}
+.sec figure{margin:2.6rem auto;max-width:62rem}
+.sec figure img{width:100%;border-radius:.3rem}
+.sec figcaption{font-size:.82rem;color:var(--sub);margin-top:.5rem;text-align:right}
+.dark figcaption{color:#BFB4A8}
+
+/* 呼びかけ */
+.checks{list-style:none;padding:1.4rem 1.6rem;margin:1.8rem 0 2.2rem;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.checks li{position:relative;padding-left:1.9rem;margin:.55rem 0;font-family:var(--mincho);font-size:1.06rem}
+.checks li::before{content:"";position:absolute;left:0;top:.62em;width:.95rem;height:.95rem;border:1px solid var(--shu);border-radius:.15rem}
+.checks li::after{content:"";position:absolute;left:.3rem;top:.62em;width:.35rem;height:.65rem;border:solid var(--shu);border-width:0 2px 2px 0;transform:translateY(.05rem) rotate(45deg)}
+.turn{font-family:var(--mincho);font-size:1.2rem;line-height:1.85;margin-top:2.2rem}
+.turn em{font-style:normal;border-bottom:2px solid var(--shu)}
+
+/* 3つの日常 */
+.days{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));margin:2.2rem 0}
+.day{background:var(--paper);border-top:2px solid var(--shu);padding:1.4rem 1.3rem 1.2rem}
+.day .when{font-size:.8rem;letter-spacing:.2em;color:var(--shu-deep);margin:0 0 .4rem;font-weight:500}
+.day h3{margin:0 0 .7rem;font-size:1.18rem}
+.day p{margin:0;font-size:.96rem}
+
+/* 作り方の3つ */
+.steps3{counter-reset:n;list-style:none;padding:0;margin:2.2rem 0}
+.steps3 li{position:relative;padding:1.2rem 0 1.2rem 4rem;border-bottom:1px solid var(--line)}
+.steps3 li::before{counter-increment:n;content:"0" counter(n);position:absolute;left:0;top:.95rem;font-family:var(--mincho);font-size:2rem;line-height:1;color:var(--shu)}
+.steps3 b{display:block;font-family:var(--mincho);font-weight:500;font-size:1.12rem;margin-bottom:.2rem}
+.steps3 span{font-size:.96rem;color:var(--sub)}
+.tw{overflow-x:auto;margin:2rem 0}
+.tw table{width:100%;min-width:24rem;border-collapse:collapse;font-size:.96rem}
+.tw th,.tw td{padding:.8rem .9rem;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.tw th{width:36%;font-weight:500;color:var(--sub);white-space:nowrap}
+.tw caption{caption-side:top;text-align:left;font-family:var(--mincho);font-size:1.06rem;padding-bottom:.5rem}
+
+blockquote{margin:2.4rem 0;padding:1.6rem 1.6rem;background:var(--sumi);color:var(--kinari);border-radius:.3rem}
+blockquote p{font-family:var(--mincho);font-size:1.3rem;line-height:1.7;margin:0 0 .6rem}
+blockquote cite{font-style:normal;font-size:.84rem;opacity:.8}
+
+
+/* 選別：写真に札を重ねる */
+.layered{position:relative;max-width:62rem}
+.layered .pin{position:absolute;right:3%;bottom:-2.2rem;width:min(22rem,46%);margin:0;text-align:left;background:var(--sumi);color:var(--kinari);
+  padding:1rem 1.2rem;border-radius:.3rem;font-size:.9rem;line-height:1.8;box-shadow:0 .6rem 1.4rem rgba(60,40,30,.18)}
+.layered .pin b{display:block;font-family:var(--mincho);font-weight:500;font-size:1.05rem;color:#E38C6E;margin-bottom:.2rem}
+#handpick .layered + .col{margin-top:4.4rem}
+/* 農園：横いっぱいの写真に見出しを重ねる */
+.farm-band{position:relative;overflow:hidden;background:var(--sumi)}
+.farm-band img{width:100%;height:clamp(28rem,62vw,46rem);object-fit:cover;object-position:center 40%}
+.farm-band::after{content:"";position:absolute;inset:0;background:linear-gradient(to left,rgba(30,26,23,.78),rgba(30,26,23,.35) 45%,rgba(30,26,23,0) 70%),linear-gradient(to top,rgba(30,26,23,.6),rgba(30,26,23,0) 40%);pointer-events:none}
+.farm-head{position:absolute;z-index:1;right:6%;bottom:3rem;width:min(26rem,42%);color:var(--kinari)}
+.farm-head .label{color:#E38C6E}
+.farm-head h2{margin-bottom:1rem}
+.farm-head p:last-child{margin:0}
+.story-photo{margin:0 0 2.4rem!important}
+.story-photo img{border-radius:.3rem}
+/* 声の欄（中身は書かない） */
+.voices{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));margin:2rem 0 1.2rem}
+.voice{margin:0;background:var(--paper);border-radius:.4rem;padding:1.4rem 1.3rem 1.2rem;border-top:2px solid var(--shu);display:flex;flex-direction:column}
+.voice .vtag{align-self:flex-start;font-size:.76rem;letter-spacing:.06em;color:var(--sub);border:1px solid var(--line);border-radius:.25rem;padding:0 .5rem;margin:0 0 .8rem}
+.voice h3{margin:0 0 .8rem;font-size:1.12rem;line-height:1.6}
+.voice blockquote{margin:0;padding:0;background:none;color:var(--ink);border-radius:0}
+.voice blockquote p{font-family:var(--gothic);font-size:.95rem;line-height:1.9;margin:0}
+.voice figcaption{font-size:.84rem;color:var(--sub);margin-top:auto;padding-top:.9rem;text-align:left}
+.voice-note{font-size:.86rem;color:var(--sub);background:var(--paper);border-left:2px solid var(--shu);padding:.8rem 1rem;margin:0}
+
+/* オファー */
+.offer{background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:.5rem;padding:2rem 1.6rem 1.6rem;margin:2.4rem auto 0;max-width:34em;
+  box-shadow:0 .2rem .5rem rgba(60,40,30,.05),0 1rem 2.4rem rgba(60,40,30,.08)}
+.offer-name{display:flex;align-items:center;justify-content:center;gap:.5rem;font-family:var(--mincho);font-size:1.4rem;margin:0 0 .3rem;letter-spacing:.12em}
+.offer-set{text-align:center;font-size:.96rem;margin:0 0 1.4rem;color:var(--sub)}
+.price-rows{display:grid;gap:.4rem;grid-template-columns:1fr;margin:0 0 1.6rem}
+.price-row{border-top:1px solid var(--line);padding-top:.9rem;text-align:center}
+.price-label{font-size:.92rem;margin:0 0 .3rem;font-weight:500}
+.price-tag{display:inline-block;margin-left:.45rem;padding:0 .5rem;border-radius:.25rem;border:1px solid var(--shu-deep);color:var(--shu-deep);font-weight:500;font-size:.78rem;letter-spacing:.06em;vertical-align:.08em}
+.price-tag.plain{background:none;color:var(--sub);border:1px solid var(--line)}
+.price-was{font-size:.9rem;color:var(--sub);margin:0}
+.price-now{white-space:nowrap;font-family:var(--mincho);font-size:2.3rem;line-height:1.3;margin:0;color:var(--ink);letter-spacing:.02em}
+.price-now .yen{font-size:.5em;margin-left:.1em}
+.price-sub{font-size:.84rem;color:var(--sub);margin:.1rem 0 0}
+.offer .btn{margin:0 auto}
+.offer-notes{list-style:none;padding:0;margin:1.2rem 0 0;font-size:.84rem;color:var(--sub);line-height:1.75}
+.offer-notes li{margin:.25rem 0}
+
+/* お届け */
+.flow{list-style:none;padding:0;margin:2.2rem 0;display:grid;gap:.9rem;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr))}
+.flow li{background:var(--paper);border-radius:.4rem;padding:1.1rem 1.1rem 1rem;position:relative}
+.flow .no{display:inline-flex;align-items:center;justify-content:center;width:1.9rem;height:1.9rem;border-radius:50%;background:var(--shu);color:#fff;font-size:.9rem;font-weight:600;margin-bottom:.5rem}
+.flow b{display:block;font-family:var(--mincho);font-weight:500;font-size:1.08rem}
+.flow span{font-size:.92rem;color:var(--sub)}
+.drip{margin-top:3.2rem;padding-top:2.4rem;border-top:1px solid var(--line)}
+.small{font-size:.84rem;color:var(--sub)}
+
+/* ストーリー */
+.story p{font-size:1.02rem}
+.story .why{margin-top:3rem}
+.story .why p.pose{font-family:var(--mincho);font-size:1.15rem;line-height:2.1}
+.sign{text-align:right;font-family:var(--mincho);margin-top:2rem}
+.dark .btn:focus-visible{outline-color:var(--kinari)}
+
+/* こんな方に */
+.fit{list-style:none;padding:0;margin:2rem 0}
+.fit li{display:flex;flex-wrap:wrap;gap:.2rem 1.4rem;align-items:baseline;padding:1rem 0;border-bottom:1px solid var(--line)}
+.fit b{flex:1 1 17rem;font-family:var(--mincho);font-weight:500;font-size:1.08rem;position:relative;padding-left:1.5rem}
+.fit b::before{content:"";position:absolute;left:0;top:.62em;width:.6rem;height:.6rem;border-radius:50%;background:var(--shu)}
+.fit span{flex:1 1 14rem;font-size:.95rem;color:var(--sub)}
+.hesitate{font-family:var(--mincho);font-size:1.15rem;margin-top:2.4rem}
+
+/* Q&A */
+.qa{margin:2rem 0 0}
+.qa div{padding:1.3rem 0;border-bottom:1px solid var(--line)}
+.qa dt{font-family:var(--mincho);font-size:1.1rem;font-weight:500;position:relative;padding-left:2.1rem;margin-bottom:.5rem}
+.qa dd{margin:0;position:relative;padding-left:2.1rem;font-size:.98rem}
+.qa dt::before,.qa dd::before{position:absolute;left:0;top:0;font-family:var(--mincho);font-size:1.15rem;line-height:1.6}
+.qa dt::before{content:"Q";color:var(--shu)}
+.qa dd::before{content:"A";color:var(--sub)}
+
+/* 最後のオファー */
+.final h2{text-align:center}
+.final .lead{text-align:center}
+.final .cta-flow{list-style:none;padding:0;margin:2rem auto 0;max-width:40rem;display:flex;justify-content:space-between;gap:.6rem;position:relative}
+.final .cta-flow::before{content:"";position:absolute;left:8%;right:8%;top:.55rem;height:1px;background:#6E625A}
+.final .cta-flow li{position:relative;flex:1;text-align:center;font-size:.9rem;padding-top:1.6rem}
+.final .cta-flow li::before{content:"";position:absolute;left:50%;top:.2rem;width:.75rem;height:.75rem;margin-left:-.375rem;border-radius:50%;background:var(--shu)}
+.final .cta-flow b{display:block;font-family:var(--mincho);font-weight:500;font-size:1.02rem}
+
+.final .offer-photo{max-width:40rem;margin:2rem auto 0}
+/* 申込欄（デモ） */
+.apply{padding:4rem 1.2rem 7rem;background:var(--paper)}
+.apply h2{text-align:center}
+.apply .demo{font-size:.9rem;background:var(--wash);border-radius:.4rem;padding:1rem 1.1rem;margin:1.4rem 0}
+.apply .btn{margin:0 auto 3rem}
+
+.sp-only{display:none!important}
+/* 動きを減らす設定では、スクロールとボタンの動きを止める（quality-floor「優しい・軽い」） */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none!important;animation:none!important}
+  .btn:hover{transform:none}
+}
+/* 追従ボタン（スマホ） */
+.float{position:fixed;left:50%;bottom:.8rem;z-index:20;width:calc(100% - 2rem);max-width:26rem;transform:translate(-50%,160%);transition:transform .25s ease;min-height:3.1rem;font-size:.98rem}
+.float.show{transform:translate(-50%,0)}
+@media (min-width:761px){ .float{display:none} }
+
+@media (max-width:760px){
+  .pc-only{display:none!important}
+  .layered .pin{position:relative;right:auto;bottom:auto;width:auto;margin:-1.6rem .8rem 0}
+  #handpick .layered + .col{margin-top:2rem}
+  .farm-band img{height:auto;aspect-ratio:3/4;object-position:28% center}
+  .farm-band::after{background:linear-gradient(to top,rgba(30,26,23,.92),rgba(30,26,23,.5) 45%,rgba(30,26,23,0) 70%)}
+  .farm-head{left:1.1rem;right:1.1rem;bottom:1.6rem;width:auto}
+  .sp-only{display:flex!important}
+  .fv-photo img{height:auto;min-height:0;aspect-ratio:3/4;object-position:center 70%}
+  .fv-photo::after{background:radial-gradient(circle at 10% 4%,rgba(30,26,23,.42),rgba(30,26,23,0) 30%),linear-gradient(to bottom left,rgba(30,26,23,.6),rgba(30,26,23,0) 55%),linear-gradient(to top,rgba(30,26,23,.85),rgba(30,26,23,0) 18%)}
+  .fv h1{right:6%;top:5.4rem;font-size:clamp(2rem,9.2vw,2.6rem);line-height:1.55}
+  .fv-body{position:static;width:auto;padding:1.4rem 1.2rem 1.8rem;background:var(--sumi)}
+  .fv-logo{position:static;margin:0 0 1rem;text-shadow:none}
+  .chips{gap:.2rem .9rem}
+  .chips li{font-size:.84rem;letter-spacing:.03em}
+  .sec{padding:3.8rem 1.1rem}
+  .offer{padding:1.6rem 1.1rem 1.3rem}
+  .btn{padding:.7rem 1.1rem}
+  .price-now{font-size:2.1rem}
+  .final .cta-flow li{font-size:.8rem}
+}
+</style>
+</head>
+<body>
+<p class="notice">【ポートフォリオ用サンプル】架空のブランド「お日様珈琲」の想定で制作。実在の企業・商品とは関係ありません。価格はサンプル値、お客様の声は架空です。</p>
+
+<main>
+  <!-- FV：CTA① まだ警戒している人へ（見るだけ） -->
+  <section class="fv" id="top">
+    <picture class="fv-photo">
+      <source media="(max-width:760px)" srcset="lp-d3/images/fv-tall.webp" width="1024" height="1536">
+      <img src="lp-d3/images/fv-wide.webp" width="1536" height="1024" alt="夜の書斎。電球色のスタンドの下、机の上の白いカップから湯気が立ちのぼる">
+    </picture>
+    <p class="fv-logo pc-only"><span class="sun" aria-hidden="true"></span><span><b>お日様珈琲</b><small>小さな焙煎所の、珈琲豆の通販</small></span></p>
+    <h1><span class="s">この</span>ひととき<span class="s">、</span><span class="l2">自分<span class="s">だけの</span>空間<span class="s">。</span></span></h1>
+    <div class="fv-body">
+      <p class="fv-logo sp-only" aria-hidden="true"><span class="sun"></span><span><b>お日様珈琲</b><small>小さな焙煎所の、珈琲豆の通販</small></span></p>
+      <p class="fv-sub">ご注文を受けてから焙煎し、その日に出荷します。</p>
+      <ul class="chips"><li>注文後に焙煎</li><li>全量ハンドピック</li><li>単一農園の豆</li></ul>
+      <a class="btn" href="#offer">初回お試しセットを詳しく見る<span class="arrow" aria-hidden="true">→</span></a>
+      <p class="fv-note">初回お試しセット 1,375円・送料無料（お届けは1回だけ）</p>
+    </div>
+  </section>
+
+  <!-- 呼びかけ：①無自覚 → ② -->
+  <section class="sec" id="pain">
+    <div class="col">
+      <p class="label"><span class="sun" aria-hidden="true"></span>毎日の一杯</p>
+      <h2><span class="nb">どこで買っても、</span><span class="nb">同じ味に感じる。</span></h2>
+      <p class="lead">毎日飲むものだから、なんとなく選んでいる。そんな朝が、続いていませんか。</p>
+      <ul class="checks">
+        <li>毎日飲むものだからこそ、妥協したくない</li>
+        <li>趣味と言えるものを、ひとつ深めたい</li>
+        <li>豆の違いを、自分の舌で知りたい</li>
+        <li>家族に話せるこだわりを、持っておきたい</li>
+      </ul>
+      <p>いつまでも若くはない。かつて誰かの背中を追っていたあなたは、いま誰かにとっての「向かう先」になっています。どうせなら、その後ろ姿にふさわしい自分でいたい。</p>
+      <p>コーヒーを飲む時間は、自分を見つめ直すための、ほんの少しの旅なのかもしれません。「趣味は珈琲」と言えるものがひとつあれば、毎日の景色も少し変わります。</p>
+      <p class="turn">それなのに、理想の一杯に出会えないまま、<em>妥協のコーヒータイム</em>を過ごしていませんか。</p>
+    </div>
+  </section>
+
+  <!-- 結果：3つの日常 -->
+  <section class="sec wash" id="daily">
+    <div class="wide">
+      <div class="col" style="margin-left:auto;margin-right:auto">
+        <p class="label"><span class="sun" aria-hidden="true"></span>お日様珈琲がある日常</p>
+        <h2><span class="nb">朝の香り。</span><span class="nb">夜の一杯。</span><span class="nb">週末の会話。</span></h2>
+      </div>
+      <div class="days">
+        <div class="day"><p class="when">朝</p><h3>香りから、一日が始まる</h3><p>リビングに、挽きたての香りが広がる。いつもの朝が、少しだけ自分のための時間になります。</p></div>
+        <div class="day"><p class="when">夜</p><h3>一日の終わりに、自分の場所</h3><p>照明を落とした書斎で、本を片手に一杯をゆっくり。誰にも急かされない時間です。</p></div>
+        <div class="day"><p class="when">週末</p><h3>「お父さん、いい香りだね」</h3><p>豆を挽いていると、娘が話しかけてくる。珈琲が、家族の会話のきっかけになります。</p></div>
+      </div>
+      <div class="col" style="margin-left:auto;margin-right:auto">
+        <p>冷めても味が崩れにくい、澄んだ一杯。その理由は、豆の焼き方と選び方にあります。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 紹介：USP -->
+  <section class="sec" id="roast">
+    <div class="col">
+      <p class="label"><span class="sun" aria-hidden="true"></span>作り方</p>
+      <h2><span class="nb">作り置きは、</span><span class="nb">していません。</span></h2>
+      <p>先代である父から受け継いだお日様珈琲は、ご注文を受けてから焙煎してお届けしています。家族で営む、小さな焙煎所です。量ではなく、質を選んできました。</p>
+      <p>非効率を覚悟のうえで、この目で、この手で選んだ生豆だけを焙煎する。それを続けています。</p>
+    </div>
+    <figure><img src="lp-d3/images/roast.webp" width="1536" height="1024" loading="lazy" alt="小さな焙煎所。焙煎機の冷却槽で、焼き上がったばかりの豆がかき混ぜられている"></figure>
+    <div class="col">
+      <ol class="steps3">
+        <li><b>ご注文を受けてから、焙煎します</b><span>焙煎する豆と量は、届いたご注文で決まります。</span></li>
+        <li><b>焙煎したその日に、出荷します</b><span>香りがいちばん立ちのぼる時期を、ご自宅で迎えられます。</span></li>
+        <li><b>焙煎した豆の、在庫を持ちません</b><span>棚に並べて出番を待つ豆は、ありません。</span></li>
+      </ol>
+      <p>焙煎した珈琲豆は、およそ1週間かけて香りと風味が増していきます。焙煎済みの豆を置いておき、注文が来たら送る。そのやり方では、いちばん良い時期をお客様のもとで迎えてもらえません。</p>
+      <div class="tw">
+        <table>
+          <caption>お日様珈琲の珈琲豆</caption>
+          <tr><th>焙煎</th><td>ご注文を受けてから</td></tr>
+          <tr><th>出荷</th><td>焙煎したその日</td></tr>
+          <tr><th>生豆の選別</th><td>全量ハンドピック（手作業）</td></tr>
+          <tr><th>農園</th><td>単一農園（生産者が分かる）</td></tr>
+          <tr><th>焙煎度</th><td>銘柄ごとに、ハイ〜イタリアンの範囲で決めています</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 証拠：ハンドピック -->
+  <section class="sec wash" id="handpick">
+    <div class="col">
+      <p class="label"><span class="sun" aria-hidden="true"></span>選別</p>
+      <h2>一粒ずつ、手で選ぶ。</h2>
+      <p>皆さんが普段目にしている珈琲豆は、焙煎した後の姿です。焙煎する前の生豆は、浅い緑色をしています。</p>
+    </div>
+    <figure class="layered"><img src="lp-d3/images/handpick.webp" width="1536" height="1024" loading="lazy" alt="木のトレーに広げた浅い緑色の生豆と、小皿に取り除いた黒ずんだ欠点豆">
+      <figcaption class="pin"><b>欠点豆</b>カビが入った豆、虫に食われた豆、欠けた豆。右の小皿が、取り除いたものです。</figcaption></figure>
+    <div class="col">
+      <p>欠点豆を見逃せば、その味がそのまま一杯に残ってしまう。だから焙煎の前に、一粒ずつ手に取って、良い豆だけを選び抜きます。この作業を「ハンドピック」と呼んでいます。</p>
+      <p>時間はかかります。それでも機械まかせにしないことで、淹れて冷めた後でも、味が崩れにくい一杯になります。</p>
+      <p>生豆のままお客様にお渡しすることも、していません。</p>
+      <blockquote><p><span class="nb">「焙煎するものとして、</span><span class="nb">無責任である」</span></p><cite>創業者である父の言葉。選んで、焼いて、届けるまでが仕事だと考えていました。</cite></blockquote>
+    </div>
+  </section>
+
+  <!-- 証拠：単一農園 -->
+  <section class="farm" id="farm">
+    <div class="farm-band">
+      <img src="lp-d3/images/farm.webp" width="1536" height="1024" loading="lazy" alt="高地のコーヒー農園。枝に赤く熟した実と緑の実がなり、奥に霧の山並み">
+      <div class="farm-head">
+        <p class="label"><span class="sun" aria-hidden="true"></span>農園</p>
+        <h2><span class="nb">どこの誰が、</span><span class="nb">育てた豆か。</span></h2>
+        <p>お日様珈琲が仕入れる生豆は、すべて単一農園のものです。生産者が分かる、ひとつの農園から届きます。</p>
+      </div>
+    </div>
+    <div class="sec" style="padding-top:3rem">
+    <div class="col">
+      <p>豆を育てる農園もまた、効率化との戦いを抱えています。そのなかでも質にこだわった生産を続けている農園だけを、パートナーに選んでいます。</p>
+      <p>「どこの誰が作ったか」が分かること。その豆の個性も、安心も、お日様珈琲の一杯に含まれています。</p>
+    </div>
+    </div>
+  </section>
+
+  <!-- 共感：お客様の声（架空と明記したサンプル。顔写真は付けない＝表示規制§1）＋オファー① ＋ CTA② -->
+  <section class="sec wash" id="voice">
+    <div class="wide">
+      <div class="col" style="margin-left:auto;margin-right:auto">
+        <p class="label"><span class="sun" aria-hidden="true"></span>お客様の声</p>
+        <h2>飲んでいる方の、言葉。</h2>
+        <p class="voice-note">※ポートフォリオ用のサンプルです。以下3件のお客様の声は架空のもので、実在の人物ではありません。実案件では、掲載の許諾をいただいた実在のお客様の声を載せます。</p>
+      </div>
+      <div class="voices">
+        <figure class="voice">
+          <p class="vtag">サンプル（架空の声）</p>
+          <h3><span class="nb">ブラックを分かって飲む</span><span class="nb">大人で、</span><span class="nb">いたかった。</span></h3>
+          <blockquote><p>50歳が近づいて、もう少し大人の楽しみを持ちたいと思ったんです。そこで、何となく飲んでいたコーヒーに目が向きました。豆の産地や煎り具合で味が変わると知ってから、知るほど面白くなって。ご注文を受けてから焼く、というところに惹かれてお日様珈琲を選びました。今では毎朝の欠かせないお供です。</p></blockquote>
+          <figcaption>S様（49歳・メーカー 営業部長）</figcaption>
+        </figure>
+        <figure class="voice">
+          <p class="vtag">サンプル（架空の声）</p>
+          <h3><span class="nb">冷めてからの一口で、</span><span class="nb">手間の意味が分かった。</span></h3>
+          <blockquote><p>外に出るより家で過ごす方が好きなので、家で出来る趣味を探していました。せっかくならと自分で豆を挽き始めて、いくつかのお店の豆を試しました。お日様珈琲は、冷めてからも味が崩れにくくて驚きました。休日に本を読みながら、ゆっくり飲む時間が出来ました。</p></blockquote>
+          <figcaption>N様（52歳・建設会社 事務職）</figcaption>
+        </figure>
+        <figure class="voice">
+          <p class="vtag">サンプル（架空の声）</p>
+          <h3><span class="nb">「お父さん、</span><span class="nb">それどこの豆？」</span><span class="nb">と聞かれた。</span></h3>
+          <blockquote><p>ずっとカプセル式のコーヒーメーカーを使っていました。たまたま入った喫茶店で、カウンター越しに豆を挽く姿を見て、自分もやってみたくなったんです。豆から挽くと部屋に香りが広がって、中学生の娘が話しかけてくれる様になりました。豆を挽く父親を、少しだけ格好よく演じられています（笑）。</p></blockquote>
+          <figcaption>T様（46歳・IT企業 管理職）</figcaption>
+        </figure>
+      </div>
+      
+    <div class="offer">
+      <p class="offer-name"><span class="sun" aria-hidden="true"></span>初回お試しセット</p>
+      <p class="offer-set"><span class="nb">オリジナルブレンド 200g</span> <span class="nb">＋ お好きな銘柄 100g</span></p>
+      <div class="price-rows">
+        <div class="price-row">
+          <p class="price-label">初回お試しセット<span class="price-tag">初回40%OFF</span></p>
+          <p class="price-was">通常 <s>2,290円</s></p>
+          <p class="price-now">1,375<span class="yen">円</span></p>
+          <p class="price-sub"><span class="nb">送料無料（初回のみ）・</span><span class="nb">お届けは1回だけ</span></p>
+        </div>
+        <div class="price-row">
+          <p class="price-label">2回目からの定期購入<span class="price-tag plain">ご希望の方だけ</span></p>
+          <p class="price-was">通常 <s>2,290円</s></p>
+          <p class="price-now">2,061<span class="yen">円</span></p>
+          <p class="price-sub"><span class="nb">オリジナルブレンド200g・</span><span class="nb">毎回10%引き・送料別</span></p>
+        </div>
+      </div>
+      <a class="btn" href="#offer"><span><span class="nb">自分だけの</span><span class="nb">コーヒータイムを</span><span class="nb">手に入れる</span></span><span class="arrow" aria-hidden="true">→</span></a>
+      <ul class="offer-notes" id="notes1">
+        <li>※お試しセットは1回だけのお届けです。定期購入ではありません。</li>
+        <li>※定期購入は、お試しセットを気に入っていただけた方だけお申し込みください。途中の解約・休止は、いつでも出来ます。</li>
+        <li>※通常価格は、当店で販売しているオリジナルブレンド200gの価格です。</li>
+      </ul>
+    </div>
+    </div>
+  </section>
+
+  <!-- お届け＋ドリップバッグ -->
+  <section class="sec" id="delivery">
+    <div class="wide">
+      <div class="col" style="margin-left:auto;margin-right:auto">
+        <p class="label"><span class="sun" aria-hidden="true"></span>お届け</p>
+        <h2><span class="nb">焙煎した日に、</span><span class="nb">ポストへ。</span></h2>
+        <p>ご注文から、お届けまでの4つ。</p>
+      </div>
+      <figure style="max-width:48rem"><img src="lp-d3/images/delivery.webp" width="1536" height="1024" loading="lazy" alt="朝の玄関先。黒い郵便受けに、朱の丸の印がついた黒い珈琲豆の包みが届いている"></figure>
+      <ol class="flow">
+        <li><span class="no">1</span><b>ご注文・焙煎</b><span>ご注文を受けてから焙煎します。</span></li>
+        <li><span class="no">2</span><b>パッキング</b><span>香りを守る専用の袋へ、詰めます。</span></li>
+        <li><span class="no">3</span><b>焙煎当日に出荷</b><span>その日のうちに発送します。</span></li>
+        <li><span class="no">4</span><b>ポストへお届け</b><span>ポストへの投函なので、ご不在でも受け取れます。</span></li>
+      </ol>
+      <div class="col drip" style="margin-left:auto;margin-right:auto">
+        <h3 style="margin-top:0"><span class="nb">ミルがなくても、</span><span class="nb">同じ鮮度で。</span></h3>
+        <p>コーヒーミルをお持ちでない方には、手作りのドリップバッグもご用意しています。焙煎した直後の豆を、すぐにドリップバッグへ詰めてお届けします。詰めるのも、手作業です。</p>
+        <p>そのぶん賞味期限は短めです。鮮度を優先しています。</p>
+        <p class="small">※ドリップバッグの価格・内容は、商品ページでご案内します。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ストーリー ＋ CTA③ -->
+  <section class="sec dark story" id="story">
+    <div class="col">
+      <p class="label"><span class="sun" aria-hidden="true"></span>二代目として</p>
+      <h2><span class="nb">継ぐ気は、</span><span class="nb">1ミリもなかった。</span></h2>
+      <figure class="story-photo"><img src="lp-d3/images/story.webp" width="1536" height="1024" loading="lazy" alt="西日の差し込む小さな焙煎所。使い込まれた古い焙煎機と木の作業台、真鍮の秤"><figcaption>先代から使ってきた焙煎機と作業台</figcaption></figure>
+      <p>こんにちは。お日様珈琲の二代目、日向陽介と申します。</p>
+      <p>創業者である父は、「自分自身がいいと思えるものだけをつくる」をモットーに、お日様珈琲を立ち上げました。</p>
+      <p>生豆から、手間をかけて良い豆だけを選び抜く。量をこなすのではなく、質を求めて、あえて非効率を選ぶ。効率を選べば、もっと広く流通させることも出来たはずです。父は、その選択肢を外しました。</p>
+      <p>父は頑固者でした。近寄りがたい人でした。けれど、その頑固さが職人のこだわりとして息づき、お日様珈琲が生まれました。</p>
+      <p>私は、父の後を継ごうとは1ミリも思っていませんでした。それでも、知らないうちに受け継いでいた職人肌が目を覚ましたのか、質より量を求める働き方に馴染めなくなり、気づけば父の背中を追っていました。</p>
+      <p>この珈琲を新しい時代に届ける手段として、ネットでの販売を考えました。でも、他人には任せたくなかった。機械で豆を選別するのを嫌うのと同じ様に、自分の言葉で伝えたかったのです。いまの通販の仕組みは、悪戦苦闘しながら自分で作りました。私も、父と同じ頑固者なのかもしれません。</p>
+      <div class="why">
+        <h3>なぜ人は、珈琲を飲むのでしょうか。</h3>
+        <p class="pose">ひと息入れるため。<br>自分を確かめるため。<br><span class="nb">何かに挑もうとする心を、</span><span class="nb">奮い立たせるため。</span></p>
+        <p>あの香りとともに、口の中にまろやかなコクと苦味が広がる。言葉にしなくても、自分を肯定してくれる味方の様に、その時間が包み込んでくれる。私も、珈琲が大好きです。</p>
+        <p>お日様珈琲は、あなたの毎日に、自分のためのひとときをつくるお手伝いをします。ぜひ一度、召し上がってみてください。</p>
+      </div>
+      <p class="sign">お日様珈琲 二代目　日向 陽介</p>
+      <div class="cta-wrap">
+        <p class="lead-in"><span class="nb">まずは少しの量から、</span><span class="nb">確かめてみてください。</span></p>
+        <a class="btn" href="#offer">お日様珈琲を体験してみる<span class="arrow" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- クロージング：N（絞り込み）＋オファー② ＋ CTA④ -->
+  <section class="sec" id="fit">
+    <div class="col">
+      <p class="label"><span class="sun" aria-hidden="true"></span>こんな方に</p>
+      <h2><span class="nb">ひとつでも、</span><span class="nb">当てはまったら。</span></h2>
+      <ul class="fit">
+        <li><b>家で、上質な珈琲を飲みたい</b><span>注文を受けてから焙煎した豆が届きます。</span></li>
+        <li><b><span class="nb">自分を見つめ直す</span><span class="nb">時間がほしい</span></b><span>冷めても味が崩れにくい一杯です。</span></li>
+        <li><b>自分だけの一杯に出会いたい</b><span>単一農園の銘柄から選べます。</span></li>
+        <li><b>職人がつくる珈琲を飲みたい</b><span>生豆は、すべて手で選んでいます。</span></li>
+        <li><b><span class="nb">豆を挽くところから</span><span class="nb">楽しみたい</span></b><span>ミルをお持ちでなければ、ドリップバッグもあります。</span></li>
+      </ul>
+      <p>ひとつでも当てはまったなら、お日様珈琲を、日常の相棒に選んでみてください。</p>
+      <p class="hesitate">「でも、初めてだし……」</p>
+      <p>ためらう気持ちも分かります。だから、はじめての方には、少ない量から試せるセットをご用意しました。</p>
+    </div>
+    
+    <div class="offer">
+      <p class="offer-name"><span class="sun" aria-hidden="true"></span>初回お試しセット</p>
+      <p class="offer-set"><span class="nb">オリジナルブレンド 200g</span> <span class="nb">＋ お好きな銘柄 100g</span></p>
+      <div class="price-rows">
+        <div class="price-row">
+          <p class="price-label">初回お試しセット<span class="price-tag">初回40%OFF</span></p>
+          <p class="price-was">通常 <s>2,290円</s></p>
+          <p class="price-now">1,375<span class="yen">円</span></p>
+          <p class="price-sub"><span class="nb">送料無料（初回のみ）・</span><span class="nb">お届けは1回だけ</span></p>
+        </div>
+        <div class="price-row">
+          <p class="price-label">2回目からの定期購入<span class="price-tag plain">ご希望の方だけ</span></p>
+          <p class="price-was">通常 <s>2,290円</s></p>
+          <p class="price-now">2,061<span class="yen">円</span></p>
+          <p class="price-sub"><span class="nb">オリジナルブレンド200g・</span><span class="nb">毎回10%引き・送料別</span></p>
+        </div>
+      </div>
+      <a class="btn" href="#offer">40%OFFでお日様珈琲を始めてみる<span class="arrow" aria-hidden="true">→</span></a>
+      <ul class="offer-notes" id="notes2">
+        <li>※お試しセットは1回だけのお届けです。定期購入ではありません。</li>
+        <li>※定期購入は、お試しセットを気に入っていただけた方だけお申し込みください。途中の解約・休止は、いつでも出来ます。</li>
+        <li>※通常価格は、当店で販売しているオリジナルブレンド200gの価格です。</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Q&A -->
+  <section class="sec wash" id="faq">
+    <div class="col">
+      <p class="label"><span class="sun" aria-hidden="true"></span>Q&amp;A</p>
+      <h2><span class="nb">はじめての方に、</span><span class="nb">よく聞かれること。</span></h2>
+      <dl class="qa">
+        <div><dt>焙煎したての豆が届くのですか？</dt><dd>作り置きはしていません。ご注文を受けてから焙煎し、その日のうちに出荷します。</dd></div>
+        <div><dt>焙煎の度合いは、どう決めていますか？</dt><dd>銘柄ごとに、豆の個性がいちばん出る焙煎度で焼いています（ハイ〜イタリアン）。</dd></div>
+        <div><dt>送料はかかりますか？</dt><dd>初回お試しセットは送料無料です。2回目からは送料がかかります。</dd></div>
+        <div><dt>お試しセットを頼むと、定期購入になりますか？</dt><dd>なりません。お試しセットは1回だけのお届けです。定期購入は、気に入っていただけた方だけお申し込みください。</dd></div>
+        <div><dt>定期購入は、いつでもやめられますか？</dt><dd>はい。途中の解約・お休みは、いつでも出来ます。</dd></div>
+        <div><dt>コーヒーミルを持っていなくても大丈夫ですか？</dt><dd>手作りのドリップバッグもご用意しています。</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- 最後のオファー（全CTAの着地点）＋ CTA⑤ -->
+  <section class="sec dark final" id="offer">
+    <div class="wide">
+      <p class="label" style="justify-content:center"><span class="sun" aria-hidden="true"></span>初回お試しセット</p>
+      <h2>まずは、300gから。</h2>
+      <p class="lead">オリジナルブレンド200gと、お好きな銘柄100g。夜の一杯を、自分の舌で確かめてください。</p>
+      <figure class="offer-photo"><img src="lp-d3/images/offer.webp" width="1536" height="1024" loading="lazy" alt="朝の窓辺のテーブルに、黒い珈琲豆の袋が大小2つと、白いカップのコーヒー"></figure>
+      <ol class="cta-flow">
+        <li><b>ご注文</b><span class="nb">注文後に</span><span class="nb">焙煎</span></li>
+        <li><b><span class="nb">焙煎した日に</span><span class="nb">出荷</span></b><span class="nb">香りが立つ</span><span class="nb">時期に</span></li>
+        <li><b><span class="nb">ポストへ</span><span class="nb">お届け</span></b><span class="nb">ご不在でも</span><span class="nb">受け取れる</span></li>
+      </ol>
+      
+    <div class="offer">
+      <p class="offer-name"><span class="sun" aria-hidden="true"></span>初回お試しセット</p>
+      <p class="offer-set"><span class="nb">オリジナルブレンド 200g</span> <span class="nb">＋ お好きな銘柄 100g</span></p>
+      <div class="price-rows">
+        <div class="price-row">
+          <p class="price-label">初回お試しセット<span class="price-tag">初回40%OFF</span></p>
+          <p class="price-was">通常 <s>2,290円</s></p>
+          <p class="price-now">1,375<span class="yen">円</span></p>
+          <p class="price-sub"><span class="nb">送料無料（初回のみ）・</span><span class="nb">お届けは1回だけ</span></p>
+        </div>
+        <div class="price-row">
+          <p class="price-label">2回目からの定期購入<span class="price-tag plain">ご希望の方だけ</span></p>
+          <p class="price-was">通常 <s>2,290円</s></p>
+          <p class="price-now">2,061<span class="yen">円</span></p>
+          <p class="price-sub"><span class="nb">オリジナルブレンド200g・</span><span class="nb">毎回10%引き・送料別</span></p>
+        </div>
+      </div>
+      <a class="btn" href="#apply"><span><span class="nb">初回限定セットで、</span><span class="nb">至福のひとときを始める</span></span><span class="arrow" aria-hidden="true">→</span></a>
+      <ul class="offer-notes" id="notes3">
+        <li>※お試しセットは1回だけのお届けです。定期購入ではありません。</li>
+        <li>※定期購入は、お試しセットを気に入っていただけた方だけお申し込みください。途中の解約・休止は、いつでも出来ます。</li>
+        <li>※通常価格は、当店で販売しているオリジナルブレンド200gの価格です。</li>
+      </ul>
+    </div>
+    </div>
+  </section>
+
+  <section class="apply" id="apply">
+    <div class="col">
+      <h2><span class="nb">初回お試しセットを</span><span class="nb">申し込む</span></h2>
+      <p>オリジナルブレンド200g＋お好きな銘柄100g、1,375円（送料無料）。お届けは1回だけです。定期購入は、気に入っていただけた方だけお申し込みください。</p>
+      <p class="demo">このページはポートフォリオ用のサンプルのため、申込フォームはつながっていません。実案件では、ここに【購入ページのURL】が入ります。</p>
+      <a class="btn" href="#" aria-disabled="true">【購入ページのURL】</a>
+      <div class="tw">
+        <table>
+          <caption>販売者</caption>
+          <tr><th>屋号</th><td>お日様珈琲</td></tr>
+          <tr><th>代表</th><td>日向 陽介</td></tr>
+          <tr><th>所在地</th><td>〇〇県〇〇市〇〇1-2-3</td></tr>
+          <tr><th>送料</th><td>初回お試しセットは無料。2回目以降は【送料】</td></tr>
+          <tr><th>定期購入</th><td>2回目以降、毎回10%引き。途中の解約・休止はいつでも可能</td></tr>
+          <tr><th>お届け</th><td>ご注文を受けてから焙煎し、焙煎した日に出荷。ポストへ投函</td></tr>
+        </table>
+      </div>
+      <p class="small">※上記はすべて架空の設定です。実案件では、特定商取引法に基づく表記・プライバシーポリシーへのリンクが入ります。<br>※お客様の声は架空のサンプルです。<br>※写真はすべてAIで生成したイメージです。</p>
+    </div>
+  </section>
+</main>
+
+<a class="btn float" href="#offer" aria-hidden="true" tabindex="-1">初回お試しセットを見る<span class="arrow" aria-hidden="true">→</span></a>
+<script>
+// 追従ボタン（スマホ）：FVを過ぎたら出し、オファー欄（3か所）と申込欄が見えている間は隠す（価格を隠さないため）
+(function(){
+  var btn=document.querySelector('.float'),top=document.getElementById('top');
+  if(!btn||!('IntersectionObserver' in window))return;
+  var onTop=true,seen=new Set();
+  function u(){var show=!onTop&&seen.size===0;btn.classList.toggle('show',show);
+    btn.setAttribute('aria-hidden',show?'false':'true');btn.tabIndex=show?0:-1;}
+  new IntersectionObserver(function(e){onTop=e[0].isIntersecting;u();}).observe(top);
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){e.isIntersecting?seen.add(e.target):seen.delete(e.target);});u();});
+  document.querySelectorAll('.offer,#apply').forEach(function(el){io.observe(el);});
+})();
+</script>
+</body>
+</html>
